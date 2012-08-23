@@ -15,11 +15,9 @@ function printdata(data){
 }
 function getPrintCfg01(data,orgmap){
 	var retprintcfg = {
-		title:{intTop:"0.26cm",intLeft:"0.26cm",intWidth:"20.8cm",intHeight:"14cm",strContent:"封面"},
+		title:{intTop:"0.26cm",intLeft:"0.26cm",intWidth:"20.8cm",intHeight:"14cm",strContent:"1、封面"},
 		data:[	]
 	}
-	
-	var names = new Array('','');
 	var i = 0 ;
 	//18位编号
 	retprintcfg.data[i++] = {"strContent":data.file.fileNo.substr(0,1),intTop:"10.26cm",intLeft:"10.2cm",intWidth:"6cm",intHeight:"0.8cm"}; 
@@ -95,65 +93,86 @@ function getPrintCfg02(data,orgmap){
 	alert(printdata(data.samTaxempcode));
 	alert(printdata(data.firstVisit));
 	alert(printdata(data.org));
+	
+	alert(printdata(data.samTaxempcode.district));
 	/**/
 	var retprintcfg = {
-		title:{intTop:"0.26cm",intLeft:"0.26cm",intWidth:"20.8cm",intHeight:"14cm",strContent:"封面"},
+		title:{intTop:"0.26cm",intLeft:"0.26cm",intWidth:"20.8cm",intHeight:"14cm",strContent:"2、孕妇基本档案"},
 		data:[	]
-	}
-	var names = new Array('','');
+	};
 	var i = 0 ;
 	//国籍
-	retprintcfg.data[i++] = {"strContent":"√",intTop:"10.26cm",intLeft:"10.2cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	retprintcfg.data[i++] = {"strContent":"√",intTop:"10.26cm",intLeft:"3.2cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+
 	//身份证,护照号
-	retprintcfg.data[i++] = {"strContent":data.person.idnumber,intTop:"10.26cm",intLeft:"16.5cm",intWidth:"6cm",intHeight:"0.8cm"};
+	retprintcfg.data[i++] = {"strContent":data.person.idnumber,intTop:"10.26cm",intLeft:"10.5cm",intWidth:"6cm",intHeight:"0.8cm"};
 	//工作单位
-	retprintcfg.data[i++] = {"strContent":data.person.workunit,intTop:"11.0cm",intLeft:"3.26cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	retprintcfg.data[i++] = {"strContent":data.person.workUnit,intTop:"11.0cm",intLeft:"3.26cm",intWidth:"6cm",intHeight:"0.8cm"}; 
 	//户籍类别
-	retprintcfg.data[i++] = {"strContent":"√",intTop:"11.0cm",intLeft:data.person.farmstatus==="是"?"6.26cm":"8.26cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-	//居住地区 : 无对应字段
-	retprintcfg.data[i++] = {"strContent":"",intTop:"11.0cm",intLeft:"8.26cm",intWidth:"4cm",intHeight:"0.8cm"}; 
+	retprintcfg.data[i++] = {"strContent":"√",intTop:"11.0cm",intLeft:data.person.farmStatus==="是"?"10.26cm":"11.26cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	//居住地区 : 无对应字段,默认选择4.其他地区
+	retprintcfg.data[i++] = {"strContent":"√",intTop:"11.0cm",intLeft:"18.26cm",intWidth:"4cm",intHeight:"0.8cm"}; 
 	//卫生机构公里数 : 无对应字段
 	retprintcfg.data[i++] = {"strContent":"",intTop:"11.8cm",intLeft:"12.26cm",intWidth:"4cm",intHeight:"0.8cm"}; 
 	//民族
-	if(data.person.fork==="汉"){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"11.8cm",intLeft:"14cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	if(data.person.folk==="汉族"){
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"11.8cm",intLeft:"8.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
 	}else{
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"11.8cm",intLeft:"15cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-		retprintcfg.data[i++] = {"strContent":data.person.fork,intTop:"11.8cm",intLeft:"17cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"11.8cm",intLeft:"10cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		retprintcfg.data[i++] = {"strContent":data.person.folkOther,intTop:"11.8cm",intLeft:"11cm",intWidth:"2cm",intHeight:"0.8cm"}; 
 	}
 	//文化程度
-	retprintcfg.data[i++] = {"strContent":data.person.fork,intTop:"11.8cm",intLeft:"17cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-	
-	//区
-	retprintcfg.data[24] = {"strContent":orgmap.getNodeById(data.file.fileNo.substr(0,6)).text,intTop:"16.26cm",intLeft:"7.26cm",intWidth:"4cm",intHeight:"0.8cm"}; 
-	//街
-	retprintcfg.data[25] = {"strContent":data.file.township,intTop:"16.26cm",intLeft:"11.26cm",intWidth:"4cm",intHeight:"0.8cm"}; 
-	//村
-	retprintcfg.data[26] = {"strContent":data.file.village,intTop:"16.26cm",intLeft:"14.26cm",intWidth:"4cm",intHeight:"0.8cm"}; 
-	//门牌号
-	retprintcfg.data[27] = {"strContent":"无",intTop:"16.26cm",intLeft:"18.26cm",intWidth:"4cm",intHeight:"0.8cm"}; 
+	if(data.person.education==="文盲及半文盲" || data.person.education==="不详"){
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"12.6cm",intLeft:"4cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}else if(data.person.education==="小学" || data.person.education==="初中"){
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"12.6cm",intLeft:"7cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}else if(data.person.education==="高中/技校/中专"){
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"12.6cm",intLeft:"9.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}else if(data.person.education==="大学专科及以上"){
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"12.6cm",intLeft:"13cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}
+	//职业
+	if(data.person.occupation==="国家机关、党群组织、企业、事业单位负责人" ){
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"13.4cm",intLeft:"3.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}else if(data.person.occupation==="专业技术人员" ){
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"13.4cm",intLeft:"10cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}else if(data.person.occupation==="办事人员和有关人员"){
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"13.4cm",intLeft:"13cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}else if(data.person.occupation==="商业、服务业人员"){
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"13.4cm",intLeft:"18cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}else if(data.person.occupation==="农、林、牧、渔、水利业生产人员"){
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"14.2cm",intLeft:"2cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}else if(data.person.occupation==="生产、运输设备操作人员及有关人员"){
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"14.2cm",intLeft:"7cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}else if(data.person.occupation==="军人"){
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"14.2cm",intLeft:"13cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}else if(data.person.occupation==="不便分类的其他从业人员"){
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"14.2cm",intLeft:"15cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}
+	//产后休养地
 	//省
-	retprintcfg.data[28] = {"strContent":"云南",intTop:"17.26cm",intLeft:"3.26cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	retprintcfg.data[i++] = {"strContent":"云南",intTop:"15cm",intLeft:"3.26cm",intWidth:"2cm",intHeight:"0.8cm"}; 
 	//市
-	retprintcfg.data[29] = {"strContent":"昆明",intTop:"17.26cm",intLeft:"5.26cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	retprintcfg.data[i++] = {"strContent":"昆明",intTop:"15cm",intLeft:"5.26cm",intWidth:"2cm",intHeight:"0.8cm"}; 
 	//区
-	retprintcfg.data[30] = {"strContent":orgmap.getNodeById(data.file.fileNo.substr(0,6)).text,intTop:"17.26cm",intLeft:"7.26cm",intWidth:"4cm",intHeight:"0.8cm"}; 
+	retprintcfg.data[i++] = {"strContent":orgmap.getNodeById(data.file.fileNo.substr(0,6)).text,intTop:"15cm",intLeft:"7.26cm",intWidth:"4cm",intHeight:"0.8cm"}; 
 	//街
-	retprintcfg.data[31] = {"strContent":data.file.township,intTop:"17.26cm",intLeft:"11.26cm",intWidth:"4cm",intHeight:"0.8cm"}; 
+	retprintcfg.data[i++] = {"strContent":data.file.township,intTop:"15cm",intLeft:"11.26cm",intWidth:"4cm",intHeight:"0.8cm"}; 
 	//村
-	retprintcfg.data[32] = {"strContent":data.file.village,intTop:"17.26cm",intLeft:"14.26cm",intWidth:"4cm",intHeight:"0.8cm"}; 
+	retprintcfg.data[i++] = {"strContent":data.file.village,intTop:"15cm",intLeft:"14.26cm",intWidth:"4cm",intHeight:"0.8cm"}; 
 	//门牌号
-	retprintcfg.data[33] = {"strContent":"无",intTop:"17.26cm",intLeft:"18.26cm",intWidth:"4cm",intHeight:"0.8cm"}; 
-	//高危代码
-	retprintcfg.data[34] = {"strContent":data.firstVisit.highRisk,intTop:"18.26cm",intLeft:"3.26cm",intWidth:"4cm",intHeight:"0.8cm"}; 
-	//建册机构
-	retprintcfg.data[35] = {"strContent":data.org.name,intTop:"18.26cm",intLeft:"6.26cm",intWidth:"6cm",intHeight:"0.8cm"}; 
-	//年
-	retprintcfg.data[36] = {"strContent":Ext.util.Format.date(data.file.buildDate,"Y"),intTop:"18.26cm",intLeft:"12.26cm",intWidth:"6cm",intHeight:"0.8cm"}; 
-	//月
-	retprintcfg.data[37] = {"strContent":Ext.util.Format.date(data.file.buildDate,"m"),intTop:"18.26cm",intLeft:"13.26cm",intWidth:"6cm",intHeight:"0.8cm"}; 
-	//日
-	retprintcfg.data[38] = {"strContent":Ext.util.Format.date(data.file.buildDate,"d"),intTop:"18.26cm",intLeft:"14.26cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	retprintcfg.data[i++] = {"strContent":"无",intTop:"15cm",intLeft:"18.26cm",intWidth:"4cm",intHeight:"0.8cm"}; 
+	//丈夫姓名
+	retprintcfg.data[i++] = {"strContent":data.firstVisit.husbandName,intTop:"15.8cm",intLeft:"4cm",intWidth:"4cm",intHeight:"0.8cm"}; 
+	//丈夫年龄
+	retprintcfg.data[i++] = {"strContent":data.firstVisit.husbandAge,intTop:"15.8cm",intLeft:"7cm",intWidth:"3cm",intHeight:"0.8cm"}; 
+	//丈夫联系电话
+	retprintcfg.data[i++] = {"strContent":data.firstVisit.husbandTel,intTop:"15.8cm",intLeft:"10cm",intWidth:"4cm",intHeight:"0.8cm"}; 
+	//丈夫文化程度 无字段 ,不填
+	//丈夫职业 无字段 ,不填
+	//丈夫工作单位 无字段 ,不填
+	
+		/**/
 	return retprintcfg;
 }
 /**/
