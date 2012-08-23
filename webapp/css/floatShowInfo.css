@@ -1,0 +1,39 @@
+.showInfo_Child_Woman {
+	position: fixed;
+	top: 30%;
+	vertical-align:middle;
+	left: 0px;
+	background-image: url('/image/showInfobg.png');
+	background-repeat: no-repeat;
+	height: 200px;
+	width: 150px;
+	padding-top:10px; 
+	padding-left:10px; 
+}
+
+.showInfo_Child_Woman_title{
+	font-size: 20px;
+	color: red;
+	font-weight: bolder;
+}
+.showInfo_Child_Woman_content{
+	width: 118px;
+	padding-left: 5px;
+	padding-right: 5px;	
+	text-indent: 2em;
+}
+.showInfo_close{
+	padding-right:30px;
+	float: right;
+	font-size: 12px;
+	text-decoration: underline;
+	cursor: pointer;
+	vertical-align: bottom;
+}
+.showInfo_close:hover{
+	color: olive;
+}
+
+.showInfo_items{
+	text-decoration: underline;
+	color: red;

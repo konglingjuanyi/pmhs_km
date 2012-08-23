@@ -1,0 +1,92 @@
+把原来两个东西，整理到一个项目中来。
+
+
+YNGS Init Guide:
+1. Checkout yngs project
+  1.1 Add host record (windows: c:\windows\system32\drivers\etc\hosts, linux: /etc/hosts )
+  #如果在北京办公内网
+  svn.tongfang.net.cn 192.168.1.20
+
+  1.2 Checkout svn
+  svn co http://svn.tongfang.net.cn:2233/svn/yngs/trunk yngs --username user1 --password password
+
+2. prepare mysql database
+  2.1 Create database
+  CREATE DATABASE  yngs DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+  2.2 Import demo data
+  mysqlimport yngs db/lastest.sql
+
+3. Modify configure. eg. resin, db connect..
+  3.1 resin/conf/resin.xml
+  check "root-directory"
+  3.2 resin/resin.sh
+  check JAVA_HOME and RESIN_HOME
+  3.3 webapp/WEB-INF/hbt.xml
+  check db connection: username and password
+
+4. Start demo
+  cd resin
+  ./resin.sh
+
+5. Check demo
+  browse http://localhost:8000
+  login demo user: daved/123456
+
+=============
+日志补充，在svn merge r6:r14 分支的时候，没有保存住分支更新的log，在此处补上。
+------------------------------------------------------------------------
+r14 | shafei | 2010-08-06 15:31:00 +0800 (五, 06  8月 2010) | 3 lines
+
+在SimplePanel中，解决定制Grid，queryPanel等控件的Config问题
+即，通过指定 gridConfigEx, queryConfigEx 等的将config信息传递到Panel中
+
+------------------------------------------------------------------------
+r13 | shafei | 2010-08-06 15:30:59 +0800 (五, 06  8月 2010) | 2 lines
+
+move contrl Ext.tf.PopSelect into tf.js file.
+
+------------------------------------------------------------------------
+r12 | shafei | 2010-08-06 15:30:58 +0800 (五, 06  8月 2010) | 3 lines
+
+利用SimplePanel实现弹出窗口中的查询界面
+在SimplePanel中增加新的config，包括是否显示新增Button，双击记录编辑，右键菜单
+
+------------------------------------------------------------------------
+r11 | shafei | 2010-08-06 15:30:57 +0800 (五, 06  8月 2010) | 3 lines
+
+初步硬代码实现，弹出窗口的功能
+需要整理
+
+------------------------------------------------------------------------
+r10 | shafei | 2010-08-04 11:57:42 +0800 (三, 04  8月 2010) | 2 lines
+
+删除多余废弃的sql
+
+------------------------------------------------------------------------
+r9 | shafei | 2010-08-04 11:57:40 +0800 (三, 04  8月 2010) | 2 lines
+
+增加mysql数据库的dump
+
+------------------------------------------------------------------------
+r8 | shafei | 2010-08-03 18:25:00 +0800 (二, 03  8月 2010) | 12 lines
+
+增加模块维护，增删改查，其中有关于Combo的使用
+
+    修改Module的hibernate模型，增加与category类的对应关系，使之可以自动取得category信息。
+    以往实现类似的功能是再新建一个类，包括module和category，并相应修改查询sql。
+
+    由于目前仅工作在权限部分，这样的修改涉及到的改动比较小，先采用之，是否在其他业务实现中也用此方式，
+    需要再考察。此方式对比以前的方式，主要是需要程序员更多的了解hibernate domain配置规则，解决好lazyload等问题。
+    不过，从hibernate本身更多的应用是采用这样的，在domain中建立相应实体关联的做法。
+
+    注意，这里其实用到的方式，似乎也不是很规范的，因为它只涉及到了取数据的方面，而在insert,update方面依然
+    是用关联字段来进行的。是否得当也需考证。
+
+------------------------------------------------------------------------
+r7 | shafei | 2010-08-03 18:24:59 +0800 (二, 03  8月 2010) | 2 lines
+
+reformat the file, not modify any function
+
+=======================
+

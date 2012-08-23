@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+">
+	
+	<bean id="securityService" class="cn.net.tongfang.framework.security.SecurityServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="fileNoGen" class="cn.net.tongfang.web.util.FileNoGen">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>	
+	
+	<!-- 修改开始 -->
+	<bean id="homeNoGen" class="cn.net.tongfang.web.util.HomeNoGen">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>	
+	<bean id="mgr" class="cn.net.tongfang.framework.util.service.ModuleMgr">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>	
+	<!-- 修改结束 -->
+
+</beans>

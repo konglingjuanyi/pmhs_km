@@ -1,0 +1,159 @@
+.settings {
+	background-image: url(../shared/icons/fam/folder_wrench.png);
+}
+
+.publicSettingMod{
+	background-repeat: no-repeat;
+	margin-left: 10px;
+	background-position:center left;
+}
+
+.settingsModDefault{
+	background-image: url(../shared/icons/fam/default_mod_setting01_16_16.png)
+		!important;
+}
+
+.system_setup {
+	background-image: url(../shared/icons/fam/system_setup01_16_16.png);
+}
+.detail_health_file {
+	background-image: url(../shared/icons/fam/detail_health_file.png);
+}
+.chronic_visit {
+	background-image: url(../shared/icons/fam/chronic_visit_16_16.png);
+}
+.chronic_info_add {
+	background-image: url(../shared/icons/fam/chronic_info_add_16_16.png);
+}
+.child_visit_01 {
+	background-image: url(../shared/icons/fam/child_visit_01_16_16.png);
+}
+.child_visit_02 {
+	background-image: url(../shared/icons/fam/child_visit_02_16_16.png);
+}
+.child_visit_03 {
+	background-image: url(../shared/icons/fam/child_visit_03_16_16.png);
+}
+.child_visit_04 {
+	background-image: url(../shared/icons/fam/child_visit_04_16_16.png);
+}
+.prevent_vaccinate_card {
+	background-image: url(../shared/icons/fam/prevent_vaccinate_card_16_16.png);
+}
+.health_educate_record {
+	background-image: url(../shared/icons/fam/health_educate_record_16_16.png);
+}
+.prevent_vaccinate_program {
+	background-image: url(../shared/icons/fam/prevent_vaccinate_program_16_16.png);
+}
+.birth_certificate_init {
+	background-image: url(../shared/icons/fam/birth_certificate_init_16_16.png);
+}
+.birth_certificate_month_report {
+	background-image: url(../shared/icons/fam/birth_certificate_month_report_16_16.png);
+}
+.birth_certificate_use {
+	background-image: url(../shared/icons/fam/birth_certificate_use_16_16.png);
+}
+.birth_certificate_distribute {
+	background-image: url(../shared/icons/fam/birth_certificate_distribute_16_16.png);
+}
+.barcode_init {
+	background-image: url(../shared/icons/fam/barcode_init_16_16.png);
+}
+.birth_certificate_year_report {
+	background-image: url(../shared/icons/fam/birth_certificate_year_report_16_16.png);
+}
+.health_file_manage {
+	background-image: url(../shared/icons/fam/health_file_manage_16_16.png);
+}
+
+.health_educate {
+	background-image: url(../shared/icons/fam/health_educate_16_16.png);
+}
+.mod_cat_setup {
+	background-image: url(../shared/icons/fam/mod_cat_setup_16_16.png);
+}
+.mod_setup {
+	background-image: url(../shared/icons/fam/mod_setup_16_16.png);
+}
+.role_setup {
+	background-image: url(../shared/icons/fam/role_setup_16_16.png);
+}
+.user_setup {
+	background-image: url(../shared/icons/fam/user_setup_16_16.png);
+}
+.print_setup {
+	background-image: url(../shared/icons/fam/print_setup_16_16.png);
+}
+.district_setup {
+	background-image: url(../shared/icons/fam/district_setup_16_16.png);
+}
+.organization_setup {
+	background-image: url(../shared/icons/fam/organization_setup_16_16.png);
+}
+
+.pregnant_woman {
+	background-image: url(../shared/icons/fam/pregnant_woman_16_16.png);
+}
+.statistic_man {
+	background-image: url(../shared/icons/fam/statistic_man_16_16.png);
+}
+.statistic_twonship {
+	background-image: url(../shared/icons/fam/statistic_twonship_16_16.png);
+}
+.statistic_highrisk {
+	background-image: url(../shared/icons/fam/statistic_highrisk_16_16.png);
+}
+.statistic_hospital {
+	background-image: url(../shared/icons/fam/statistic_hospital_16_16.png);
+}
+
+.statistic_month_report_01 {
+	background-image: url(../shared/icons/fam/statistic_month_report_01_16_16.png);
+}
+.statistic_month_report_02 {
+	background-image: url(../shared/icons/fam/statistic_month_report_02_16_16.png);
+}
+.statistic_month_report_03 {
+	background-image: url(../shared/icons/fam/statistic_month_report_03_16_16.png);
+}
+
+.statistic_day_report {
+	background-image: url(../shared/icons/fam/statistic_day_report_16_16.png);
+}
+.hypertension_manage {
+	background-image: url(../shared/icons/fam/hypertension_manage_16_16.png);
+}
+.diabetes_manage {
+	background-image: url(../shared/icons/fam/diabetes_manage_16_16.png);
+}
+.mental_manage {
+	background-image: url(../shared/icons/fam/mental_manage_16_16.png);
+}
+.statistic_report {
+	background-image: url(../shared/icons/fam/statistic_report_16_16.png);
+}
+.birth_certificate {
+	background-image: url(../shared/icons/fam/birth_certificate_16_16.png);
+}
+.prevent_vaccinate {
+	background-image: url(../shared/icons/fam/prevent_vaccinate01_16_16.png);
+}
+.infectious_disease {
+	background-image: url(../shared/icons/fam/infectious_disease_16_16.png);
+}
+.old_man_manage {
+	background-image: url(../shared/icons/fam/old_man_manage_16_16.png);
+}
+.child_manage {
+	background-image: url(../shared/icons/fam/child_manage_16_16.png);
+}
+.healthfile {
+	background-image: url(../shared/icons/fam/health_file_16_16.png)
+		!important;
+}
+.medical_exam {
+	background-image: url(../shared/icons/fam/medical_exam_16_16.png)
+		!important;
+}

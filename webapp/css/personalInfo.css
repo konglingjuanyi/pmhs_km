@@ -1,0 +1,48 @@
+.selectCursor {
+	cursor: pointer;
+}
+
+.show {
+	width: 150px;
+	position: absolute;
+	z-index: 1000;
+	background-color: #f5f6f7;
+	border: 1px solid green;
+	display: none;
+	min-height: 30px;
+	padding-left: 10px;
+	margin-left: 5px;
+	
+}
+
+#showSelectUnit a,#selectBuildPerson a {
+	text-decoration: none;
+}
+
+font {
+	font-size: 12px;
+	cursor: pointer;
+	
+}
+
+.addDoctors_header {
+	text-align: right;
+	font-size: 10px;
+	height: 30px;
+	line-height: 30px;
+}
+
+.addDoctors_submit {
+	text-align: center;
+	line-height: 40px;
+	height: 40px;
+	vertical-align: middle;
+}
+
+.addDoctors_submit button {
+	width: 100px;
+	line-height: 30px;
+}
+#hospId{
+	width: 150px;
+}
