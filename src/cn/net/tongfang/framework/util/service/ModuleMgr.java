@@ -1232,12 +1232,13 @@ public class ModuleMgr extends HibernateDaoSupport {
 		for (Object object : list) {
 			Object[] objs = (Object[]) object;
 			HealthFile file = (HealthFile) objs[0];
+			PersonalInfo person = (PersonalInfo) objs[1];
 			if(!tmpFileNo.equals(file.getFileNo())){
 				file.setFileNo(EncryptionUtils.decipher(file.getFileNo()));
 				file.setName(EncryptionUtils.decipher(file.getName()));
+				person.setIdnumber(EncryptionUtils.decipher(person.getFileNo()));
 				tmpFileNo = file.getFileNo();
 			}
-			PersonalInfo person = (PersonalInfo) objs[1];
 			HypertensionVisit hypVisit = (HypertensionVisit) objs[2];
 			SamTaxempcode samTaxempcode = (SamTaxempcode) objs[3];
 			SamTaxorgcode samTaxorgcode = (SamTaxorgcode) objs[4];
@@ -1299,12 +1300,13 @@ public class ModuleMgr extends HibernateDaoSupport {
 		for (Object object : list) {
 			Object[] objs = (Object[]) object;
 			HealthFile file = (HealthFile) objs[0];
+			PersonalInfo person = (PersonalInfo) objs[1];
 			if(!tmpFileNo.equals(file.getFileNo())){
 				file.setFileNo(EncryptionUtils.decipher(file.getFileNo()));
 				file.setName(EncryptionUtils.decipher(file.getName()));
+				person.setIdnumber(EncryptionUtils.decipher(person.getFileNo()));
 				tmpFileNo = file.getFileNo();
 			}
-			PersonalInfo person = (PersonalInfo) objs[1];
 			DiabetesVisit DiabVisit = (DiabetesVisit) objs[2];
 			SamTaxempcode samTaxempcode = (SamTaxempcode) objs[3];
 			SamTaxorgcode samTaxorgcode = (SamTaxorgcode) objs[4];
@@ -1366,12 +1368,13 @@ public class ModuleMgr extends HibernateDaoSupport {
 		for (Object object : list) {
 			Object[] objs = (Object[]) object;
 			HealthFile file = (HealthFile) objs[0];
+			PersonalInfo person = (PersonalInfo) objs[1];
 			if(!tmpFileNo.equals(file.getFileNo())){
 				file.setFileNo(EncryptionUtils.decipher(file.getFileNo()));
 				file.setName(EncryptionUtils.decipher(file.getName()));
+				person.setIdnumber(EncryptionUtils.decipher(person.getFileNo()));
 				tmpFileNo = file.getFileNo();
 			}
-			PersonalInfo person = (PersonalInfo) objs[1];
 			FuriousVisit furiousVisit = (FuriousVisit) objs[2];
 			SamTaxempcode samTaxempcode = (SamTaxempcode) objs[3];
 			SamTaxorgcode samTaxorgcode = (SamTaxorgcode) objs[4];
@@ -1426,12 +1429,13 @@ public class ModuleMgr extends HibernateDaoSupport {
 		for (Object object : list) {
 			Object[] objs = (Object[]) object;
 			HealthFile file = (HealthFile) objs[0];
+			PersonalInfo person = (PersonalInfo) objs[1];
 			if(!tmpFileNo.equals(file.getFileNo())){
 				file.setFileNo(EncryptionUtils.decipher(file.getFileNo()));
 				file.setName(EncryptionUtils.decipher(file.getName()));
+				person.setIdnumber(EncryptionUtils.decipher(person.getFileNo()));
 				tmpFileNo = file.getFileNo();
 			}
-			PersonalInfo person = (PersonalInfo) objs[1];
 			FuriousInfo furiousInfo = (FuriousInfo) objs[2];
 			SamTaxempcode samTaxempcode = (SamTaxempcode) objs[3];
 			SamTaxorgcode samTaxorgcode = (SamTaxorgcode) objs[4];
@@ -1485,12 +1489,14 @@ public class ModuleMgr extends HibernateDaoSupport {
 		for (Object object : list) {
 			Object[] objs = (Object[]) object;
 			HealthFile file = (HealthFile) objs[0];
+			PersonalInfo person = (PersonalInfo) objs[1];
 			if(!tmpFileNo.equals(file.getFileNo())){
 				file.setFileNo(EncryptionUtils.decipher(file.getFileNo()));
 				file.setName(EncryptionUtils.decipher(file.getName()));
+				person.setIdnumber(EncryptionUtils.decipher(person.getIdnumber()));
 				tmpFileNo = file.getFileNo();
 			}
-			PersonalInfo person = (PersonalInfo) objs[1];
+			
 			FirstVistBeforeBorn firstVist = (FirstVistBeforeBorn) objs[2];
 			SamTaxempcode samTaxempcode = (SamTaxempcode) objs[3];
 			SamTaxorgcode samTaxorgcode = (SamTaxorgcode) objs[4];	
@@ -1545,12 +1551,13 @@ public class ModuleMgr extends HibernateDaoSupport {
 		for (Object object : list) {
 			Object[] objs = (Object[]) object;
 			HealthFile file = (HealthFile) objs[0];
+			PersonalInfo person = (PersonalInfo) objs[1];
 			if(!tmpFileNo.equals(file.getFileNo())){
 				file.setFileNo(EncryptionUtils.decipher(file.getFileNo()));
 				file.setName(EncryptionUtils.decipher(file.getName()));
+				person.setIdnumber(EncryptionUtils.decipher(person.getFileNo()));
 				tmpFileNo = file.getFileNo();
 			}
-			PersonalInfo person = (PersonalInfo) objs[1];
 			VisitBeforeBorn visitBeforeBorn = (VisitBeforeBorn) objs[2];
 			SamTaxempcode samTaxempcode = (SamTaxempcode) objs[3];
 			SamTaxorgcode samTaxorgcode = (SamTaxorgcode) objs[4];
@@ -1624,12 +1631,13 @@ public class ModuleMgr extends HibernateDaoSupport {
 		for (Object object : list) {
 			Object[] objs = (Object[]) object;
 			HealthFile file = (HealthFile) objs[0];
+			PersonalInfo person = (PersonalInfo) objs[1];
 			if(!tmpFileNo.equals(file.getFileNo())){
 				file.setFileNo(EncryptionUtils.decipher(file.getFileNo()));
 				file.setName(EncryptionUtils.decipher(file.getName()));
+				person.setIdnumber(EncryptionUtils.decipher(person.getFileNo()));
 				tmpFileNo = file.getFileNo();
 			}
-			PersonalInfo person = (PersonalInfo) objs[1];
 			VisitAfterBorn visitAfterBorn = (VisitAfterBorn) objs[2];
 			SamTaxempcode samTaxempcode = (SamTaxempcode) objs[3];
 			SamTaxorgcode samTaxorgcode = (SamTaxorgcode) objs[4];
@@ -1684,12 +1692,13 @@ public class ModuleMgr extends HibernateDaoSupport {
 		for (Object object : list) {
 			Object[] objs = (Object[]) object;
 			HealthFile file = (HealthFile) objs[0];
+			PersonalInfo person = (PersonalInfo) objs[1];
 			if(!tmpFileNo.equals(file.getFileNo())){
 				file.setFileNo(EncryptionUtils.decipher(file.getFileNo()));
 				file.setName(EncryptionUtils.decipher(file.getName()));
+				person.setIdnumber(EncryptionUtils.decipher(person.getFileNo()));
 				tmpFileNo = file.getFileNo();
 			}
-			PersonalInfo person = (PersonalInfo) objs[1];
 			Reception reception = (Reception) objs[2];
 			SamTaxempcode samTaxempcode = (SamTaxempcode) objs[3];
 			SamTaxorgcode samTaxorgcode = (SamTaxorgcode) objs[4];
@@ -1803,12 +1812,13 @@ public class ModuleMgr extends HibernateDaoSupport {
 		for (Object object : list) {
 			Object[] objs = (Object[]) object;
 			HealthFile file = (HealthFile) objs[0];
+			PersonalInfo person = (PersonalInfo) objs[1];
 			if(!tmpFileNo.equals(file.getFileNo())){
 				file.setFileNo(EncryptionUtils.decipher(file.getFileNo()));
 				file.setName(EncryptionUtils.decipher(file.getName()));
+				person.setIdnumber(EncryptionUtils.decipher(person.getFileNo()));
 				tmpFileNo = file.getFileNo();
 			}
-			PersonalInfo person = (PersonalInfo) objs[1];
 			CureSwitch cureSwitch = (CureSwitch) objs[2];
 			SamTaxempcode samTaxempcode = (SamTaxempcode) objs[3];
 			SamTaxorgcode samTaxorgcode = (SamTaxorgcode) objs[4];
@@ -1863,12 +1873,13 @@ public class ModuleMgr extends HibernateDaoSupport {
 		for (Object object : list) {
 			Object[] objs = (Object[]) object;
 			HealthFile file = (HealthFile) objs[0];
+			PersonalInfo person = (PersonalInfo) objs[1];
 			if(!tmpFileNo.equals(file.getFileNo())){
 				file.setFileNo(EncryptionUtils.decipher(file.getFileNo()));
 				file.setName(EncryptionUtils.decipher(file.getName()));
+				person.setIdnumber(EncryptionUtils.decipher(person.getFileNo()));
 				tmpFileNo = file.getFileNo();
 			}
-			PersonalInfo person = (PersonalInfo) objs[1];
 			CureBack cureBack = (CureBack) objs[2];
 			SamTaxempcode samTaxempcode = (SamTaxempcode) objs[3];
 			SamTaxorgcode samTaxorgcode = (SamTaxorgcode) objs[4];
@@ -1968,12 +1979,13 @@ public class ModuleMgr extends HibernateDaoSupport {
 		for (Object object : list) {
 			Object[] objs = (Object[]) object;
 			HealthFile file = (HealthFile) objs[0];
+			PersonalInfo person = (PersonalInfo) objs[1];
 			if(!tmpFileNo.equals(file.getFileNo())){
 				file.setFileNo(EncryptionUtils.decipher(file.getFileNo()));
 				file.setName(EncryptionUtils.decipher(file.getName()));
+				person.setIdnumber(EncryptionUtils.decipher(person.getFileNo()));
 				tmpFileNo = file.getFileNo();
 			}
-			PersonalInfo person = (PersonalInfo) objs[1];
 			VaccineInfo vaccineInfo = (VaccineInfo) objs[2];
 			getHibernateTemplate().evict(file);
 			getHibernateTemplate().evict(person);
@@ -2458,12 +2470,13 @@ public class ModuleMgr extends HibernateDaoSupport {
 		for (Object object : list) {
 			Object[] objs = (Object[]) object;
 			HealthFile file = (HealthFile) objs[0];
+			PersonalInfo person = (PersonalInfo) objs[1];
 			if(!tmpFileNo.equals(file.getFileNo())){
 				file.setFileNo(EncryptionUtils.decipher(file.getFileNo()));
 				file.setName(EncryptionUtils.decipher(file.getName()));
+				person.setIdnumber(EncryptionUtils.decipher(person.getFileNo()));
 				tmpFileNo = file.getFileNo();
 			}
-			PersonalInfo person = (PersonalInfo) objs[1];
 			MedicalExam medicalExam = (MedicalExam) objs[2];
 			SamTaxempcode samTaxempcode = (SamTaxempcode) objs[3];
 			getHibernateTemplate().evict(file);
@@ -2513,12 +2526,14 @@ public class ModuleMgr extends HibernateDaoSupport {
 		for (Object object : list) {
 			Object[] objs = (Object[]) object;
 			HealthFile file = (HealthFile) objs[0];
+			
+			PersonalInfo person = (PersonalInfo) objs[1];
 			if(!tmpFileNo.equals(file.getFileNo())){
 				file.setFileNo(EncryptionUtils.decipher(file.getFileNo()));
 				file.setName(EncryptionUtils.decipher(file.getName()));
+				person.setIdnumber(EncryptionUtils.decipher(person.getFileNo()));
 				tmpFileNo = file.getFileNo();
 			}
-			PersonalInfo person = (PersonalInfo) objs[1];
 			ChildrenMediExam36 childrenMediExam36 = (ChildrenMediExam36) objs[2];
 			SamTaxempcode samTaxempcode = (SamTaxempcode) objs[3];
 			SamTaxorgcode samTaxorgcode = (SamTaxorgcode) objs[4];
@@ -2580,12 +2595,13 @@ public class ModuleMgr extends HibernateDaoSupport {
 		for (Object object : list) {
 			Object[] objs = (Object[]) object;
 			HealthFile file = (HealthFile) objs[0];
+			PersonalInfo person = (PersonalInfo) objs[1];
 			if(!tmpFileNo.equals(file.getFileNo())){
 				file.setFileNo(EncryptionUtils.decipher(file.getFileNo()));
 				file.setName(EncryptionUtils.decipher(file.getName()));
+				person.setIdnumber(EncryptionUtils.decipher(person.getFileNo()));
 				tmpFileNo = file.getFileNo();
 			}
-			PersonalInfo person = (PersonalInfo) objs[1];
 			ChildBirthRecord childBirthRecord = (ChildBirthRecord) objs[2];
 			ChildBirthRecordBO childBirthRecordBo = new ChildBirthRecordBO();
 			BeanUtils.copyProperties(childBirthRecord, childBirthRecordBo);
@@ -2717,12 +2733,13 @@ public class ModuleMgr extends HibernateDaoSupport {
 		for (Object object : list) {
 			Object[] objs = (Object[]) object;
 			HealthFile file = (HealthFile) objs[0];
+			PersonalInfo person = (PersonalInfo) objs[1];
 			if(!tmpFileNo.equals(file.getFileNo())){
 				file.setFileNo(EncryptionUtils.decipher(file.getFileNo()));
 				file.setName(EncryptionUtils.decipher(file.getName()));
+				person.setIdnumber(EncryptionUtils.decipher(person.getFileNo()));
 				tmpFileNo = file.getFileNo();
 			}
-			PersonalInfo person = (PersonalInfo) objs[1];
 			person.setIdnumber(EncryptionUtils.decipher(person.getIdnumber()));
 			WomanLastMedicalExamRecord record = (WomanLastMedicalExamRecord) objs[2];
 			getHibernateTemplate().evict(file);
@@ -2758,12 +2775,12 @@ public class ModuleMgr extends HibernateDaoSupport {
 		for (Object object : list) {
 			Object[] objs = (Object[]) object;
 			HealthFile file = (HealthFile) objs[0];
+			PersonalInfo person = (PersonalInfo) objs[1];
 			if(!tmpFileNo.equals(file.getFileNo())){
 				file.setFileNo(EncryptionUtils.decipher(file.getFileNo()));
 				file.setName(EncryptionUtils.decipher(file.getName()));
 				tmpFileNo = file.getFileNo();
 			}
-			PersonalInfo person = (PersonalInfo) objs[1];
 			person.setIdnumber(EncryptionUtils.decipher(person.getIdnumber()));
 			ChildLastMedicalExamRecord record = (ChildLastMedicalExamRecord) objs[2];
 			getHibernateTemplate().evict(file);
@@ -2867,12 +2884,13 @@ public class ModuleMgr extends HibernateDaoSupport {
 		for (Object object : list) {
 			Object[] objs = (Object[]) object;
 			HealthFile file = (HealthFile) objs[0];
+			PersonalInfo person = (PersonalInfo) objs[1];
 			if(!tmpFileNo.equals(file.getFileNo())){
 				file.setFileNo(EncryptionUtils.decipher(file.getFileNo()));
 				file.setName(EncryptionUtils.decipher(file.getName()));
+				person.setIdnumber(EncryptionUtils.decipher(person.getFileNo()));
 				tmpFileNo = file.getFileNo();
 			}
-			PersonalInfo person = (PersonalInfo) objs[1];
 			BabyDeathSurvey babydeath = (BabyDeathSurvey) objs[2];
 			SamTaxempcode samTaxempcode = (SamTaxempcode) objs[3];
 			SamTaxorgcode samTaxorgcode = (SamTaxorgcode) objs[4];
@@ -2932,12 +2950,13 @@ public class ModuleMgr extends HibernateDaoSupport {
 		for (Object object : list) {
 			Object[] objs = (Object[]) object;
 			HealthFile file = (HealthFile) objs[0];
+			PersonalInfo person = (PersonalInfo) objs[1];
 			if(!tmpFileNo.equals(file.getFileNo())){
 				file.setFileNo(EncryptionUtils.decipher(file.getFileNo()));
 				file.setName(EncryptionUtils.decipher(file.getName()));
+				person.setIdnumber(EncryptionUtils.decipher(person.getFileNo()));
 				tmpFileNo = file.getFileNo();
 			}
-			PersonalInfo person = (PersonalInfo) objs[1];
 			ChildrenDeathSurvey01 childdeath = (ChildrenDeathSurvey01) objs[2];
 			SamTaxempcode samTaxempcode = (SamTaxempcode) objs[3];
 			SamTaxorgcode samTaxorgcode = (SamTaxorgcode) objs[4];
@@ -2997,12 +3016,13 @@ public class ModuleMgr extends HibernateDaoSupport {
 		for (Object object : list) {
 			Object[] objs = (Object[]) object;
 			HealthFile file = (HealthFile) objs[0];
+			PersonalInfo person = (PersonalInfo) objs[1];
 			if(!tmpFileNo.equals(file.getFileNo())){
 				file.setFileNo(EncryptionUtils.decipher(file.getFileNo()));
 				file.setName(EncryptionUtils.decipher(file.getName()));
+				person.setIdnumber(EncryptionUtils.decipher(person.getFileNo()));
 				tmpFileNo = file.getFileNo();
 			}
-			PersonalInfo person = (PersonalInfo) objs[1];
 			ChildrenDeathSurvey02 childdeath = (ChildrenDeathSurvey02) objs[2];
 			SamTaxempcode samTaxempcode = (SamTaxempcode) objs[3];
 			SamTaxorgcode samTaxorgcode = (SamTaxorgcode) objs[4];
@@ -3062,12 +3082,13 @@ public class ModuleMgr extends HibernateDaoSupport {
 		for (Object object : list) {
 			Object[] objs = (Object[]) object;
 			HealthFile file = (HealthFile) objs[0];
+			PersonalInfo person = (PersonalInfo) objs[1];
 			if(!tmpFileNo.equals(file.getFileNo())){
 				file.setFileNo(EncryptionUtils.decipher(file.getFileNo()));
 				file.setName(EncryptionUtils.decipher(file.getName()));
+				person.setIdnumber(EncryptionUtils.decipher(person.getFileNo()));
 				tmpFileNo = file.getFileNo();
 			}
-			PersonalInfo person = (PersonalInfo) objs[1];
 			DiseaseAndHearScreenConsent consentBook = (DiseaseAndHearScreenConsent) objs[2];
 			SamTaxempcode samTaxempcode = (SamTaxempcode) objs[3];
 			SamTaxorgcode samTaxorgcode = (SamTaxorgcode) objs[4];
@@ -3125,12 +3146,13 @@ public class ModuleMgr extends HibernateDaoSupport {
 		for (Object object : list) {
 			Object[] objs = (Object[]) object;
 			HealthFile file = (HealthFile) objs[0];
+			PersonalInfo person = (PersonalInfo) objs[1];
 			if(!tmpFileNo.equals(file.getFileNo())){
 				file.setFileNo(EncryptionUtils.decipher(file.getFileNo()));
 				file.setName(EncryptionUtils.decipher(file.getName()));
+				person.setIdnumber(EncryptionUtils.decipher(person.getFileNo()));
 				tmpFileNo = file.getFileNo();
 			}
-			PersonalInfo person = (PersonalInfo) objs[1];
 			HearScreenReportCard exportCard = (HearScreenReportCard) objs[2];
 			SamTaxempcode samTaxempcode = (SamTaxempcode) objs[3];
 			SamTaxorgcode samTaxorgcode = (SamTaxorgcode) objs[4];
@@ -3188,12 +3210,13 @@ public class ModuleMgr extends HibernateDaoSupport {
 		for (Object object : list) {
 			Object[] objs = (Object[]) object;
 			HealthFile file = (HealthFile) objs[0];
+			PersonalInfo person = (PersonalInfo) objs[1];
 			if(!tmpFileNo.equals(file.getFileNo())){
 				file.setFileNo(EncryptionUtils.decipher(file.getFileNo()));
 				file.setName(EncryptionUtils.decipher(file.getName()));
+				person.setIdnumber(EncryptionUtils.decipher(person.getFileNo()));
 				tmpFileNo = file.getFileNo();
 			}
-			PersonalInfo person = (PersonalInfo) objs[1];
 			BabyBarrierReg babyBarrierReg = (BabyBarrierReg) objs[2];
 			SamTaxempcode samTaxempcode = (SamTaxempcode) objs[3];
 			SamTaxorgcode samTaxorgcode = (SamTaxorgcode) objs[4];
