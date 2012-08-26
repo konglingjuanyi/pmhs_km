@@ -9,7 +9,7 @@ var isFirst = 1;
 function printdata(data){
 	var msg = "";
 	for(var item in data){
-		if(item.toLowerCase().indexOf("allergies")>=0)
+		if(item.toLowerCase().indexOf("history")>=0)
 			msg = msg +item+"="+data[item]+"\n";
 	}
 	return msg;
@@ -292,7 +292,13 @@ function getPrintCfg03(data,orgmap){
 			retprintcfg.data[i++] = {"strContent":data.firstVisit.personalHistoryOther,intTop:"18.6cm",intLeft:"16.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
 		}
 	}
-	//妇产科手术史 无对应字段
+	//妇产科手术史 
+	if(data.firstVisit.opshistory==="无" ){
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"19.4cm",intLeft:"8cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}else{
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"19.4cm",intLeft:"9cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		retprintcfg.data[i++] = {"strContent":data.firstVisit.opshistoryOther,intTop:"19.4cm",intLeft:"10cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	}	
 	//输血史
 	if(data.feme.exam03==="无" ){
 		retprintcfg.data[i++] = {"strContent":"√",intTop:"20.2cm",intLeft:"8cm",intWidth:"2cm",intHeight:"0.8cm"}; 
