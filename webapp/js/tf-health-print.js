@@ -9,7 +9,8 @@ var isFirst = 1;
 function printdata(data){
 	var msg = "";
 	for(var item in data){
-		msg = msg +item+"="+data[item]+"\n";
+		if(item.toLowerCase().indexOf("allergies")>=0)
+			msg = msg +item+"="+data[item]+"\n";
 	}
 	return msg;
 }
@@ -88,14 +89,6 @@ function getPrintCfg01(data,orgmap){
 }
 
 function getPrintCfg02(data,orgmap){
-	alert(printdata(data.person));
-	alert(printdata(data.file));
-	alert(printdata(data.samTaxempcode));
-	alert(printdata(data.firstVisit));
-	alert(printdata(data.org));
-	
-	alert(printdata(data.samTaxempcode.district));
-	/**/
 	var retprintcfg = {
 		title:{intTop:"0.26cm",intLeft:"0.26cm",intWidth:"20.8cm",intHeight:"14cm",strContent:"2、孕妇基本档案"},
 		data:[	]
@@ -171,6 +164,155 @@ function getPrintCfg02(data,orgmap){
 	//丈夫文化程度 无字段 ,不填
 	//丈夫职业 无字段 ,不填
 	//丈夫工作单位 无字段 ,不填
+	
+		/**/
+	return retprintcfg;
+}
+
+function getPrintCfg03(data,orgmap){
+	alert("1,person  "+printdata(data.person));
+	alert("2,file    "+printdata(data.file));
+	alert("3,samTaxempcode   "+printdata(data.samTaxempcode));
+	alert("4,firstVisit     "+printdata(data.firstVisit));
+	alert("5,org   "+printdata(data.org));
+	alert("6,feme  "+printdata(data.feme));
+	/**/
+	var retprintcfg = {
+		title:{intTop:"0.26cm",intLeft:"0.26cm",intWidth:"20.8cm",intHeight:"14cm",strContent:"2、孕妇基本档案"},
+		data:[	]
+	};
+	var i = 0 ;
+	//初检日期
+	retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.firstVisit.visitDate,"Y"),intTop:"10.26cm",intLeft:"3.2cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.firstVisit.visitDate,"m"),intTop:"10.26cm",intLeft:"4.2cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.firstVisit.visitDate,"d"),intTop:"10.26cm",intLeft:"4.8cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	//初检孕周
+	retprintcfg.data[i++] = {"strContent":data.firstVisit.weeks,intTop:"10.26cm",intLeft:"9.8cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	//基础血压
+	retprintcfg.data[i++] = {"strContent":data.firstVisit.diastolicPressure,intTop:"10.26cm",intLeft:"13.8cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	retprintcfg.data[i++] = {"strContent":data.firstVisit.systolicPressure,intTop:"10.26cm",intLeft:"15.8cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	//孕前情况-身高
+	retprintcfg.data[i++] = {"strContent":data.firstVisit.height,intTop:"11.0cm",intLeft:"4cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	//孕前情况-体重
+	retprintcfg.data[i++] = {"strContent":data.firstVisit.weight,intTop:"11.0cm",intLeft:"8cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	//孕前情况-体质指数
+	var weight = parseFloat(data.firstVisit.weight);
+	var height = parseFloat(data.firstVisit.height);
+	var res = weight/(height*height/10000)
+	retprintcfg.data[i++] = {"strContent":res.toFixed(2),intTop:"11.0cm",intLeft:"13cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	//现病史 无对应字段
+	retprintcfg.data[i++] = {"strContent":'无',intTop:"13.0cm",intLeft:"3cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	//月经史-初潮年龄 无对应字段
+	//retprintcfg.data[i++] = {"strContent":'无',intTop:"13.8cm",intLeft:"5cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	//月经史-周期 无对应字段
+	//retprintcfg.data[i++] = {"strContent":'无',intTop:"13.8cm",intLeft:"7cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	//末次月经年月日
+	retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.firstVisit.lastMenses,"Y"),intTop:"14.6cm",intLeft:"5.2cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.firstVisit.lastMenses,"m"),intTop:"14.6cm",intLeft:"6.7cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.firstVisit.lastMenses,"d"),intTop:"14.6cm",intLeft:"7.7cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	//预产期
+	retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.firstVisit.edc,"Y"),intTop:"14.6cm",intLeft:"11.2cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.firstVisit.edc,"m"),intTop:"14.6cm",intLeft:"12.7cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.firstVisit.edc,"d"),intTop:"14.6cm",intLeft:"13.2cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	//孕次
+	retprintcfg.data[i++] = {"strContent":data.firstVisit.gravidity,intTop:"15.4cm",intLeft:"3.2cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	//产次
+	retprintcfg.data[i++] = {"strContent":data.firstVisit.parity+data.firstVisit.parity1,intTop:"15.4cm",intLeft:"4.2cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	//其中:阴道自然分娩次数
+	retprintcfg.data[i++] = {"strContent":data.firstVisit.parity,intTop:"15.4cm",intLeft:"7.2cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	//胎头吸引 无对应字段
+	//产钳 无对应字段
+	//臀位 无对应字段
+	//剖宫产
+	retprintcfg.data[i++] = {"strContent":data.firstVisit.parity1,intTop:"16.2cm",intLeft:"4.2cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	//末次分娩时间 无对应字段
+	//既往史
+	if(data.feme.femePastHistory==="无" ){
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"17cm",intLeft:"7cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}else{
+		if(data.feme.femePastHistory.indexOf("心脏病")>=0 ){
+			retprintcfg.data[i++] = {"strContent":"√",intTop:"17cm",intLeft:"7.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		}
+		if(data.feme.femePastHistory.indexOf("肾脏疾病")>=0 ){
+			retprintcfg.data[i++] = {"strContent":"√",intTop:"17cm",intLeft:"9cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		}
+		if(data.feme.femePastHistory.indexOf("肝脏疾病")>=0 ){
+			retprintcfg.data[i++] = {"strContent":"√",intTop:"17cm",intLeft:"10.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		}
+		if(data.feme.femePastHistory.indexOf("高血压")>=0 ){
+			retprintcfg.data[i++] = {"strContent":"√",intTop:"17cm",intLeft:"12cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		}
+		if(data.feme.femePastHistory.indexOf("贫血")>=0 ){
+			retprintcfg.data[i++] = {"strContent":"√",intTop:"17cm",intLeft:"13.2cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		}
+		if(data.feme.femePastHistory.indexOf("糖尿病")>=0 ){
+			retprintcfg.data[i++] = {"strContent":"√",intTop:"17cm",intLeft:"14.2cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		}
+		if(data.feme.femePastHistory.indexOf("其他")>=0 ){
+			retprintcfg.data[i++] = {"strContent":"√",intTop:"17cm",intLeft:"15.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+			retprintcfg.data[i++] = {"strContent":data.firstVisit.pastHistoryOther,intTop:"17cm",intLeft:"16.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		}
+	}
+	//家庭史
+	if(data.feme.femeFamilyHistory==="无" ){
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"17.8cm",intLeft:"7cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}else{
+		if(data.feme.femeFamilyHistory.indexOf("遗传性疾病史")>=0 ){
+			retprintcfg.data[i++] = {"strContent":"√",intTop:"17.8cm",intLeft:"7.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		}
+		if(data.feme.femeFamilyHistory.indexOf("精神疾病史")>=0 ){
+			retprintcfg.data[i++] = {"strContent":"√",intTop:"17.8cm",intLeft:"10cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		}
+		if(data.feme.femeFamilyHistory.indexOf("其他")>=0 ){
+			retprintcfg.data[i++] = {"strContent":"√",intTop:"17.8cm",intLeft:"11.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+			retprintcfg.data[i++] = {"strContent":data.firstVisit.familyHistoryOther,intTop:"17.8cm",intLeft:"12.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		}
+	}
+	//个人史
+	if(data.feme.exam01==="无" ){
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"18.6cm",intLeft:"7cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}else{
+		if(data.feme.exam01.indexOf("吸烟")>=0 ){
+			retprintcfg.data[i++] = {"strContent":"√",intTop:"18.6cm",intLeft:"7.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		}
+		if(data.feme.exam01.indexOf("饮酒")>=0 ){
+			retprintcfg.data[i++] = {"strContent":"√",intTop:"18.6cm",intLeft:"8cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		}
+		if(data.feme.exam01.indexOf("服用药物")>=0 ){
+			retprintcfg.data[i++] = {"strContent":"√",intTop:"18.6cm",intLeft:"9.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		}
+		if(data.feme.exam01.indexOf("接触有毒有害物质")>=0 ){
+			retprintcfg.data[i++] = {"strContent":"√",intTop:"18.6cm",intLeft:"10.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		}
+		if(data.feme.exam01.indexOf("接触放射线")>=0 ){
+			retprintcfg.data[i++] = {"strContent":"√",intTop:"18.6cm",intLeft:"12.2cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		}
+		if(data.feme.exam01.indexOf("其他")>=0 ){
+			retprintcfg.data[i++] = {"strContent":"√",intTop:"18.6cm",intLeft:"15.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+			retprintcfg.data[i++] = {"strContent":data.firstVisit.personalHistoryOther,intTop:"18.6cm",intLeft:"16.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		}
+	}
+	//妇产科手术史 无对应字段
+	//输血史
+	if(data.feme.exam03==="无" ){
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"20.2cm",intLeft:"8cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}else{
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"20.2cm",intLeft:"9cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		retprintcfg.data[i++] = {"strContent":data.feme.exam03.substr(0,4),intTop:"20.2cm",intLeft:"10cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+		retprintcfg.data[i++] = {"strContent":data.feme.exam03.substr(4,2),intTop:"20.2cm",intLeft:"11cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+		retprintcfg.data[i++] = {"strContent":data.feme.exam03.substr(6,2),intTop:"20.2cm",intLeft:"11.5cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	}	
+	//药物过敏史
+	if(data.feme.exam02==="无" ){
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"21cm",intLeft:"8cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}else{
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"21cm",intLeft:"9cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		var allergies = data.feme.exam02;
+		if(data.person.allergiesOther.length>0){
+			allergies=allergies+","+data.person.allergiesOther;
+		}
+		retprintcfg.data[i++] = {"strContent":allergies,intTop:"21cm",intLeft:"10cm",intWidth:"10cm",intHeight:"0.8cm"}; 
+	}
 	
 		/**/
 	return retprintcfg;
@@ -445,6 +587,37 @@ Ext.tf.HealthPrintPanel = Ext.extend(Ext.Panel, {
 										UserMenuTreeService.findFirstVisitRecords(cond,function(data){
 											if(data){
 												printObj.printPreview(getPrintCfg02(data.data[0],this.menu),-1);
+											}else{
+												showError('该户没有第一次产前随防记录,无法打印！');
+											}
+										}.createDelegate(this))
+									}
+								}
+							}.createDelegate(this)
+						},
+						{
+							text : '3、首次产前检查记录表打印',
+							iconCls: 'c_print',
+							handler : function(){
+								var selections = this.grid.getSelections();
+								if(selections.length > 0){
+									var records = selections[0];
+									var fileNo = records.get(this.recordPk);
+									var param = '?' + this.recordPk + '=' + fileNo;
+									var filterKey = "a."+this.recordPk;
+									var filterValue = fileNo;
+									var selNode = this.getTreeSelNode();
+									if (selNode) {
+										var cond = {
+											district : selNode.id,
+											filterKey : filterKey,
+											filterValue : filterValue,
+											isFirst : 1
+										};
+										console.log(cond);
+										UserMenuTreeService.findFirstVisitRecords(cond,function(data){
+											if(data){
+												printObj.printPreview(getPrintCfg03(data.data[0],this.menu),-1);
 											}else{
 												showError('该户没有第一次产前随防记录,无法打印！');
 											}

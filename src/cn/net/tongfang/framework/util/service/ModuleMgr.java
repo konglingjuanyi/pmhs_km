@@ -29,6 +29,7 @@ import cn.net.tongfang.framework.security.vo.BabyBarrierReg;
 import cn.net.tongfang.framework.security.vo.BabyDeathSurvey;
 import cn.net.tongfang.framework.security.vo.BabyVisit;
 import cn.net.tongfang.framework.security.vo.BasicInformation;
+import cn.net.tongfang.framework.security.vo.BloodTrans;
 import cn.net.tongfang.framework.security.vo.ChildBirthRecord;
 import cn.net.tongfang.framework.security.vo.ChildLastMedicalExamRecord;
 import cn.net.tongfang.framework.security.vo.ChildrenDeathSurvey01;
@@ -1518,9 +1519,25 @@ public class ModuleMgr extends HibernateDaoSupport {
 			String femePastHistory = getPrintBasicInfo(firstVist.getId(),"FemePastHistory","femePastHistoryId","firstVistBeforeBornId");
 			String femeFamilyHistory = getPrintBasicInfo(firstVist.getId(),"FemeFamilyHistory","femeFamilyHistoryId","firstVistBeforeBornId");
 			String femeSecretion = getPrintBasicInfo(firstVist.getId(),"FemeSecretion","femeSecretionId","firstVistBeforeBornId");
+			String personalHistory = getPrintBasicInfo(firstVist.getId(),"PersonalHistory","personalHistoryId","firstVistBeforeBornId");
+			String allergiesHistory = getPrintBasicInfo(person.getId(),"AllergiesHistory","allergiesId","personalInfoId");
 			feme.setFemePastHistory(femePastHistory);
 			feme.setFemeFamilyHistory(femeFamilyHistory);
 			feme.setFemeSecretion(femeSecretion);
+			feme.setExam01(personalHistory);
+			feme.setExam02(allergiesHistory);
+			
+			StringBuilder hql1 = new StringBuilder(
+					"from BloodTrans ")
+					.append(" where personalInfoId = '"+person.getId()+"' ").append(" order by transDate desc ");
+			List<BloodTrans> bloodTrans = getSession().createQuery(hql1.toString()).list();
+			String str = "";
+			String str1 = "";
+			if(bloodTrans.size()>0){
+				feme.setExam03(bloodTrans.get(0).getTransDate());
+			}else{
+				feme.setExam03("无");
+			}
 			map.put("feme", feme);
 			files.add(map);
 		}
