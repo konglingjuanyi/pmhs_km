@@ -28,6 +28,7 @@ import cn.net.tongfang.framework.security.demo.service.TaxempDetail;
 import cn.net.tongfang.framework.security.vo.BabyBarrierReg;
 import cn.net.tongfang.framework.security.vo.BabyDeathSurvey;
 import cn.net.tongfang.framework.security.vo.BabyVisit;
+import cn.net.tongfang.framework.security.vo.BasicInformation;
 import cn.net.tongfang.framework.security.vo.ChildBirthRecord;
 import cn.net.tongfang.framework.security.vo.ChildLastMedicalExamRecord;
 import cn.net.tongfang.framework.security.vo.ChildrenDeathSurvey01;
@@ -73,6 +74,7 @@ import cn.net.tongfang.framework.util.service.vo.ExtJSTreeNode;
 import cn.net.tongfang.framework.util.service.vo.PagingParam;
 import cn.net.tongfang.framework.util.service.vo.PagingResult;
 import cn.net.tongfang.web.service.bo.ChildBirthRecordBO;
+import cn.net.tongfang.web.service.bo.FirstVisitBeforeBornPrintBO;
 
 public class ModuleMgr extends HibernateDaoSupport {
 
@@ -1512,6 +1514,14 @@ public class ModuleMgr extends HibernateDaoSupport {
 			map.put("firstVisit", firstVist);
 			map.put("samTaxempcode", samTaxempcode);
 			map.put("org", samTaxorgcode);
+			FirstVisitBeforeBornPrintBO feme = new FirstVisitBeforeBornPrintBO();
+			String femePastHistory = getPrintBasicInfo(firstVist.getId(),"FemePastHistory","femePastHistoryId","firstVistBeforeBornId");
+			String femeFamilyHistory = getPrintBasicInfo(firstVist.getId(),"FemeFamilyHistory","femeFamilyHistoryId","firstVistBeforeBornId");
+			String femeSecretion = getPrintBasicInfo(firstVist.getId(),"FemeSecretion","femeSecretionId","firstVistBeforeBornId");
+			feme.setFemePastHistory(femePastHistory);
+			feme.setFemeFamilyHistory(femeFamilyHistory);
+			feme.setFemeSecretion(femeSecretion);
+			map.put("feme", feme);
 			files.add(map);
 		}
 
@@ -1519,7 +1529,25 @@ public class ModuleMgr extends HibernateDaoSupport {
 				p.getTotalSize(), files);
 
 		return result;
-
+	}
+	
+	public String getPrintBasicInfo(String id,String tableName,String key,String tableKey){
+		String hql = "From BasicInformation A," + tableName + " B Where A.id = B." + key + " And B." + tableKey + " = ?";
+		Query query = getSession().createQuery(hql);
+		query.setParameter(0, id);
+		List list = query.list();
+		String ret = "未测";
+		if(list.size() > 0){
+			ret = "";
+			for(Object objs : list){
+				Object[] obj = (Object[])objs;
+				BasicInformation basicInformation = (BasicInformation)obj[0];
+				ret = ret + basicInformation.getName() + ",";
+			}
+			if(!ret.equals(""))
+				ret = ret.substring(0,ret.length() - 1);
+		}
+		return ret;
 	}
 
 	public void removeFirstVisitRecords(List ids) {
