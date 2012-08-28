@@ -1526,7 +1526,6 @@ public class ModuleMgr extends HibernateDaoSupport {
 			feme.setFemeSecretion(femeSecretion);
 			feme.setExam01(personalHistory);
 			feme.setExam02(allergiesHistory);
-			
 			StringBuilder hql1 = new StringBuilder(
 					"from BloodTrans ")
 					.append(" where personalInfoId = '"+person.getId()+"' ").append(" order by transDate desc ");
@@ -1538,6 +1537,8 @@ public class ModuleMgr extends HibernateDaoSupport {
 			}else{
 				feme.setExam03("无");
 			}
+			String beforeBornCheckDirect = getPrintBasicInfo(firstVist.getId(),"BeforeBornCheckDirect","beforeBornCheckDirectId","firstVistBeforeBornId");
+			feme.setExam04(beforeBornCheckDirect);
 			map.put("feme", feme);
 			files.add(map);
 		}
