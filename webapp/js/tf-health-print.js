@@ -416,6 +416,76 @@ function getPrintCfg04(data,orgmap){
 }
 
 function getPrintCfg05(data,orgmap){
+	var retprintcfg = {
+		title:{intTop:title_initTop,intLeft:title_intLeft,intWidth:title_intWidth,intHeight:title_intHeight,strContent:"2、孕妇基本档案"},
+		data:[	]
+	};
+	var i = 0 ;
+	//HIV抗体首次检测时间 exam28是检查结果,没检查时间
+	//梅毒血清学检测时间 exam27是检查结果,没检查时间
+	//乙肝病源学检测时间 hepatitis01-hepatitis05是检查结果,没检查时间
+	//总体评估 无诊断结果字段
+	if(data.firstVisit.evaluation==="未见异常" ){
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"6.6cm",intLeft:"7cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}else{
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"6.6cm",intLeft:"8.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		retprintcfg.data[i++] = {"strContent":data.firstVisit.beforeBornDirectOther,intTop:"6.6cm",intLeft:"9.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}
+	//高危因素判断 无高危评分字段
+	alert(data.firstVisit.highRisk)
+	if(data.firstVisit.highRisk==="否" ){
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"8.6cm",intLeft:"7cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}else{
+		var risk = data.firstVisit.highRiskRemark;
+		alert(risk);
+		risk = "0"+risk.substring(0,risk.indexOf("、"));
+		risk = ("0"+data.firstVisit.highRiskRemark).substring(risk.length-2);
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"8.6cm",intLeft:"8.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		retprintcfg.data[i++] = {"strContent":risk,intTop:"8.6cm",intLeft:"9.5cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	}
+	//保健指导 
+	if(data.feme.exam04.indexOf("个人卫生")>=0 ){
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"10.6cm",intLeft:"7cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}
+	if(data.feme.exam04.indexOf("心理")>=0 ){
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"10.6cm",intLeft:"7.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}
+	if(data.feme.exam04.indexOf("营养")>=0 ){
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"10.6cm",intLeft:"8cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}
+	if(data.feme.exam04.indexOf("避免致畸因素和疾病对胚胎的不良影响")>=0 ){
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"10.6cm",intLeft:"9.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}
+	if(data.feme.exam04.indexOf("产前筛查宣传告知")>=0 ){
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"10.6cm",intLeft:"10.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}
+	if(data.feme.exam04.indexOf("其他")>=0 ){
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"10.6cm",intLeft:"15.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		retprintcfg.data[i++] = {"strContent":data.firstVisit.beforeBornCheckDirectOther,intTop:"10.6cm",intLeft:"16.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}
+
+	//转诊
+	if(data.firstVisit.transfer==="否" ){
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"12.6cm",intLeft:"7cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}else{
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"12.6cm",intLeft:"8.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		retprintcfg.data[i++] = {"strContent":data.firstVisit.transReason,intTop:"12.6cm",intLeft:"9.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		//建议转入机构及科室
+		retprintcfg.data[i++] = {"strContent":data.firstVisit.transUnit,intTop:"13.4cm",intLeft:"9.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}
+	
+	//下次随访时间
+	retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.firstVisit.nextVisitDate,"Y"),intTop:"14.2cm",intLeft:"9.2cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.firstVisit.nextVisitDate,"m"),intTop:"14.2cm",intLeft:"10.2cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.firstVisit.nextVisitDate,"d"),intTop:"14.2cm",intLeft:"10.8cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	//检查单位 无此字段
+	
+	//主治医师
+	retprintcfg.data[i++] = {"strContent":data.firstVisit.visitDoctor,intTop:"15cm",intLeft:"14.8cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	return retprintcfg;
+}
+
+function getPrintCfg06(data,orgmap){
 	alert("1,person  "+printdata(data.person));
 	alert("2,file    "+printdata(data.file));
 	alert("3,samTaxempcode   "+printdata(data.samTaxempcode));
@@ -854,6 +924,38 @@ Ext.tf.HealthPrintPanel = Ext.extend(Ext.Panel, {
 										UserMenuTreeService.findFirstVisitRecords(cond,function(data){
 											if(data){
 												printObj.printPreview(getPrintCfg05(data.data[0],this.menu),-1);
+											}else{
+												showError('该户没有第一次产前随防记录,无法打印！');
+											}
+										}.createDelegate(this))
+									}
+								}
+							}.createDelegate(this)
+						},
+						{
+							text : '6、产前检查记录表-第1页',
+							iconCls: 'c_print',
+							handler : function(){
+								var selections = this.grid.getSelections();
+								if(selections.length > 0){
+									var records = selections[0];
+									var fileNo = records.get(this.recordPk);
+									var param = '?' + this.recordPk + '=' + fileNo;
+									var filterKey = "a."+this.recordPk;
+									var filterValue = fileNo;
+									var selNode = this.getTreeSelNode();
+									if (selNode) {
+										var cond = {
+											district : selNode.id,
+											filterKey : filterKey,
+											filterValue : filterValue,
+											isFirst : 1
+										};
+										console.log(cond);
+										//查询
+										UserMenuTreeService.findVisitBeforeBornRecords(cond,function(data){
+											if(data){
+												printObj.printPreview(getPrintCfg06(data.data[0],this.menu),-1);
 											}else{
 												showError('该户没有第一次产前随防记录,无法打印！');
 											}
