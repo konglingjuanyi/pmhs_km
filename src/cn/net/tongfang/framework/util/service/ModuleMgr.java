@@ -29,6 +29,7 @@ import cn.net.tongfang.framework.security.vo.BabyBarrierReg;
 import cn.net.tongfang.framework.security.vo.BabyDeathSurvey;
 import cn.net.tongfang.framework.security.vo.BabyVisit;
 import cn.net.tongfang.framework.security.vo.BasicInformation;
+import cn.net.tongfang.framework.security.vo.BirthCertificate;
 import cn.net.tongfang.framework.security.vo.BloodTrans;
 import cn.net.tongfang.framework.security.vo.ChildBirthRecord;
 import cn.net.tongfang.framework.security.vo.ChildLastMedicalExamRecord;
@@ -2628,11 +2629,12 @@ public class ModuleMgr extends HibernateDaoSupport {
 		where.append(" and a.fileNo = c.fileNo");
 		where.append(" and c.inputPersonId = d.loginname");
 		where.append(" and d.orgId = e.id");
+		where.append(" and c.certifiId = f.certifiId");
 		if (params.size() != 0) {
 			where.replace(0, 4, " where ");
 		}
 		StringBuilder hql = new StringBuilder(
-				"from HealthFile a, PersonalInfo b, ChildBirthRecord c, SamTaxempcode d,SamTaxorgcode e")
+				"from HealthFile a, PersonalInfo b, ChildBirthRecord c, SamTaxempcode d,SamTaxorgcode e , BirthCertificate f")
 				.append(where).append(" order by a.fileNo");
 		log.debug("hql: " + hql.toString());
 
@@ -2659,6 +2661,7 @@ public class ModuleMgr extends HibernateDaoSupport {
 					childBirthRecord.getChildbirthMonth() + "月" + childBirthRecord.getChildbirthDay() + "日");
 			SamTaxempcode samTaxempcode = (SamTaxempcode) objs[3];
 			SamTaxorgcode samTaxorgcode = (SamTaxorgcode) objs[4];
+			BirthCertificate cert = (BirthCertificate) objs[5];
 			getHibernateTemplate().evict(file);
 			getHibernateTemplate().evict(person);
 			getHibernateTemplate().evict(childBirthRecord);
@@ -2670,6 +2673,7 @@ public class ModuleMgr extends HibernateDaoSupport {
 			map.put("birthRecord", childBirthRecordBo);
 			map.put("samTaxempcode", samTaxempcode);
 			map.put("org", samTaxorgcode);
+			map.put("cert", cert);
 			files.add(map);
 		}
 

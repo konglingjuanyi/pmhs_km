@@ -432,12 +432,12 @@ function getPrintCfg05(data,orgmap){
 		retprintcfg.data[i++] = {"strContent":data.firstVisit.beforeBornDirectOther,intTop:"6.6cm",intLeft:"9.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
 	}
 	//高危因素判断 无高危评分字段
-	alert(data.firstVisit.highRisk)
+	//alert(data.firstVisit.highRisk)
 	if(data.firstVisit.highRisk==="否" ){
 		retprintcfg.data[i++] = {"strContent":"√",intTop:"8.6cm",intLeft:"7cm",intWidth:"2cm",intHeight:"0.8cm"}; 
 	}else{
 		var risk = data.firstVisit.highRiskRemark;
-		alert(risk);
+		//alert(risk);
 		risk = "0"+risk.substring(0,risk.indexOf("、"));
 		risk = ("0"+data.firstVisit.highRiskRemark).substring(risk.length-2);
 		retprintcfg.data[i++] = {"strContent":"√",intTop:"8.6cm",intLeft:"8.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
@@ -486,11 +486,6 @@ function getPrintCfg05(data,orgmap){
 }
 
 function getPrintCfg06(data,page,row){
-	alert("1,person  "+printdata(data.person))
-	alert("2,file    "+printdata(data.file))
-	alert("3,samTaxempcode "+printdata(data.samTaxempcode))
-	alert("4,visit   "+printdata(data.visit))
-	alert("5,org     "+printdata(data.org))
 	var starttop1 = 3;//第一页的起始行位置
 	var starttop2 = 3;//第二页的起始行位置
 	var startleft1 = 3;//第一页的起始行位置
@@ -595,6 +590,102 @@ function getPrintCfg07(data){
 	return retprintcfg;
 }
 
+function getPrintCfg08(data){
+	var retprintcfg = {
+		title:{intTop:title_initTop,intLeft:title_intLeft,intWidth:title_intWidth,intHeight:title_intHeight,strContent:"7、分娩记录打印"},
+		data:[	]
+	};
+	var i = 0 ;
+	//分娩时间
+	retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.birthRecord.childbirthMonth,"Y"),intTop:"4cm",intLeft:"4cm",intWidth:"1cm",intHeight:"0.8cm"}; 
+	retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.birthRecord.childbirthMonth,"n"),intTop:"4cm",intLeft:"5cm",intWidth:"1cm",intHeight:"0.8cm"}; 
+	retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.birthRecord.childbirthMonth,"j"),intTop:"4cm",intLeft:"5.5cm",intWidth:"1cm",intHeight:"0.8cm"}; 
+	//小时和分钟未记录
+	//retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.birthRecord.childbirthMonth,"G"),intTop:"4cm",intLeft:"6cm",intWidth:"1cm",intHeight:"0.8cm"}; 
+	//retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.birthRecord.childbirthMonth,"i"),intTop:"4cm",intLeft:"6.5cm",intWidth:"1cm",intHeight:"0.8cm"}; 
+	//分娩孕周
+	retprintcfg.data[i++] = {"strContent":data.birthRecord.borthWeekly,intTop:"4cm",intLeft:"10cm",intWidth:"1cm",intHeight:"0.8cm"}; 
+	//总产程 无此字段
+	//分娩方式
+	if(data.birthRecord.childbirthWay == "顺产"){
+		//1.自然分娩
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"5.2cm",intLeft:"5cm",intWidth:"1cm",intHeight:"0.8cm"}; 
+	}else if(data.birthRecord.childbirthWay == "臀产" || data.birthRecord.childbirthWay == "胎吸" ||  data.birthRecord.childbirthWay == "产钳"){
+		//2.手术助产
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"5.2cm",intLeft:"7cm",intWidth:"1cm",intHeight:"0.8cm"}; 
+	}else if(data.birthRecord.childbirthWay == "剖宫产"){
+		//3.剖宫产
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"5.2cm",intLeft:"12cm",intWidth:"1cm",intHeight:"0.8cm"}; 
+	}else if(data.birthRecord.childbirthWay == "难产"){
+		//其他
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"5.2cm",intLeft:"16cm",intWidth:"1cm",intHeight:"0.8cm"}; 
+		retprintcfg.data[i++] = {"strContent":data.birthRecord.childbirthWay,intTop:"5.2cm",intLeft:"17cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}
+	//胎盘娩出时间 无此字段
+	
+	//是否完整 无此字段
+	//会阴情况 无此字段
+	if(data.birthRecord.lacerationOfPerineum =="无"){
+		//1.完整
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"8.8cm",intLeft:"4cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}else if(data.birthRecord.lacerationOfPerineum =="Ⅰ" || data.birthRecord.lacerationOfPerineum =="Ⅱ" ||  data.birthRecord.lacerationOfPerineum =="Ⅲ"){
+		//3.撕裂伤
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"8.8cm",intLeft:"6cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}else{
+		//4.切开
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"8.8cm",intLeft:"9cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	}
+	//宫颈裂伤 无此字段
+	//分娩出血量
+	retprintcfg.data[i++] = {"strContent":data.birthRecord.flooding,intTop:"11.2cm",intLeft:"5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	//产后2小时出血量 无此字段
+	//产后24小时出血量 无此字段
+	//产后2小时血压 无此字段
+	//产后并发症 无此字段
+
+	return retprintcfg;
+}
+function getPrintCfg09(data){
+	//alert(printdata(data));
+	
+	//alert("1,person   "+printdata(data.person));
+	alert("2,birthRecord  "+printdata(data.birthRecord));
+	//alert("3,file   "+printdata(data.file));
+	//alert("4,samTaxempcode "+printdata(data.samTaxempcode));
+	//alert("5,org  "+printdata(data.org));
+	alert("6,cert  "+printdata(data.cert));
+	var retprintcfg = {
+		title:{intTop:title_initTop,intLeft:title_intLeft,intWidth:title_intWidth,intHeight:title_intHeight,strContent:"7、分娩记录打印-新生儿情况"},
+		data:[	]
+	};
+	var i = 0 ;	
+	//新生儿-出生体重
+	retprintcfg.data[i++] = {"strContent":data.cert.weight,intTop:"4cm",intLeft:"4cm",intWidth:"1cm",intHeight:"0.8cm"}; 
+	//身长
+	retprintcfg.data[i++] = {"strContent":data.cert.height,intTop:"4cm",intLeft:"6cm",intWidth:"1cm",intHeight:"0.8cm"}; 
+	//性别
+	if(data.cert.sex=="男"){
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"4cm",intLeft:"9cm",intWidth:"1cm",intHeight:"0.8cm"}; 
+	}else if(data.cert.sex=="女"){
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"4cm",intLeft:"10cm",intWidth:"1cm",intHeight:"0.8cm"}; 
+	}else{
+		retprintcfg.data[i++] = {"strContent":"√",intTop:"4cm",intLeft:"11cm",intWidth:"1cm",intHeight:"0.8cm"}; 
+	}
+	//apgar评分 无此字段
+	//窒息 无此字段
+	//产伤 无此字段
+	//出生缺陷 无此字段
+	//新生儿免疫接种 无此字段
+	//新生儿疾病筛查 无此字段
+	//产妇出院诊断 无此字段
+	//新生儿出院诊断 无此字段
+	//接产单位 
+	retprintcfg.data[i++] = {"strContent":data.cert.borthOrganization,intTop:"10cm",intLeft:"8cm",intWidth:"4cm",intHeight:"0.8cm"}; 
+	//接生者
+	retprintcfg.data[i++] = {"strContent":data.cert.widwife,intTop:"10cm",intLeft:"15cm",intWidth:"4cm",intHeight:"0.8cm"}; 
+
+	return retprintcfg;
+}
 /**/
 Ext.tf.HealthPrintPanel = Ext.extend(Ext.Panel, {
 	closable : true,
@@ -874,7 +965,7 @@ Ext.tf.HealthPrintPanel = Ext.extend(Ext.Panel, {
 							}.createDelegate(this)
 						},
 						{
-							text : '3、首次产前检查记录表打印-第1页',
+							text : '3、首次产前检查记录表打印',
 							iconCls: 'c_print',
 							handler : function(){
 								var selections = this.grid.getSelections();
@@ -893,81 +984,253 @@ Ext.tf.HealthPrintPanel = Ext.extend(Ext.Panel, {
 											isFirst : 1
 										};
 										console.log(cond);
-										UserMenuTreeService.findFirstVisitRecords(cond,function(data){
-											if(data){
-												printObj.printPreview(getPrintCfg03(data.data[0],this.menu),-1);
-											}else{
-												showError('该户没有第一次产前随防记录,无法打印！');
+										//查询
+										var printpanel = Ext.extend(Ext.Panel, {
+											closable : true,
+											currentNode : null, // 当前选择的树节点
+											layout : 'fit',
+											border: false,
+											pageSize : 20,
+											recordId : 'firstVisit.id',
+											recordPk : 'id',
+											//panelId : 'print_childBirthRecordPanel',
+											// 是否需要在最末级才能增加？
+											checkLastLevel : true,
+
+											// 设置查询url
+											queryUrl : UserMenuTreeService.findFirstVisitRecords,
+
+											// 设置查询用的类别，比如档案，高血压等。。
+											queryType : 'demo',
+											readerConfig : [
+															{name:'execOrgName', mapping: 'org.name'},
+															{name:'id', mapping: 'firstVisit.id'},
+															{name:'fileNo', mapping: 'file.fileNo'},
+															{name:'name', mapping: 'file.name'},
+															{name:'birthday', mapping: 'person.birthday'},
+															{name:'highRisk', mapping: 'firstVisit.highRisk'},
+															{name:'weeks', mapping: 'firstVisit.weeks'},
+															{name:'visitDate', mapping: 'firstVisit.visitDate'},
+															{name:'nextVisitDate', mapping: 'firstVisit.nextVisitDate'},
+															{name:'visitDoctor', mapping: 'firstVisit.visitDoctor'},
+															{name:'username', mapping: 'samTaxempcode.username'}
+														   ],
+											gridCmConfig :
+														   [
+															{ "header" : "执行机构", "dataIndex" : "execOrgName"}, 
+															 { "header" : "编号", "dataIndex" : "fileNo", "width":130 },
+															 { "header" : "姓名", "dataIndex" : "name" },
+															 { "header" : "出生日期", "dataIndex" : "birthday",
+																				 "renderer": Ext.util.Format.dateRenderer('Y-m-d') },
+															 { "header" : "高危", "dataIndex" : "highRisk" },
+															 { "header" : "孕周", "dataIndex" : "weeks" },
+															 { "header" : "随访日期", "dataIndex" : "visitDate",
+																				 "renderer": Ext.util.Format.dateRenderer('Y-m-d') },
+															 { "header" : "下次随访日期", "dataIndex" : "nextVisitDate",
+																				 "renderer": Ext.util.Format.dateRenderer('Y-m-d') },
+															 { "header" : "随访医生", "dataIndex" : "visitDoctor" },
+															 { "header" : "录入人", "dataIndex" : "username" }
+														   ],
+											gridViewConfig : {},
+											initComponent : function() {
+												this.build();
+												Ext.tf.HealthPanel.superclass.initComponent.call(this);
+											},
+
+											build : function() {
+										//		this.tbar = this.createActions();
+												this.items = [ this.createPanel() ];
+											},
+											/*
+											 * 查询数据, 如果树没有选择了节点，不执行
+											 */
+											load : function(isReset) {
+												this.grid.getStore().reload();
+												this.doLayout(true);
+											},
+
+											createPanel : function() {
+												var reader = new Ext.data.JsonReader({
+													totalProperty : "totalSize",
+													root : "data",
+													id : this.recordId
+												}, Ext.data.Record.create(this.readerConfig));
+
+												var store = new Ext.data.Store({
+													autoLoad: true,
+													proxy : new Ext.ux.data.DWRProxy({
+														dwrFunction : this.queryUrl,
+														listeners : {
+															'beforeload' : function(dataProxy, params) {
+																params[dataProxy.loadArgsKey] = [ cond, params ];
+															}
+														}
+													}),
+													reader : reader
+												});
+
+												this.pagingBar = new App.PagingToolbar({
+													pageSize : this.pageSize,
+													store : store,
+													displayInfo : true,
+													displayMsg : '{0} - {1} of {2}',
+													emptyMsg : "没有记录"
+												});
+												var sm = new Ext.grid.CheckboxSelectionModel({singleSelect:true});
+												this.gridCmConfig.unshift(sm);
+												this.grid = new Ext.grid.GridPanel({
+													//title : '请选择一个行政区划',
+													bbar : this.pagingBar,
+													layout : 'fit',
+													border : false,
+													height:403,
+													store : store,
+													cm : new Ext.grid.ColumnModel(this.gridCmConfig),
+													viewConfig : this.gridViewConfig,
+													sm : sm
+												});
+												this.grid.getView().on('refresh', function() {
+													// 缺省选择grid的第一条记录
+													var model = this.grid.getSelectionModel();
+													if (model.getCount() == 0) {
+														model.selectFirstRow();
+													}
+												}.createDelegate(this));
+												/*页选择*/
+												var pagedata = [ 
+													[1,"第一页"], 
+													[2,"第二页"], 
+													[3,"第三页"]
+													];
+												var pagestore = new Ext.data.SimpleStore({ 
+													fields:[ 
+													{name:"id"}, 
+													{name:"name"}
+													] 
+												}); 
+												var pagesm = new Ext.grid.CheckboxSelectionModel({
+														singleSelect:true});
+												var pagecm = new Ext.grid.ColumnModel([ 
+														pagesm, 
+														{header:"页数",dataIndex:"name"}, 
+														]); 
+												pagestore.loadData(pagedata);
+												this.pagegrid = new Ext.grid.GridPanel({ 
+													cm:pagecm, 
+													height:430,
+													width:80,
+													sm:pagesm, 
+													store:pagestore, 
+													loadMask:true
+													});
+												var panel = new Ext.Panel({
+													layout : 'table',
+													autoScroll : false,
+													layoutConfig: {
+														columns: 3
+													},
+													border:false,
+													items : [  {
+														title : '第一步：选择要打印的记录',
+														region : 'east',
+														colspan: 2,
+														width : 626,
+														height: 430,
+														frame : false,
+														border : true,
+														items : [ this.grid ]
+													},{
+														region : 'center',
+														frame : false,
+														title : '第二步：<br>选择页数',
+														split : false,
+														collapsible : false,
+													   
+														width : 80,
+														height:430,
+														border : true,
+														items : [ this.pagegrid ]
+													},{
+														region : 'south',
+														colspan: 3,
+														layout : 'table',
+														frame : false,
+														split : false,
+														border : false,
+														collapsible : false,
+														height:8,
+														border : false
+													},{
+														region : 'south',
+														colspan: 3,
+														layout : 'table',
+														frame : false,
+														split : false,
+														border : false,
+														collapsible : false,
+														layoutConfig: {
+															columns: 4
+														},
+														height:32,
+														baseCls:"margin-top:10px",
+														border : false,
+														buttonAlign : "center", 
+														items : [ 
+														{
+															border:false,
+															width:300
+														},{xtype:'button',
+															iconCls: 'c_print',
+															text:"打印",
+															handler : function (){
+																if(!this.grid.getSelectionModel().hasSelection()){
+																	Ext.Msg.alert('提示', '请选择要打印的记录!');
+																	return;
+																}
+																if(!this.pagegrid.getSelectionModel().hasSelection()){
+																	Ext.Msg.alert('提示', '请选择页数!');
+																	return;
+																}
+																var pagenum = this.pagegrid.getSelectionModel().getSelected().json[0];
+																if(pagenum =="1"){
+																	printObj.printPreview(getPrintCfg03(this.grid.getSelectionModel().getSelected().json,this.menu),-1);
+																}else if(pagenum =="2"){
+																	printObj.printPreview(getPrintCfg04(this.grid.getSelectionModel().getSelected().json,this.menu),-1);
+																}else{
+																	printObj.printPreview(getPrintCfg05(this.grid.getSelectionModel().getSelected().json,this.menu),-1);
+																}
+															}.createDelegate(this)
+														},
+														{	border:false,width:20},
+														{	xtype:'button',
+															cls:"x-btn-text-icon",
+															icon:"/resources/images/black/qtip/close.gif",
+															text:"退出",
+															scope :win,
+															handler : function (){
+																	win.close();
+																}
+														}
+														]
+													} ]
+												});
+												
+												return panel;
 											}
-										}.createDelegate(this))
+										});
+										var ppanel = new printpanel();
+										var win = new Ext.Window(
+											{width:720,height:500,title:"3、首次产前检查记录表打印",layout : 'fit',items:[ppanel]}
+										);
+										win.show();
+										win.doLayout(true);
+										ppanel.grid.doLayout(true);
 									}
 								}
 							}.createDelegate(this)
 						},
 						{
-							text : '4、首次产前检查记录表打印-第2页',
-							iconCls: 'c_print',
-							handler : function(){
-								var selections = this.grid.getSelections();
-								if(selections.length > 0){
-									var records = selections[0];
-									var fileNo = records.get(this.recordPk);
-									var param = '?' + this.recordPk + '=' + fileNo;
-									var filterKey = "a."+this.recordPk;
-									var filterValue = fileNo;
-									var selNode = this.getTreeSelNode();
-									if (selNode) {
-										var cond = {
-											district : selNode.id,
-											filterKey : filterKey,
-											filterValue : filterValue,
-											isFirst : 1
-										};
-										console.log(cond);
-										UserMenuTreeService.findFirstVisitRecords(cond,function(data){
-											if(data){
-												printObj.printPreview(getPrintCfg04(data.data[0],this.menu),-1);
-											}else{
-												showError('该户没有第一次产前随防记录,无法打印！');
-											}
-										}.createDelegate(this))
-									}
-								}
-							}.createDelegate(this)
-						},
-						{
-							text : '5、首次产前检查记录表打印-第3页',
-							iconCls: 'c_print',
-							handler : function(){
-								var selections = this.grid.getSelections();
-								if(selections.length > 0){
-									var records = selections[0];
-									var fileNo = records.get(this.recordPk);
-									var param = '?' + this.recordPk + '=' + fileNo;
-									var filterKey = "a."+this.recordPk;
-									var filterValue = fileNo;
-									var selNode = this.getTreeSelNode();
-									if (selNode) {
-										var cond = {
-											district : selNode.id,
-											filterKey : filterKey,
-											filterValue : filterValue,
-											isFirst : 1
-										};
-										console.log(cond);
-										UserMenuTreeService.findFirstVisitRecords(cond,function(data){
-											if(data){
-												printObj.printPreview(getPrintCfg05(data.data[0],this.menu),-1);
-											}else{
-												showError('该户没有第一次产前随防记录,无法打印！');
-											}
-										}.createDelegate(this))
-									}
-								}
-							}.createDelegate(this)
-						},
-						{
-							text : '6、产前检查记录表',
+							text : '4、产前检查记录表打印',
 							iconCls: 'c_print',
 							handler : function(){
 								var selections = this.grid.getSelections();
@@ -994,12 +1257,9 @@ Ext.tf.HealthPrintPanel = Ext.extend(Ext.Panel, {
                                                     currentNode : null, // 当前选择的树节点
                                                     layout : 'fit',
 													border: false,
-                                                    //title: '第2至5次产前随访记录打印',
                                                     pageSize : 20,
                                                     recordId : 'visit.id',
                                                     recordPk : 'id',
-                                                    panelId : 'print_visitBeforeBornPanel',
-                                                    // height:700,
                                                     // 是否需要在最末级才能增加？
                                                     checkLastLevel : true,
 
@@ -1200,7 +1460,7 @@ Ext.tf.HealthPrintPanel = Ext.extend(Ext.Panel, {
                                                                 title : '第一步：选择要打印的记录',
                                                                 region : 'east',
                                                                 //layout : 'fit',
-                                                                width : 640,
+                                                                width : 626,
                                                                 height: 430,
                                                                 frame : false,
                                                                 border : true,
@@ -1266,7 +1526,7 @@ Ext.tf.HealthPrintPanel = Ext.extend(Ext.Panel, {
 																	width:300
 																},{xtype:'button',
 																	iconCls: 'c_print',
-																	text:"打印随访记录",
+																	text:"打印检查记录",
 																	handler : function (){
 																		if(!this.grid.getSelectionModel().hasSelection()){
 																			Ext.Msg.alert('提示', '请选择要打印的记录!');
@@ -1319,16 +1579,277 @@ Ext.tf.HealthPrintPanel = Ext.extend(Ext.Panel, {
                                                 });
 												var ppanel = new printpanel();
                                                 var win = new Ext.Window(
-                                                    {width:800,height:500,title:"6、打印产前检查记录",layout : 'fit',items:[ppanel]}
+                                                    {width:800,height:500,title:"6、产前检查记录打印",layout : 'fit',items:[ppanel]}
                                                 );
                                                 win.show();
                                                 win.doLayout(true);
 												ppanel.grid.doLayout(true);
-												
 											}else{
 												showError('该户没有产前随防记录,无法打印！');
 											}
 										}.createDelegate(this))
+									}
+								}
+							}.createDelegate(this)
+						},{
+							text : '5、分娩记录打印',
+							iconCls: 'c_print',
+							handler : function(){
+								var selections = this.grid.getSelections();
+								if(selections.length > 0){
+									var records = selections[0];
+									var fileNo = records.get(this.recordPk);
+									var param = '?' + this.recordPk + '=' + fileNo;
+									var filterKey = "a."+this.recordPk;
+									var filterValue = fileNo;
+									var selNode = this.getTreeSelNode();
+									if (selNode) {
+										var cond = {
+											district : selNode.id,
+											filterKey : filterKey,
+											filterValue : filterValue,
+											isFirst : 1
+										};
+										console.log(cond);
+										//查询
+										var printpanel = Ext.extend(Ext.Panel, {
+											closable : true,
+											currentNode : null, // 当前选择的树节点
+											layout : 'fit',
+											border: false,
+											pageSize : 20,
+											recordId : 'birthRecord.id',
+											recordPk : 'id',
+											//panelId : 'print_childBirthRecordPanel',
+											// 是否需要在最末级才能增加？
+											checkLastLevel : true,
+
+											// 设置查询url
+											queryUrl : UserMenuTreeService.findBirthChildRecords,
+
+											// 设置查询用的类别，比如档案，高血压等。。
+											queryType : 'demo',
+											readerConfig : [
+															{name:'execOrgName', mapping: 'org.name'},
+															{name:'id', mapping: 'birthRecord.id'},
+															{name:'fileNo', mapping: 'file.fileNo'},
+															{name:'name', mapping: 'file.name'},
+															{name:'sex', mapping: 'person.sex'},
+															{name:'birthday', mapping: 'person.birthday'},
+															{name:'highRisk', mapping: 'birthRecord.criticalWoman'},
+															{name:'birthRecordDate', mapping: 'birthRecord.birthRecordDate'},
+															{name:'username', mapping: 'samTaxempcode.username'}
+														   ],
+											gridCmConfig :
+														   [
+															{ "header" : "执行机构", "dataIndex" : "execOrgName"}, 
+															{ "header" : "编号", "dataIndex" : "fileNo", "width":130 }, 
+															{ "header" : "姓名", "dataIndex" : "name" }, 
+															{ "header" : "性别", "dataIndex" : "sex" }, 
+															{ "header" : "分娩日期", "dataIndex" : "birthRecordDate" },
+															{ "header" : "高危", "dataIndex" : "highRisk" }, 
+															{ "header" : "出生日期", "dataIndex" : "birthday", 
+																	 "renderer": Ext.util.Format.dateRenderer('Y-m-d') }, 
+															{ "header" : "录入人", "dataIndex" : "username" }
+														   ],
+											gridViewConfig : {},
+											initComponent : function() {
+												this.build();
+												Ext.tf.HealthPanel.superclass.initComponent.call(this);
+											},
+
+											build : function() {
+										//		this.tbar = this.createActions();
+												this.items = [ this.createPanel() ];
+											},
+											/*
+											 * 查询数据, 如果树没有选择了节点，不执行
+											 */
+											load : function(isReset) {
+												this.grid.getStore().reload();
+												this.doLayout(true);
+											},
+
+											createPanel : function() {
+												var reader = new Ext.data.JsonReader({
+													totalProperty : "totalSize",
+													root : "data",
+													id : this.recordId
+												}, Ext.data.Record.create(this.readerConfig));
+
+												var store = new Ext.data.Store({
+													autoLoad: true,
+													proxy : new Ext.ux.data.DWRProxy({
+														dwrFunction : this.queryUrl,
+														listeners : {
+															'beforeload' : function(dataProxy, params) {
+																params[dataProxy.loadArgsKey] = [ cond, params ];
+															}
+														}
+													}),
+													reader : reader
+												});
+
+												this.pagingBar = new App.PagingToolbar({
+													pageSize : this.pageSize,
+													store : store,
+													displayInfo : true,
+													displayMsg : '{0} - {1} of {2}',
+													emptyMsg : "没有记录"
+												});
+												var sm = new Ext.grid.CheckboxSelectionModel({singleSelect:true});
+												this.gridCmConfig.unshift(sm);
+												this.grid = new Ext.grid.GridPanel({
+													//title : '请选择一个行政区划',
+													bbar : this.pagingBar,
+													layout : 'fit',
+													border : false,
+													height:403,
+													store : store,
+													cm : new Ext.grid.ColumnModel(this.gridCmConfig),
+													viewConfig : this.gridViewConfig,
+													sm : sm
+												});
+												this.grid.getView().on('refresh', function() {
+													// 缺省选择grid的第一条记录
+													var model = this.grid.getSelectionModel();
+													if (model.getCount() == 0) {
+														model.selectFirstRow();
+													}
+												}.createDelegate(this));
+												/*页选择*/
+												var pagedata = [ 
+													[1,"第一页"], 
+													[2,"第二页"]
+													];
+												var pagestore = new Ext.data.SimpleStore({ 
+													fields:[ 
+													{name:"id"}, 
+													{name:"name"}
+													] 
+												}); 
+												var pagesm = new Ext.grid.CheckboxSelectionModel({
+														singleSelect:true});
+												var pagecm = new Ext.grid.ColumnModel([ 
+														pagesm, 
+														{header:"页数",dataIndex:"name"}, 
+														]); 
+												pagestore.loadData(pagedata);
+												this.pagegrid = new Ext.grid.GridPanel({ 
+													cm:pagecm, 
+													height:430,
+													width:80,
+													sm:pagesm, 
+													store:pagestore, 
+													loadMask:true
+													});
+												var panel = new Ext.Panel({
+													layout : 'table',
+													autoScroll : false,
+													layoutConfig: {
+														columns: 3
+													},
+													border:false,
+													items : [  
+													{
+														title : '第一步：选择要打印的记录',
+														region : 'east',
+														colspan: 2,
+														width : 626,
+														height: 430,
+														frame : false,
+														border : true,
+														items : [ this.grid ]
+													},
+													{
+														region : 'center',
+														frame : false,
+														title : '第二步：<br>选择页数',
+														split : false,
+														collapsible : false,
+													   
+														width : 80,
+														height:430,
+														border : true,
+														items : [ this.pagegrid ]
+													},
+													{
+														region : 'south',
+														colspan: 3,
+														layout : 'table',
+														frame : false,
+														split : false,
+														border : false,
+														collapsible : false,
+														height:8,
+														border : false
+													},
+													{
+														region : 'south',
+														colspan: 3,
+														layout : 'table',
+														frame : false,
+														split : false,
+														border : false,
+														collapsible : false,
+														layoutConfig: {
+															columns: 4
+														},
+														height:32,
+														baseCls:"margin-top:10px",
+														border : false,
+														buttonAlign : "center", 
+														items : [ 
+														{
+															border:false,
+															width:300
+														},
+														{xtype:'button',
+															iconCls: 'c_print',
+															text:"打印",
+															handler : function (){
+																if(!this.grid.getSelectionModel().hasSelection()){
+																	Ext.Msg.alert('提示', '请选择要打印的记录!');
+																	return;
+																}
+																if(!this.pagegrid.getSelectionModel().hasSelection()){
+																	Ext.Msg.alert('提示', '请选择页数!');
+																	return;
+																}
+																var pagenum = this.pagegrid.getSelectionModel().getSelected().json[0];
+																alert(pagenum);
+																if(pagenum =="1"){
+																	printObj.printPreview(getPrintCfg08(this.grid.getSelectionModel().getSelected().json),-1);
+																}else{
+																	printObj.printPreview(getPrintCfg09(this.grid.getSelectionModel().getSelected().json),-1);
+																}
+															}.createDelegate(this)
+														},
+														{	border:false,width:20},
+														{	xtype:'button',
+															cls:"x-btn-text-icon",
+															icon:"/resources/images/black/qtip/close.gif",
+															text:"退出",
+															scope :win,
+															handler : function (){
+																	win.close();
+																}
+														}
+														//{border:false} 
+														]
+													} ]
+												});
+												
+												return panel;
+											}
+										});
+										var ppanel = new printpanel();
+										var win = new Ext.Window(
+											{width:720,height:500,title:"7、分娩记录打印",layout : 'fit',items:[ppanel]}
+										);
+										win.show();
+										win.doLayout(true);
+										ppanel.grid.doLayout(true);
 									}
 								}
 							}.createDelegate(this)
