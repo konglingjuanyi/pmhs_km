@@ -1618,6 +1618,8 @@ public class ModuleMgr extends HibernateDaoSupport {
 			map.put("visit", visitBeforeBorn);
 			map.put("samTaxempcode", samTaxempcode);
 			map.put("org", samTaxorgcode);
+			String beforeBornDirect = getPrintBasicInfo(visitBeforeBorn.getId(),"BeforeBornDirect","beforeBornDirectId","visitBeforeBornId");
+			map.put("beforeBornDirect", beforeBornDirect);
 			files.add(map);
 		}
 
