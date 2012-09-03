@@ -1,13 +1,9 @@
-Ext.ns("Ext.tf");
-
 // /////////////
 // 健康档案模板
 // /////////////
 
-var isFirst = 1;
 
-Ext.tf.HealthPanel = Ext.extend(Ext.Panel, {
-
+var printpanel = Ext.extend(Ext.Panel, {
 	closable : true,
 	currentNode : null, // 当前选择的树节点
 	layout : 'fit',
@@ -15,29 +11,16 @@ Ext.tf.HealthPanel = Ext.extend(Ext.Panel, {
 	pageSize : 20,
 	recordId : 'visit.id',
 	recordPk : 'id',
-	panelId : 'app.visitBeforeBornPanel',
-	
+	panelId : 'print_visitBeforeBornPanel',
 	// height:700,
 	// 是否需要在最末级才能增加？
 	checkLastLevel : true,
 
 	// 设置查询url
 	queryUrl : UserMenuTreeService.findVisitBeforeBornRecords,
-	deleteUrl : UserMenuTreeService.removeVisitBeforeBornRecords,
-	dataExportUrl : DataExportService.dataExportVisitBeforeBorn,
-	treeLoaderFn: UserMenuTreeService.getUserDistrictNodes,
-	diseaseId : null,
-	visitDoctor : null,
-	getAddParams : function() {
-		var node = this.getTreeSelNode();
-		var districtNumber = node.id;
-		var param = '?districtNumber=' + districtNumber;
-		return param;
-	},
 
 	// 设置查询用的类别，比如档案，高血压等。。
 	queryType : 'demo',
-	detailUrl: '/VisitBeforeBorn.html',
 	readerConfig : [
                     {name:'execOrgName', mapping: 'org.name'},
                     {name:'id', mapping: 'visit.id'},
@@ -57,13 +40,13 @@ Ext.tf.HealthPanel = Ext.extend(Ext.Panel, {
                     { "header" : "执行机构", "dataIndex" : "execOrgName"}, 
                      { "header" : "编号", "dataIndex" : "fileNo", "width":130 },
                      { "header" : "姓名", "dataIndex" : "name" },
+                     { "header" : "项目", "dataIndex" : "item","renderer" : function(val){
+                    	 return "第" + val + "次";
+                     }},
                      { "header" : "出生日期", "dataIndex" : "birthday",
                                          "renderer": Ext.util.Format.dateRenderer('Y-m-d') },
                                          { "header" : "高危", "dataIndex" : "highRisk" },   
                      { "header" : "孕周", "dataIndex" : "weeks" },
-                     { "header" : "项目", "dataIndex" : "item","renderer" : function(val){
-                    	 return "第" + val + "次";
-                     }},
                      { "header" : "随访日期", "dataIndex" : "visitDate",
                                          "renderer": Ext.util.Format.dateRenderer('Y-m-d') },
                      { "header" : "下次随访日期", "dataIndex" : "nextVisitDate",
@@ -81,211 +64,12 @@ Ext.tf.HealthPanel = Ext.extend(Ext.Panel, {
 //		this.tbar = this.createActions();
 		this.items = [ this.createPanel() ];
 	},
-
-	/**
-	 * 编辑功能
-	 */
-	f_edit : function(record) {
-		var fileNo = record.get(this.recordPk);
-		var param = '?' + this.recordPk + '=' + fileNo;
-		param = this.detailUrl + param;
-		if (this.visitDoctor != null) {
-			param = param + '&' + this.visitDoctor + '='
-					+ escape(Ext.tf.currentUser.taxempname);
-		}
-		this.openWin(param);
-	},
-
-	/**
-	 * 增加功能
-	 */
-	f_add : function(isSlient) {
-
-		if (this.checkLastLevel) {
-			// 判断是否是第五级别
-			var node = this.getTreeSelNode();
-
-			var level = node.attributes['data'].level;
-			if (level != 5) {
-				if (!isSlient) {
-					Ext.Msg.alert('', '只有第五级行政区域才能增加记录！');
-				}
-				return;
-			}
-		}
-
-		param = this.detailUrl + this.getAddParams();
-		console.log(param);
-		if (this.visitDoctor != null) {
-			param = param + '&' + this.visitDoctor + '='
-					+ escape(Ext.tf.currentUser.taxempname);
-		}
-		if (this.diseaseId != null) {
-			// param = param +"&diseaseId="+this.diseaseId;
-			this.openWin(param, {
-				'diseaseId' : this.diseaseId,
-				"confirmDate" : new Date()
-			});
-		} else {
-			this.openWin(param);
-		}
-
-	},
-
-	/**
-	 * 打开编辑窗口
-	 */
-	openWin : function(targetUrl, param) {
-
-		var win = new Ext.Window({
-			modal : true,
-			title : '录入记录',
-			border : false
-		// autoScroll : true
-		});
-		if (param != null) {
-			window.other_init_param = param;
-		}
-
-		win.show();
-		win.maximize();
-
-		win.add({
-			xtype : 'iframepanel',
-			defaultSrc : targetUrl,
-			// width: win.getInnerWidth() - 380,
-			// height: win.getInnerHeight() - 10,
-			title : '',
-			loadMask : true,
-			autoScroll : false,
-			listeners : {
-				message : function(f, data) {
-					console.log("receive message...");
-					console.log(data);
-					if (data.data == 'quit') {
-						win.close();
-					} else if (data.data == 'saved') {
-						this.load();
-					}
-				}.createDelegate(this)
-			}
-		});
-		win.doLayout(true);
-	},
-
-	getTreeSelNode : function() {
-		var selNode = this.currentNode;
-		if (selNode) {
-			// Ext.Msg.alert('', selNode.text);
-		} else {
-			Ext.Msg.show({
-				icon : Ext.Msg.WARNING,
-				buttons : Ext.Msg.OK,
-				msg : '请先选择一个行政区域！'
-			});
-		}
-		;
-		return selNode;
-	},
-	createActions : function() {
-		var store = new Ext.data.SimpleStore({
-			fields : [ 'type', 'display' ],
-			data : [ [ 'a.name', '姓名' ], [ 'c.highRisk', '高危筛选' ],
-					[ 'a.inputDate', '录入日期' ], [ 'a.lastModifyDate', '修改日期' ],
-					[ 'b.birthday', '出生日期' ], [ 'a.fileNo', '档案编码' ],
-					[ 'b.idnumber', '身份证号' ], [ 'b.linkman', '联系人' ],
-					[ 'a.paperFileNo', '纸质档案号' ], [ 'b.workUnit', '工作单位' ] ]
-		});
-		this.combo = new Ext.form.ComboBox({
-			store : store,
-			displayField : 'display',
-			valueField : 'type',
-			typeAhead : true,
-			mode : 'local',
-			triggerAction : 'all',
-			selectOnFocus : true,
-			editable : false,
-			width : 100,
-			value : 'a.name'
-		});
-		this.filterField = new Ext.form.TextField({
-			fieldLabel : '',
-			enableKeyEvents : true,
-			listeners : {
-				'keypress' : function(field, event) {
-					if (event.getKey() == 13) {
-						this.load(true);
-					}
-					;
-				}.createDelegate(this)
-			}
-		});
-
-		this.isFirst = new Ext.form.TextField({
-			fieldLabel : '',
-			id : 'isFirst',
-			hidden : true
-		});
-
-		this.editFn = function() {
-			var selections = this.grid.getSelections();
-			if (selections.length == 1) {
-				console.log(selections[0]);
-				this.f_edit(selections[0]);
-			}
-		};
-
-		this.editAction = new Ext.Action({
-			text : '修改',
-			iconCls : 'c_edit',
-			handler : this.editFn.createDelegate(this)
-		});
-
-		return 
-				this.combo,
-				this.filterField,
-				new Ext.Action({
-					text : '查询',
-					iconCls : 'c_query',
-					handler : function() {
-						this.load(true);
-					}.createDelegate(this)
-				}) ];
-	},
-
-	/*
-	 * 取得行政树的节点 如果节点没有选中，提示信息，返回空 如果选中，再取得过滤条件，组合成查询条件，并返回之
-	 */
-	getParams : function() {
-		var selNode = this.getTreeSelNode();
-		if (selNode) {
-			var filterKey = this.combo.getValue();
-			var filterValue = this.filterField.getValue();
-			var isFirst = this.isFirst.getValue();
-			var cond = {
-				district : selNode.id,
-				filterKey : filterKey,
-				filterValue : filterValue,
-				isFirst : isFirst
-			};
-			console.log(cond);
-			return cond;
-		}
-		return null;
-	},
-
 	/*
 	 * 查询数据, 如果树没有选择了节点，不执行
 	 */
 	load : function(isReset) {
-		var selNode = this.getTreeSelNode();
-		if (selNode) {
-			if (isReset) {
-				this.pagingBar.changePage(1);
-			}
-			this.grid.getStore().reload();
-			this.doLayout(true);
-		}
+		this.grid.getStore().reload();
+		this.doLayout(true);
 	},
 
 	createPanel : function() {
@@ -338,79 +122,94 @@ Ext.tf.HealthPanel = Ext.extend(Ext.Panel, {
 			}
 		}.createDelegate(this));
 
-//		this.grid.on('rowdblclick', this.editFn, this);
-		this.grid.on('rowdblclick', function(){
-			var selections = this.grid.getSelections();
-			if (selections.length == 1) {
-				console.log(selections[0]);
-				this.f_edit(selections[0]);
-			}
-		}, this);
-
-		this.menu = new Ext.tree.TreePanel({
-			// height : 465,
-			layout : 'fit',
-			animate : true,
-			enableDD : false,
-			loader : new Ext.ux.DWRTreeLoader({
-				dwrCall : this.treeLoaderFn
-			}),
-			lines : true,
-			autoScroll : true,
-			border : false,
-			root : new Ext.tree.AsyncTreeNode({
-				text : 'root',
-				draggable : false,
-				id : 'org'
-			}),
-			rootVisible : false
-		});
-
-		this.menu.getRootNode().on({
-			append : {
-				stopEvent : true,
-				fn : function(t, me, n, index) {
-					// 自动展开根节点的第一个孩子
-					if (index == 0) {
-						if (!n.leaf)
-							n.expand();
-						this.currentNode = n;
-						this.isFirst.setValue(0);
-						// this.load();
-					}
-				}.createDelegate(this)
-			}
-		});
-
-		this.menu.on({
-			click : {
-				stopEvent : true,
-				fn : function(n, e) {
-					e.stopEvent();
-					this.currentNode = n;
-					this.isFirst.setValue(1);
-					this.grid.setTitle(n.text);
-					this.load();
-				}.createDelegate(this)
-			},
-			dblclick : {
-				fn : function(n, e) {
-					this.f_add(true);
-				}.createDelegate(this)
-			}
-		});
-
 		var panel = new Ext.Panel({
 			layout : 'border',
 			autoScroll : true,
 			id : this.panelId,
-			tbar : this.createActions(),
-			items : [ {
-				region : 'west',
+			bbar: {[
+				new Ext.Button({
+					text: '打印',
+					iconCls: 'c_print',
+					menu: new Ext.menu.Menu({
+						items: [{
+							text : '打印',
+							iconCls: 'c_print',
+							handler : function(){
+								var selections = this.grid.getSelections();
+								if(selections.length > 0){
+									var records = selections[0];
+									var fileNo = records.get(this.recordPk);
+									var param = '?' + this.recordPk + '=' + fileNo;
+									var filterKey = "a."+this.recordPk;
+									var filterValue = fileNo;
+									var selNode = this.getTreeSelNode();
+									if (selNode) {
+										var cond = {
+											district : selNode.id,
+											filterKey : filterKey,
+											filterValue : filterValue,
+											isFirst : 1
+										};
+										console.log(cond);
+										UserMenuTreeService.findFirstVisitRecords(cond,function(data){
+											if(data){
+												printObj.printPreview(getPrintCfg01(data.data[0],this.menu),-1);
+											}else{
+												showError('该户没有第一次产前随防记录,无法打印！');
+											}
+										}.createDelegate(this))
+									}
+								}
+							}.createDelegate(this)
+						},
+                        {
+							text : '退出',
+							iconCls: 'c_print',
+							handler : function(){
+								var selections = this.grid.getSelections();
+								if(selections.length > 0){
+									var records = selections[0];
+									var fileNo = records.get(this.recordPk);
+									var param = '?' + this.recordPk + '=' + fileNo;
+									var filterKey = "a."+this.recordPk;
+									var filterValue = fileNo;
+									var selNode = this.getTreeSelNode();
+									if (selNode) {
+										var cond = {
+											district : selNode.id,
+											filterKey : filterKey,
+											filterValue : filterValue,
+											isFirst : 1
+										};
+										console.log(cond);
+										UserMenuTreeService.findFirstVisitRecords(cond,function(data){
+											if(data){
+												printObj.printPreview(getPrintCfg01(data.data[0],this.menu),-1);
+											}else{
+												showError('该户没有第一次产前随防记录,无法打印！');
+											}
+										}.createDelegate(this))
+									}
+								}
+							}.createDelegate(this)
+						}]
+                        })
+                      })
+                    ]
+                },
+			items : [  {
+                title : '第一步：选择记录',
+				region : 'east',
 				layout : 'fit',
 				frame : false,
-				title : '行政区划',
-				split : true,
+				border : false,
+				items : [ this.grid ]
+			},{
+				region : 'center',
+				layout : 'fit',
+				frame : false,
+				title : '第二步：选择页数',
+				split : false,
 				collapsible : true,
 				layoutConfig : {
 					animate : true
@@ -419,282 +218,28 @@ Ext.tf.HealthPanel = Ext.extend(Ext.Panel, {
 				minSize : 100,
 				maxSize : 400,
 				border : false,
-				items : [ this.menu ]
-			}, {
-				region : 'center',
+				items : [  ]
+			},{
+				region : 'west',
 				layout : 'fit',
 				frame : false,
+				title : '第三步：选择行数',
+				split : false,
+				collapsible : true,
+				layoutConfig : {
+					animate : true
+				},
+				width : 200,
+				minSize : 100,
+				maxSize : 400,
 				border : false,
-				items : [ this.grid ]
+				items : [  ]
 			} ]
 		});
 		return panel;
 	}
 });
 
-/**
- * 行政，组织机构 树形编辑
- */
-Ext.tf.OrgTreePanel = Ext.extend(Ext.Panel, {
-	title : '未命名',
-	closable : true,
-	autoScroll : true,
-	// height: 100,
-	currentNode : null,
-	saveFn : Ext.emptyFn,
-	deleteFn : Ext.emptyFn,
-	formItems : [],
+var win = Ext.Window({width:500,height:400,title:"6、打印产前检查记录",items[printpanel]});
+win.show();
 
-	addEqAction : null,
-	addDownAction : null,
-	editAction : null,
-	delAction : null,
-
-	initComponent : function() {
-		this.buildAction();
-		this.buildTree();
-		this.build();
-		Ext.tf.OrgTreePanel.superclass.initComponent.call(this);
-	},
-
-	getTreeSelNode : function() {
-		var selNode = this.currentNode;
-		if (selNode) {
-			console.log(selNode);
-			// Ext.Msg.alert('', selNode.text);
-		} else {
-			Ext.Msg.alert('', '请先选择一个节点！');
-		}
-		;
-		return selNode;
-	},
-	/**
-	 * 弹出 当节点me不为空，表示是编辑节点 对应几种情况： 1. 新增 2. 编辑非根节点 3.
-	 * 编辑根节点（由于根节点没有父亲值，在不与后台交互的情况下，特殊对待）
-	 */
-	edit : function(sameLevel, parentNode, me) {
-
-		var isEdit = false, parentLevel = null;
-
-		if (me)
-			isEdit = true;
-		if (!isEdit) {
-			parentLevel = parentNode.attributes['data'].level;
-			// 如果父亲的级别超过6了，则不能增加子节点
-			if (Ext.num(parentLevel) >= 5) {
-				return;
-			}
-			;
-		}
-		;
-
-		var form = new Ext.form.FormPanel({
-			frame : true,
-			defaultType : 'textfield',
-			items : this.formItems,
-			buttons : [ {
-				text : '保存',
-				handler : function() {
-					var formbean = form.getForm().getValues(false);
-					this.saveFn(formbean, {
-						callback : function(data) {
-							Ext.Msg.alert('', '保存成功！');
-							console.log(data);
-							if (!isEdit) {
-								var child = new Ext.tree.TreeNode({
-									id : data.id,
-									text : data.name,
-									cls : 'folder',
-									leaf : false
-								});
-								child.attributes['data'] = data;
-								parentNode.appendChild(child);
-								this.menu.getSelectionModel().select(child);
-							} else {
-								me.attributes['data'] = data;
-								me.setText(data.name);
-							}
-							win.close();
-						}.createDelegate(this),
-						errorHandler : function(msg) {
-							console.log(msg);
-							Ext.Msg.alert('', '保存出错！');
-						}
-					});
-				}.createDelegate(this)
-			}, {
-				text : '关闭',
-				handler : function() {
-					win.close();
-				}
-			} ]
-		});
-
-		var win = new Ext.Window({
-			title : this.title,
-			modal : true,
-			width : 300,
-			closeAction : 'close',
-			items : [ form ]
-		});
-
-		win.show();
-
-		var baseForm = form.getForm();
-		if (isEdit) {
-			baseForm.loadRecord(new Ext.data.Record(me.attributes['data']));
-			baseForm.findField('id').el.dom.readOnly = true;
-		} else {
-			baseForm.findField('level').setValue(parentLevel + 1);
-		}
-		;
-
-		var parentNameField = baseForm.findField('parentName');
-		if (parentNameField && parentNode) {
-			parentNameField.setValue(parentNode.text);
-		}
-		;
-
-		if (isEdit && !parentNode) {
-			form.remove(parentNameField);
-		}
-		;
-	},
-
-	buildAction : function() {
-		this.addEqAction = new Ext.Action({
-			text : '平级增加',
-			iconCls : 'c_add',
-			handler : function() {
-				var node = this.getTreeSelNode();
-				if (!node)
-					return;
-				if (node.isRoot)
-					return;
-				this.edit(true, node.parentNode);
-			}.createDelegate(this)
-		});
-		this.addDownAction = new Ext.Action({
-			text : '下级增加',
-			iconCls : 'c_add',
-			handler : function() {
-				var node = this.getTreeSelNode();
-				if (!node)
-					return;
-				this.edit(false, node);
-			}.createDelegate(this)
-		});
-		this.editAction = new Ext.Action({
-			text : '编辑',
-			iconCls : 'c_edit',
-			handler : function() {
-				var node = this.getTreeSelNode();
-				if (!node)
-					return;
-				if (node.isRoot) {
-					this.edit(true, null, node);
-				} else {
-					this.edit(true, node.parentNode, node);
-				}
-			}.createDelegate(this)
-		});
-		this.delAction = new Ext.Action({
-			text : '删除',
-			iconCls : 'c_del',
-			handler : function() {
-				var node = this.getTreeSelNode();
-				if (!node)
-					return;
-				if (node.isRoot)
-					return;
-				console.log(node.firstChild);
-				if (node.firstChild) {
-					Ext.Msg.alert('', '有子节点，不能删除！');
-					return;
-				}
-				var del = function(e) {
-					if (e == "yes") {
-						this.deleteFn(node.id, {
-							callback : function(data) {
-								Ext.Msg.alert('', '删除成功！');
-								if (node.nextSibling) {
-									this.menu.getSelectionModel().select(
-											node.nextSibling);
-								} else {
-									this.menu.getSelectionModel().select(
-											node.parentNode);
-								}
-								node.remove();
-							}.createDelegate(this),
-							errorHandler : function(msg) {
-								console.log(msg);
-								Ext.Msg.alert('', '删除错误！');
-							}
-						});
-					}
-					;
-				};
-
-				Ext.MessageBox.confirm("提示", "确认要删除所选择的记录么？", del, this);
-
-			}.createDelegate(this)
-		});
-	},
-
-	buildTree : function() {
-		this.menu = new Ext.tree.TreePanel({
-			width : 552,
-			height : 450,
-			rootVisible : true,
-			autoScroll : true,
-			lines : false,
-			animate : true,
-			tbar : [ this.addEqAction, this.addDownAction, this.editAction,
-					this.delAction ],
-			loader : new Ext.ux.DWRTreeLoader({
-				dwrCall : this.treeLoaderFn
-			}),
-			root : new Ext.tree.AsyncTreeNode({
-				text : this.rootNodeData.name,
-				hasChildren : true,
-				id : this.rootNodeData.id
-			})
-		});
-		var rootNode = this.menu.getRootNode();
-
-		rootNode.attributes['data'] = this.rootNodeData;
-		this.menu.on({
-			click : {
-				stopEvent : true,
-				fn : function(n, e) {
-					e.stopEvent();
-					this.currentNode = n;
-				}.createDelegate(this)
-			}
-		});
-
-	},
-
-	build : function() {
-		this.items = [ this.menu ];
-	}
-
-});
-
-function addTooltip(value, metadata, record, rowIndex, colIndex, store) {
-	if (record.data.name == '') {
-		return '<img src="../image/waitingPerfect.png" /><font color="#1900d8" size=2>待完善</font>';
-	} else {
-		return '<img src="../image/alreadyPerfect.png" /><font color="#000" size=2>已完善</font>';
-	}
-	return value;
-}
-
-function addTooltipImmnue(value, metadata, record, rowIndex, colIndex, store) {
-	if (record.data.vaccineImmune == null) {
-		return '<img src="../image/waitingPerfect.png" /><font color="#1900d8" size=2>未建卡</font>';
-	} else {
-		return '<img src="../image/alreadyPerfect.png" /><font color="#000" size=2>已建卡</font>';
-	}
-	return value;
-}
