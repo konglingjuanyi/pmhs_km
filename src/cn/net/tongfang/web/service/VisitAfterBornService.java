@@ -41,6 +41,7 @@ public class VisitAfterBornService extends HealthMainService<VisitAfterBornBO> {
 		if(data.getRecordType().equals("1")){
 			PersonalInfo person = (PersonalInfo)getHibernateTemplate().find("From PersonalInfo Where fileNo = ?", data.getFileNo()).get(0);
 			person.setBornStatus("否");
+			person.setHomeId("曾经");
 			getHibernateTemplate().save(person);
 			List list = getHibernateTemplate().find("From GravidityKey Where fileNo = ?", data.getFileNo());
 			if(list.size() > 0){

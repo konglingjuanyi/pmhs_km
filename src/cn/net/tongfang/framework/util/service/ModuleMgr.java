@@ -800,9 +800,7 @@ public class ModuleMgr extends HibernateDaoSupport {
 		StringBuilder where = new StringBuilder();
 		buildGeneralWhereHealthFile(qryCond, params, where);
 
-		where.append(" and b.bornStatus >= ?");
-		params.add("是");
-
+		where.append(" and ( b.bornStatus = '是' or b.homeId = '曾经') ");
 		if (params.size() != 0) {
 			where.replace(0, 4, " where ");
 		}
@@ -1701,6 +1699,8 @@ public class ModuleMgr extends HibernateDaoSupport {
 			map.put("visit", visitAfterBorn);
 			map.put("samTaxempcode", samTaxempcode);
 			map.put("org", samTaxorgcode);
+			String afterBornDirect = getPrintBasicInfo(visitAfterBorn.getId(),"AfterBornDirect","afterBornDirectId","visitAfterBornId");
+			map.put("afterBornDirect", afterBornDirect);
 			files.add(map);
 		}
 
