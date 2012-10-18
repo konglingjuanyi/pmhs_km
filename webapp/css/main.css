@@ -20,7 +20,7 @@ table.form_tbl {
 table.form_tbl td{
     border: 1px solid gray ;
    /* width: 90px;*/
-    height: 21px;
+    height: 30px;
     padding: 1px !important;
     padding: 0px;
 }
@@ -38,7 +38,27 @@ gHeader{
 
 
 td.header {
-   /* text-align: center; */
+    text-align: left; 
+	text-indent:5px;
+	height:100%;
+	white-space:nowrap;
+}
+td span{
+	height:100%;
+}
+td span .ie6input{
+	/*width:95%;*/
+}
+
+#fileNo{
+	height:100%;
+} 
+td span> input{
+	height:30px;
+}
+
+td span img{
+	float:right;
 }
 
 
@@ -307,7 +327,8 @@ table.tgrid td {
 table.cover td {
     font-size : 1.5em;
     padding-left : 15px;
-    height : 50px;
+    height : 30px;
+	
 }
 
 div.growlUI { background: url(/image/check48.png) no-repeat 10px 10px }

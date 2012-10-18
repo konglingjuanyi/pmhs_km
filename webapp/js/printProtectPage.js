@@ -44,9 +44,11 @@
 				PrintVacciImmune(jsonPrint);
 			}else if(type === -1){//-1通用打印
 				PrintCommon(jsonPrint);
+			}else if(type === -2){//-1通用打印
+				PrintCommon1(jsonPrint);
 			}
-			LODOP.PREVIEW();	
-//			LODOP.PRINT_SETUP();
+//			LODOP.PREVIEW();	
+			LODOP.PRINT_SETUP();
 		}
 	}
 	//多页打印预览
@@ -65,6 +67,17 @@
 		for(var i = 0 ; i< jsonPrint.data.length ;i++){
 			item = jsonPrint.data[i];
 			LODOP.ADD_PRINT_TEXT(item.intTop,item.intLeft,item.intWidth,item.intHeight,item.strContent);
+		}	
+	}
+	
+	//通用打印
+	function PrintCommon1(jsonPrint){
+		LODOP.PRINT_INITA(jsonPrint.title.intTop,jsonPrint.title.intLeft,jsonPrint.title.intWidth,jsonPrint.title.intHeight,jsonPrint.title.strContent);
+		LODOP.SET_PRINT_STYLE("FontColor","#0000FF");
+		LODOP.SET_PRINT_STYLEA(0,"FontSize",16);
+		for(var i = 0 ; i< jsonPrint.data.length ;i++){
+			item = jsonPrint.data[i];
+			LODOP.ADD_PRINT_TEXT(item[0],item[1],item[2],item[3],item[4]);
 		}	
 	}
 	//预防接种证打印

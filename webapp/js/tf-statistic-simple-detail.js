@@ -71,6 +71,49 @@ function getColumnsIndexDetail(gridName,colName){
 	return Ext.getCmp(gridName).getColumnModel().getIndexById(colName)
 }
 
+
+function getFlag(item,namearray,flag,count,grid1,record,cm,rowIndex){
+	if (item.innerHTML.indexOf("plus1.gif")>0 && flag){
+		var space = "";
+		for(var i =0 ; i <count ;i++){
+			space +="&nbsp;";
+		}
+		item.innerHTML = item.innerHTML.replace("plus1.gif","minus1.gif");
+		var msg = "";
+		for (var i =0 ; i <namearray.length;i++){
+			var record1 = record.copy();
+			record1.set(cm.getDataIndex(0),space+namearray[i]);
+			//alert(i+" "+record.get(cm.getDataIndex(i)));
+			for(var j = 2 ; j <cm.getColumnCount();j++){
+				name = cm.getDataIndex(j);
+				var endindex = i +1;
+				var count = i +1;
+				var start = 1;
+				var content = parseInt(""+record.get(name));
+				if(content > ((endindex+start) * count) /2 ){
+					record1.set(name,endindex);
+				}else{
+					if(content > ((endindex-1+start) * (count-1)) /2 ){
+						record1.set(name,content - ((endindex-1+start) * (count-1)) /2);
+					}else{
+						record1.set(name,0);
+					}
+				}
+			}
+			grid1.getStore().insert(rowIndex+1+i,record1);
+		}
+		//Ext.Msg.show({title:'提示',"msg":msg});
+		
+		//grid1.getStore().reload();
+	}else{
+		for (var i =0 ; i <namearray.length;i++){
+			var record1 = grid1.getStore().getAt(rowIndex+1);
+			grid1.getStore().remove(record1);
+		}
+		item.innerHTML = item.innerHTML.replace("minus1.gif","plus1.gif");
+	}
+}
+
 Ext.tf.SummaryStatisticDetailPanel = Ext.extend(Ext.Panel,{
 	closable : true,
 	pageSize : 10,
@@ -132,10 +175,24 @@ Ext.tf.SummaryStatisticDetailPanel = Ext.extend(Ext.Panel,{
 		"renderer": function (value, metadata ,record,rowIndex ,colIndex ,store  ){
 			//metadata.css ="";
 			//metadata.attr='style="color:red;"';
-			if("总计" !== value && "&" !== value.substr(0,1))
-				return "<img src='/image/plus1.gif'>&nbsp;"+value;
-			else
+			//if("总计" !== value && "&" !== value.substr(0,1))
+			var a1  = "&nbsp;&nbsp;";
+			var a2 = "&nbsp;&nbsp;&nbsp;&nbsp;";
+			var a3 = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+			//alert("value=="+value)
+			if("总计" !== value){
+				if(a3 == value.substr(0,a3.length)){
+					return a3+"&nbsp;&nbsp;&nbsp;&nbsp;"+value.substr(a3.length);
+				}else if(a2 == value.substr(0,a2.length)){
+					return a2+"<img src='/image/plus1.gif'>&nbsp;"+value.substr(a2.length);
+				}else if(a1 == value.substr(0,a1.length)){
+					return a1+"<img src='/image/plus1.gif'>&nbsp;"+value.substr(a1.length);
+				}else if("&" !== value.substr(0,1)){
+					return "<img src='/image/plus1.gif'>&nbsp;"+value;
+				}
+			}else{
 				return value;
+			}
 		},
 	}, {
 		"header" : "操作员",
@@ -412,43 +469,23 @@ Ext.tf.SummaryStatisticDetailPanel = Ext.extend(Ext.Panel,{
 				var data = record.get(fieldName);
 				var item = grid1.getView().getCell(rowIndex,columnIndex);
 				var names=new Array("盘龙区","五华区","官渡区","西山区","经开区");
-				if (item.innerHTML.indexOf("plus1.gif")>0){
-					item.innerHTML = item.innerHTML.replace("plus1.gif","minus1.gif");
-					//grid1.insert(rowIndex,data.getRow(rowIndex));
-					var msg = "";
-					
-					for (var i =0 ; i <names.length;i++){
-						var record1 = record.copy();
-						record1.set(cm.getDataIndex(0),"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+names[i]+"卫生局");
-						//alert(i+" "+record.get(cm.getDataIndex(i)));
-						for(var j = 2 ; j <cm.getColumnCount();j++){
-							name = cm.getDataIndex(j);
-							var endindex = i +1;
-							var count = i +1;
-							var start = 1;
-							var content = parseInt(""+record.get(name));
-							if(content > ((endindex+start) * count) /2 ){
-								record1.set(name,endindex);
-							}else{
-								if(content > ((endindex-1+start) * (count-1)) /2 ){
-									record1.set(name,content - ((endindex-1+start) * (count-1)) /2);
-								}else{
-									record1.set(name,0);
-								}
-							}
-						}
-						grid1.getStore().insert(rowIndex+1+i,record1);
-					}
-					//Ext.Msg.show({title:'提示',"msg":msg});
-					
-					//grid1.getStore().reload();
-				}else{
-					for (var i =0 ; i <names.length;i++){
-						var record1 = grid1.getStore().getAt(rowIndex+1);
-						grid1.getStore().remove(record1);
-					}
-					item.innerHTML = item.innerHTML.replace("minus1.gif","plus1.gif");
+				var name1 = new Array("华山街道办事处","护国街道办事处","大观街道办事处","龙翔街道办事处");
+				var name2 = new Array("洪化桥社区居委会","水晶宫社区居委会","华山西路社区居委会","翠湖南路社区居委会","文林社区居委会");
+//				alert("aaaaaaaaaaaa")
+				var mm = String.fromCharCode(160);
+//				alert("mm=="+mm)
+				var a1 = mm;
+				var a2 = mm+mm+mm;
+				var a3 = mm+mm+mm+mm+mm;
+				var value = item.textContent;
+				if (a3 === value.substr(0,a3.length)){
+					getFlag(item,name2,true,6,grid1,record,cm,rowIndex);
+				}else if (a2 === value.substr(0,a2.length)){
+					getFlag(item,name1,true,4,grid1,record,cm,rowIndex);
+				}else if(a1 == value.substr(0,a1.length)){
+					getFlag(item,names,true,2,grid1,record,cm,rowIndex);
 				}
+				
 			}
 			//Ext.Msg.show({			title:'提示',
 			//	msg: grid1.getView()+" "+rowIndex+" "+columnIndex});

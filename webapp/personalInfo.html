@@ -66,7 +66,14 @@
 <script language="javascript" type="text/javascript"
 	src="My97DatePicker/WdatePicker.js"></script>
 <link href="css/personalInfo.css" type="text/css" rel="stylesheet" />
-
+<style type="text/css">
+.ie6input{
+	width:100%;
+}
+td span .ie6input{
+	width:95%;
+}
+</style>
 </head>
 <body>
 	<div class="outerContainer">
@@ -119,7 +126,7 @@
 						<td id="residenceAddress"></td>
 					</tr>
 					<tr>
-						<td align="center">联系电话<font size="2" color="red">（必填）</font></td>
+						<td class="header">联系电话<font size="2" color="red">（必填）</font></td>
 						<td id="tel0">${employer}</td>
 					</tr>
 					<tr>
@@ -161,7 +168,8 @@
 					</tr>
 					<tr>
 						<td class="header">条形码</td>
-						<td><span id="barCode">${name}</span><span id="status" style="display:none;"></span></td>
+						<td id="barCode">${name}</td>
+						<span id="status" style="display:none;"/>
 					</tr>
 				</table>
 			</div>
@@ -172,7 +180,7 @@
 						</td>
 						<td colspan="3"><span id="sex"></span></td>
 						<td>出生日期<font size="2" color="red">（必填）</font></td>
-						<td><span id="birthday"></span><br /></td>
+						<td id="birthday"></td>
 					</tr>
 					<tr>
 						<td class="header">身份证号码</td>

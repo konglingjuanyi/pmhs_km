@@ -767,6 +767,76 @@ public class ModuleMgr extends HibernateDaoSupport {
 		StringBuilder hql = buildChildHealthHql(qryCond, params);
 		return queryHealthFiles(pp, params, hql);
 	}
+	
+	/**
+	 * 查询儿童打印档案信息
+	 * @param qryCond
+	 * @param pp
+	 * @return
+	 */
+	public PagingResult<Map<String, Object>> findChildPrintInfo(
+			HealthFileQry qryCond, PagingParam pp) {
+		List params = new ArrayList();
+
+		StringBuilder where = new StringBuilder();
+		buildGeneralWhere(qryCond, params, where);
+
+		where.append(" and a.fileNo = c.fileNo");
+		where.append(" and c.inputPersonId = d.loginname");
+		where.append(" and d.orgId = e.id");
+		if (params.size() != 0) {
+			where.replace(0, 4, " where ");
+		}
+		StringBuilder hql;
+		if(qryCond.getIsFirst() == 0){
+			hql = new StringBuilder(
+				"from HealthFile a, PersonalInfo b, HypertensionVisit c, SamTaxempcode d,SamTaxorgcode e")
+				.append(where).append(" and CONVERT(varchar(10),c.nextVistDate,112) = CONVERT(varchar(10),getDate(),112) order by a.fileNo");
+		}else{
+			hql = new StringBuilder(
+				"from HealthFile a, PersonalInfo b, HypertensionVisit c, SamTaxempcode d,SamTaxorgcode e")
+				.append(where).append(" order by a.fileNo");
+		}
+		log.debug("hql: " + hql.toString());
+
+		PagingResult<Object> p = query(hql, params, pp);
+		List list = p.getData();
+		List<Map<String, Object>> files = new ArrayList<Map<String, Object>>();
+		String tmpFileNo = "";
+		for (Object object : list) {
+			Object[] objs = (Object[]) object;
+			HealthFile file = (HealthFile) objs[0];
+			PersonalInfo person = (PersonalInfo) objs[1];
+			if(!tmpFileNo.equals(file.getFileNo())){
+				file.setFileNo(EncryptionUtils.decipher(file.getFileNo()));
+				file.setName(EncryptionUtils.decipher(file.getName()));
+				person.setIdnumber(EncryptionUtils.decipher(person.getFileNo()));
+				tmpFileNo = file.getFileNo();
+			}
+			HypertensionVisit hypVisit = (HypertensionVisit) objs[2];
+			SamTaxempcode samTaxempcode = (SamTaxempcode) objs[3];
+			SamTaxorgcode samTaxorgcode = (SamTaxorgcode) objs[4];
+			getHibernateTemplate().evict(file);
+			getHibernateTemplate().evict(person);
+			getHibernateTemplate().evict(hypVisit);
+			getHibernateTemplate().evict(samTaxempcode);
+			getHibernateTemplate().evict(samTaxorgcode);
+			
+			Map map = new HashMap();
+			map.put("file", file);
+			map.put("person", person);
+			map.put("hyp", hypVisit);
+			map.put("samTaxempcode", samTaxempcode);
+			map.put("org", samTaxorgcode);
+			files.add(map);
+		}
+
+		PagingResult<Map<String, Object>> result = new PagingResult<Map<String, Object>>(
+				p.getTotalSize(), files);
+
+		return result;
+
+	}
 
 	public PagingResult<HealthFile> findWomanBirthHealthFiles(HealthFileQry qryCond,
 			PagingParam pp) {
