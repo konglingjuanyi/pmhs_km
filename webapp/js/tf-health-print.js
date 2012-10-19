@@ -1,4 +1,4 @@
-Ext.ns("Ext.tf");
+﻿Ext.ns("Ext.tf");
 
 // /////////////
 // 健康档案模板
@@ -439,287 +439,459 @@ function getPrintCfg04(data,orgmap){
 		title:{intTop:title_initTop,intLeft:title_intLeft,intWidth:title_intWidth,intHeight:title_intHeight,strContent:"4、首次产前检查记录表第2页"},
 		data:[	]
 	};
-	var i = 0 ;
-	//避孕史 无此字段
+	var count =0;
+	var pos = new Array();
+	pos[count++] =  new Array("2.28cm","3.28cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("2.28cm","5.66cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("2.28cm","7.57cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("2.28cm","9.26cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("2.28cm","10.87cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("2.28cm","12.46cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("2.28cm","13.97cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("2.83cm","4.58cm","1.19cm","0.61cm");
+	pos[count++] =  new Array("2.83cm","8.18cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("2.83cm","9.18cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("2.83cm","10.48cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("2.83cm","12.38cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("2.83cm","13.57cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("2.83cm","14.68cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("3.33cm","4.58cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("3.81cm","4.58cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("4.31cm","5.42cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("4.31cm","6.11cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("4.37cm","8.57cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("4.37cm","10.08cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("4.37cm","11.17cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("4.37cm","13.78cm","5cm","0.61cm");
+	pos[count++] =  new Array("4.82cm","5.42cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("4.82cm","6.11cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("4.87cm","8.18cm","2.99cm","0.61cm");
+	pos[count++] =  new Array("5.37cm","4.58cm","1.51cm","0.61cm");
+	pos[count++] =  new Array("5.87cm","6.09cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("5.87cm","6.98cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("6.38cm","8.47cm","5cm","0.61cm");
+	pos[count++] =  new Array("7.22cm","3.47cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("7.22cm","6.38cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("7.22cm","7.22cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("7.73cm","5.87cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("7.73cm","7.46cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("7.7cm","9.31cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("7.73cm","10.87cm","5cm","0.61cm");
+	pos[count++] =  new Array("8.15cm","5.87cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("8.15cm","7.46cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("8.15cm","9.31cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("8.2cm","10.87cm","5cm","0.61cm");
+	pos[count++] =  new Array("8.63cm","5.08cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("8.63cm","6.77cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("8.63cm","8.07cm","5cm","0.61cm");
+	pos[count++] =  new Array("9.13cm","5.08cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("9.13cm","6.77cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("9.13cm","8.07cm","5cm","0.61cm");
+	pos[count++] =  new Array("9.58cm","5.08cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("9.63cm","7.17cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("9.63cm","8.47cm","5cm","0.61cm");
+	pos[count++] =  new Array("10.03cm","5.77cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("10.03cm","7.78cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("10.03cm","9.18cm","5cm","0.61cm");
+	pos[count++] =  new Array("10.53cm","5.08cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("10.53cm","7.06cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("10.53cm","8.36cm","2.99cm","0.61cm");
+	pos[count++] =  new Array("10.53cm","11.88cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("10.53cm","13.86cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("10.53cm","15.08cm","2.99cm","0.61cm");
+	pos[count++] =  new Array("11.06cm","5.08cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("11.06cm","7.06cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("11.01cm","8.36cm","2.99cm","0.61cm");
+	pos[count++] =  new Array("11.09cm","11.88cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("11.09cm","13.86cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("11.01cm","16.17cm","2.99cm","0.61cm");
+	pos[count++] =  new Array("11.48cm","5.08cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("11.48cm","7.06cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("11.48cm","8.36cm","2.99cm","0.61cm");
+	pos[count++] =  new Array("16.32cm","5.08cm","2.01cm","0.61cm");
+	pos[count++] =  new Array("16.32cm","6.67cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("16.32cm","7.78cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("16.32cm","13.36cm","2.01cm","0.61cm");
+	pos[count++] =  new Array("16.32cm","15.08cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("16.32cm","16.17cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("16.83cm","4.76cm","2.01cm","0.61cm");
+	pos[count++] =  new Array("16.83cm","6.38cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("16.83cm","7.38cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("18.49cm","1.56cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("18.49cm","3.78cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("18.44cm","5.19cm","2.99cm","0.61cm");
+	pos[count++] =  new Array("18.44cm","10.08cm","5cm","0.61cm");
+	pos[count++] =  new Array("20.08cm","1.56cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("20.08cm","2.67cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("20.03cm","5.19cm","2.99cm","0.61cm");
+	pos[count++] =  new Array("20.03cm","10.48cm","2.01cm","0.61cm");
+	pos[count++] =  new Array("21.78cm","1.56cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("21.78cm","3.18cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("21.78cm","4.47cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("21.78cm","5.77cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("21.78cm","12.06cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("21.78cm","15.37cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("21.72cm","16.77cm","2.01cm","0.61cm");
+	pos[count++] =  new Array("23.39cm","6.85cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("23.39cm","7.94cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("23.34cm","9.68cm","7.01cm","0.61cm");
+	pos[count++] =  new Array("23.76cm","10.19cm","6.01cm","0.61cm");
+	pos[count++] =  new Array("24.37cm","9.08cm","2.01cm","0.61cm");
+	pos[count++] =  new Array("24.37cm","10.66cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("24.37cm","11.67cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("24.9cm","8.47cm","5cm","0.61cm");
+	pos[count++] =  new Array("24.9cm","15.98cm","2.99cm","0.61cm");
+
 	
+	var value = new Array();
+	count = 0 ;
+	//避孕史 无此字段
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
 	//孕产史-流产 
-	retprintcfg.data[i++] = {"strContent":data.firstVisit.pregnant1,intTop:"4cm",intLeft:"5cm",intWidth:"2cm",intHeight:"0.8cm"}
+	value[count++] = data.firstVisit.pregnant1;
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
 	//末次流产时间 无此字段
-	//死胎
-	retprintcfg.data[i++] = {"strContent":data.firstVisit.pregnant2,intTop:"4.8cm",intLeft:"5cm",intWidth:"2cm",intHeight:"0.8cm"}
-	//死产
-	retprintcfg.data[i++] = {"strContent":data.firstVisit.pregnant3,intTop:"5.6cm",intLeft:"5cm",intWidth:"2cm",intHeight:"0.8cm"}
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	//死胎,死产
+	value[count++] = data.firstVisit.pregnant2;
+	value[count++] = data.firstVisit.pregnant3;
 	//新生儿死亡
-	if(data.firstVisit.pregnant4===0 ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"6.4cm",intLeft:"7cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	if(data.firstVisit.pregnant4===0 ){ 
+		value[count++] = "√";
+		value[count++] = "";
 	}else{
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"6.4cm",intLeft:"7.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "";
+		value[count++] = "√";
 	}
-	//死亡时间 无此字段
-	//死亡原因 无此字段
+	//死亡时间,死亡原因
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
 	//出生缺陷儿 
 	if(data.firstVisit.pregnant5===0 ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"7.2cm",intLeft:"7cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+		value[count++] = "";
 	}else{
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"7.2cm",intLeft:"7.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+		value[count++] = "";
 	}
-	//早产 无此字段
-	//存活子女情况 无此字段
-	//既往妊娠合并症及并发症 无此字段
-	//体重 
-	retprintcfg.data[i++] = {"strContent":data.firstVisit.weight,intTop:"11.2cm",intLeft:"5cm",intWidth:"6cm",intHeight:"0.8cm"}; 
-	//血压
-	retprintcfg.data[i++] = {"strContent":data.firstVisit.diastolicPressure,intTop:"11.2cm",intLeft:"8cm",intWidth:"6cm",intHeight:"0.8cm"}; 
-	retprintcfg.data[i++] = {"strContent":data.firstVisit.systolicPressure,intTop:"11.2cm",intLeft:"9cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	value[count++] = "";
+	
+	value[count++] = "";//早产 无此字段
+	value[count++] = "";//存活子女情况 无此字段
+	value[count++] = "";//存活子女情况 无此字段
+	value[count++] = "";//既往妊娠合并症及并发症 无此字段
+	value[count++] = data.firstVisit.weight;//体重 
+	value[count++] = data.firstVisit.diastolicPressure;//血压
+	value[count++] = data.firstVisit.systolicPressure;//血压
 	//体格检查心率
+	value[count++] = "";
 	if(data.firstVisit.exam01==="未见异常" ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"12cm",intLeft:"7cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+		value[count++] = "";
+		value[count++] = "";
 	}else{
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"12cm",intLeft:"8.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-		retprintcfg.data[i++] = {"strContent":data.firstVisit.exam01other,intTop:"12cm",intLeft:"9.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "";
+		value[count++] = "√";
+		value[count++] = data.firstVisit.exam01other;
 	}
 	//呼吸
+	value[count++] = "";
 	if(data.firstVisit.exam02==="未见异常" ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"12.8cm",intLeft:"7cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+		value[count++] = "";
+		value[count++] = "";
 	}else{
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"12.8cm",intLeft:"8.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-		retprintcfg.data[i++] = {"strContent":data.firstVisit.exam02other,intTop:"12.8cm",intLeft:"9.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "";
+		value[count++] = "√";
+		value[count++] = data.firstVisit.exam02other;
 	}
 	//肝脏 无此字段
+	if(data.firstVisit.exam02==="未触及" ){
+		value[count++] = "√";
+		value[count++] = "";
+		value[count++] = "";
+	}else{
+		value[count++] = "";
+		value[count++] = "√";
+		value[count++] = "";
+	}
 	//脾脏 无此字段 
+	if(data.firstVisit.exam02==="未触及" ){
+		value[count++] = "√";
+		value[count++] = "";
+		value[count++] = "";
+	}else{
+		value[count++] = "";
+		value[count++] = "√";
+		value[count++] = "";
+	}
 	//乳房 无此字段 
+	if(data.firstVisit.exam02==="未见异常" ){
+		value[count++] = "√";
+		value[count++] = "";
+		value[count++] = "";
+	}else{
+		value[count++] = "";
+		value[count++] = "√";
+		value[count++] = "";
+	}
 	//其他检查 无此字段
+	if(data.firstVisit.exam02==="未见异常" ){
+		value[count++] = "√";
+		value[count++] = "";
+		value[count++] = "";
+	}else{
+		value[count++] = "";
+		value[count++] = "√";
+		value[count++] = "";
+	}
 	//妇科检查-外阴
 	if(data.firstVisit.exam03==="未见异常" ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"16cm",intLeft:"7cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+		value[count++] = "";
+		value[count++] = "";
 	}else{
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"16cm",intLeft:"8.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-		retprintcfg.data[i++] = {"strContent":data.firstVisit.exam03other,intTop:"16cm",intLeft:"9.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "";
+		value[count++] = "√";
+		value[count++] = data.firstVisit.exam03other;
 	}
 	//阴道
 	if(data.firstVisit.exam04==="未见异常" ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"16cm",intLeft:"12cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+		value[count++] = "";
+		value[count++] = "";
 	}else{
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"16cm",intLeft:"13cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-		retprintcfg.data[i++] = {"strContent":data.firstVisit.exam04other,intTop:"16cm",intLeft:"14cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "";
+		value[count++] = "√";
+		value[count++] = data.firstVisit.exam04other;
 	}
 	//宫颈
 	if(data.firstVisit.exam05==="未见异常" ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"16.8cm",intLeft:"7cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+		value[count++] = "";
+		value[count++] = "";
 	}else{
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"16.8cm",intLeft:"8.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-		retprintcfg.data[i++] = {"strContent":data.firstVisit.exam05other,intTop:"16.8cm",intLeft:"9.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "";
+		value[count++] = "√";
+		value[count++] = data.firstVisit.exam05other;
 	}
 	//子宫
 	if(data.firstVisit.exam06==="未见异常" ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"16.8cm",intLeft:"12cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+		value[count++] = "";
+		value[count++] = "";
 	}else{
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"16.8cm",intLeft:"13cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-		retprintcfg.data[i++] = {"strContent":data.firstVisit.exam06other,intTop:"16.8cm",intLeft:"14cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "";
+		value[count++] = "√";
+		value[count++] = data.firstVisit.exam06other;
 	}
 	//附件
 	if(data.firstVisit.exam07==="未见异常" ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"17.6cm",intLeft:"7cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+		value[count++] = "";
+		value[count++] = "";
 	}else{
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"17.6cm",intLeft:"8.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-		retprintcfg.data[i++] = {"strContent":data.firstVisit.exam07other,intTop:"17.6cm",intLeft:"9.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "";
+		value[count++] = "√";
+		value[count++] = data.firstVisit.exam07other;
 	}
 	//HIV抗体首次检测时间 exam28是检查结果,没检查时间
+	value[count++] = Ext.util.Format.date(data.firstVisit.lastMenses,"Y");
+	value[count++] = Ext.util.Format.date(data.firstVisit.lastMenses,"m");
+	value[count++] = Ext.util.Format.date(data.firstVisit.lastMenses,"d");
 	//梅毒血清学检测时间 exam27是检查结果,没检查时间
+	value[count++] = Ext.util.Format.date(data.firstVisit.lastMenses,"Y");
+	value[count++] = Ext.util.Format.date(data.firstVisit.lastMenses,"m");
+	value[count++] = Ext.util.Format.date(data.firstVisit.lastMenses,"d");
 	//乙肝病源学检测时间 hepatitis01-hepatitis05是检查结果,没检查时间
+	value[count++] = Ext.util.Format.date(data.firstVisit.lastMenses,"Y");
+	value[count++] = Ext.util.Format.date(data.firstVisit.lastMenses,"m");
+	value[count++] = Ext.util.Format.date(data.firstVisit.lastMenses,"d");
 	//总体评估 无诊断结果字段
 	if(data.firstVisit.evaluation==="未见异常" ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"6.6cm",intLeft:"7cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+		value[count++] = "";
+		value[count++] = "";
 	}else{
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"6.6cm",intLeft:"8.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-		retprintcfg.data[i++] = {"strContent":data.firstVisit.beforeBornDirectOther,intTop:"6.6cm",intLeft:"9.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "";
+		value[count++] = "√";
+		value[count++] = data.firstVisit.beforeBornDirectOther;
 	}
+	value[count++] = "";//诊断结果
 	//高危因素判断 无高危评分字段
-	//alert(data.firstVisit.highRisk)
 	if(data.firstVisit.highRisk==="否" ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"8.6cm",intLeft:"7cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+		value[count++] = "";
+		value[count++] = "";
 	}else{
 		var risk = data.firstVisit.highRiskRemark;
-		//alert(risk);
 		risk = "0"+risk.substring(0,risk.indexOf("、"));
 		risk = ("0"+data.firstVisit.highRiskRemark).substring(risk.length-2);
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"8.6cm",intLeft:"8.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-		retprintcfg.data[i++] = {"strContent":risk,intTop:"8.6cm",intLeft:"9.5cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+		value[count++] = "";
+		value[count++] = "√";
+		value[count++] = risk;
 	}
+	value[count++] = "";
 	//保健指导 
 	if(data.feme.exam04.indexOf("个人卫生")>=0 ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"10.6cm",intLeft:"7cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+	}else{
+		value[count++] = "";
 	}
 	if(data.feme.exam04.indexOf("心理")>=0 ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"10.6cm",intLeft:"7.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+	}else{
+		value[count++] = "";
 	}
 	if(data.feme.exam04.indexOf("营养")>=0 ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"10.6cm",intLeft:"8cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+	}else{
+		value[count++] = "";
 	}
 	if(data.feme.exam04.indexOf("避免致畸因素和疾病对胚胎的不良影响")>=0 ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"10.6cm",intLeft:"9.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+	}else{
+		value[count++] = "";
 	}
 	if(data.feme.exam04.indexOf("产前筛查宣传告知")>=0 ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"10.6cm",intLeft:"10.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+	}else{
+		value[count++] = "";
 	}
 	if(data.feme.exam04.indexOf("其他")>=0 ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"10.6cm",intLeft:"15.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-		retprintcfg.data[i++] = {"strContent":data.firstVisit.beforeBornCheckDirectOther,intTop:"10.6cm",intLeft:"16.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+		value[count++] = data.firstVisit.beforeBornCheckDirectOther;
+	}else{
+		value[count++] = "";
+		value[count++] = "";
 	}
-
 	//转诊
 	if(data.firstVisit.transfer==="否" ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"12.6cm",intLeft:"7cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
 	}else{
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"12.6cm",intLeft:"8.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-		retprintcfg.data[i++] = {"strContent":data.firstVisit.transReason,intTop:"12.6cm",intLeft:"9.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-		//建议转入机构及科室
-		retprintcfg.data[i++] = {"strContent":data.firstVisit.transUnit,intTop:"13.4cm",intLeft:"9.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "";
+		value[count++] = "√";
+		value[count++] = data.firstVisit.transReason;
+		value[count++] = data.firstVisit.transUnit;//建议转入机构及科室
 	}
-	
-	//下次随访时间
-	retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.firstVisit.nextVisitDate,"Y"),intTop:"14.2cm",intLeft:"9.2cm",intWidth:"6cm",intHeight:"0.8cm"}; 
-	retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.firstVisit.nextVisitDate,"m"),intTop:"14.2cm",intLeft:"10.2cm",intWidth:"6cm",intHeight:"0.8cm"}; 
-	retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.firstVisit.nextVisitDate,"d"),intTop:"14.2cm",intLeft:"10.8cm",intWidth:"6cm",intHeight:"0.8cm"}; 
-	//检查单位 无此字段
-	
-	//主治医师
-	retprintcfg.data[i++] = {"strContent":data.firstVisit.visitDoctor,intTop:"15cm",intLeft:"14.8cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	value[count++] = Ext.util.Format.date(data.firstVisit.lastMenses,"Y");//下次随访时间
+	value[count++] = Ext.util.Format.date(data.firstVisit.lastMenses,"m");//下次随访时间
+	value[count++] = Ext.util.Format.date(data.firstVisit.lastMenses,"d");//下次随访时间
+	value[count++] = "";//检查单位 无此字段
+	value[count++] = data.firstVisit.visitDoctor;//主治医师
+	for(var i = 0 ; i < count ; i++){
+		retprintcfg.data[i] = new Array(pos[i][0],pos[i][1],pos[i][2],pos[i][3],value[i]);
+	}
 	return retprintcfg;
 }
-
-/*
-function getPrintCfg05(data,orgmap){
-	//5.首次产前检查表-第3页 (5-6.jpg)
-	var retprintcfg = {
-		title:{intTop:title_initTop,intLeft:title_intLeft,intWidth:title_intWidth,intHeight:title_intHeight,strContent:"5、首次产前检查记录表第3页"},
-		data:[	]
-	};
-	var i = 0 ;
-	//HIV抗体首次检测时间 exam28是检查结果,没检查时间
-	//梅毒血清学检测时间 exam27是检查结果,没检查时间
-	//乙肝病源学检测时间 hepatitis01-hepatitis05是检查结果,没检查时间
-	//总体评估 无诊断结果字段
-	if(data.firstVisit.evaluation==="未见异常" ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"6.6cm",intLeft:"7cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-	}else{
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"6.6cm",intLeft:"8.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-		retprintcfg.data[i++] = {"strContent":data.firstVisit.beforeBornDirectOther,intTop:"6.6cm",intLeft:"9.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-	}
-	//高危因素判断 无高危评分字段
-	//alert(data.firstVisit.highRisk)
-	if(data.firstVisit.highRisk==="否" ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"8.6cm",intLeft:"7cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-	}else{
-		var risk = data.firstVisit.highRiskRemark;
-		//alert(risk);
-		risk = "0"+risk.substring(0,risk.indexOf("、"));
-		risk = ("0"+data.firstVisit.highRiskRemark).substring(risk.length-2);
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"8.6cm",intLeft:"8.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-		retprintcfg.data[i++] = {"strContent":risk,intTop:"8.6cm",intLeft:"9.5cm",intWidth:"6cm",intHeight:"0.8cm"}; 
-	}
-	//保健指导 
-	if(data.feme.exam04.indexOf("个人卫生")>=0 ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"10.6cm",intLeft:"7cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-	}
-	if(data.feme.exam04.indexOf("心理")>=0 ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"10.6cm",intLeft:"7.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-	}
-	if(data.feme.exam04.indexOf("营养")>=0 ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"10.6cm",intLeft:"8cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-	}
-	if(data.feme.exam04.indexOf("避免致畸因素和疾病对胚胎的不良影响")>=0 ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"10.6cm",intLeft:"9.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-	}
-	if(data.feme.exam04.indexOf("产前筛查宣传告知")>=0 ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"10.6cm",intLeft:"10.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-	}
-	if(data.feme.exam04.indexOf("其他")>=0 ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"10.6cm",intLeft:"15.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-		retprintcfg.data[i++] = {"strContent":data.firstVisit.beforeBornCheckDirectOther,intTop:"10.6cm",intLeft:"16.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-	}
-
-	//转诊
-	if(data.firstVisit.transfer==="否" ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"12.6cm",intLeft:"7cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-	}else{
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"12.6cm",intLeft:"8.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-		retprintcfg.data[i++] = {"strContent":data.firstVisit.transReason,intTop:"12.6cm",intLeft:"9.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-		//建议转入机构及科室
-		retprintcfg.data[i++] = {"strContent":data.firstVisit.transUnit,intTop:"13.4cm",intLeft:"9.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-	}
-	
-	//下次随访时间
-	retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.firstVisit.nextVisitDate,"Y"),intTop:"14.2cm",intLeft:"9.2cm",intWidth:"6cm",intHeight:"0.8cm"}; 
-	retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.firstVisit.nextVisitDate,"m"),intTop:"14.2cm",intLeft:"10.2cm",intWidth:"6cm",intHeight:"0.8cm"}; 
-	retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.firstVisit.nextVisitDate,"d"),intTop:"14.2cm",intLeft:"10.8cm",intWidth:"6cm",intHeight:"0.8cm"}; 
-	//检查单位 无此字段
-	
-	//主治医师
-	retprintcfg.data[i++] = {"strContent":data.firstVisit.visitDoctor,intTop:"15cm",intLeft:"14.8cm",intWidth:"6cm",intHeight:"0.8cm"}; 
-	return retprintcfg;
-}
-*/
 
 function getPrintCfg06(data,page,row){
 	//6.产前检查记录表 第一页 和第二页的表格打印
-	var starttop1 = 3;//第一页的起始行位置
-	var starttop2 = 3;//第二页的起始行位置
-	var startleft1 = 3;//第一页的起始行位置
-	var startleft2 = 3;//第二页的起始行位置
-	var rowheight = 0.8;//行间隔高度
+	var starttop1 = 3.8;//第一页的起始行位置
+	var starttop2 = 16.6;//第二页的起始行位置
+	var rowheight = 0.9;//行间隔高度
 	var starttop = 0; 
-	var startleft = 0;
+	var count = 0 ;
 	if(page == "1"){
-		starttop = starttop1;
-		startleft = startleft1;
+		starttop = starttop1+row*rowheight;
 	}else{
-		starttop = starttop2;
-		startleft = startleft2;
+		starttop = starttop2+row*rowheight;
 	}
-	
-	/**/
 	var retprintcfg = {
 		title:{intTop:title_initTop,intLeft:title_intLeft,intWidth:title_intWidth,intHeight:title_intHeight,strContent:"6、产前检查记录表"},
 		data:[	]
 	};
-	var i = 0 ;
-	//日期
-	retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.visit.visitDate,"Y-m-d"),intTop:(starttop+row*rowheight)+"cm",intLeft:(startleft+0)+"cm",intWidth:"1cm",intHeight:"0.8cm"}; 
-	//孕周
-	retprintcfg.data[i++] = {"strContent":data.visit.weeks,intTop:(starttop+row*rowheight)+"cm",intLeft:(startleft+0.8)+"cm",intWidth:"1cm",intHeight:"0.8cm"}; 
-	//血压
-	retprintcfg.data[i++] = {"strContent":data.visit.diastolicPressure+"/"+data.visit.systolicPressure,intTop:(starttop+row*rowheight)+"cm",intLeft:(startleft+1.5)+"cm",intWidth:"1cm",intHeight:"0.8cm"}; 
-	//主诉
-	retprintcfg.data[i++] = {"strContent":data.visit.cc,intTop:(starttop+row*rowheight)+"cm",intLeft:(startleft+2.3)+"cm",intWidth:"1cm",intHeight:"0.8cm"}; 
-	//体重
-	retprintcfg.data[i++] = {"strContent":data.visit.weight,intTop:(starttop+row*rowheight)+"cm",intLeft:(startleft+3.1)+"cm",intWidth:"1cm",intHeight:"0.8cm"}; 
-	//宫高
-	retprintcfg.data[i++] = {"strContent":data.visit.exam01,intTop:(starttop+row*rowheight)+"cm",intLeft:(startleft+3.9)+"cm",intWidth:"1cm",intHeight:"0.8cm"}; 
-	//腹围
-	retprintcfg.data[i++] = {"strContent":data.visit.exam02,intTop:(starttop+row*rowheight)+"cm",intLeft:(startleft+4.7)+"cm",intWidth:"1cm",intHeight:"0.8cm"}; 
-	//胎位
-	retprintcfg.data[i++] = {"strContent":data.visit.exam07,intTop:(starttop+row*rowheight)+"cm",intLeft:(startleft+5.5)+"cm",intWidth:"1cm",intHeight:"0.8cm"}; 
-	//胎心(次/分)
-	retprintcfg.data[i++] = {"strContent":data.visit.exam03,intTop:(starttop+row*rowheight)+"cm",intLeft:(startleft+6.3)+"cm",intWidth:"1cm",intHeight:"0.8cm"}; 
-	//尿蛋白
-	retprintcfg.data[i++] = {"strContent":data.visit.exam05,intTop:(starttop+row*rowheight)+"cm",intLeft:(startleft+7.1)+"cm",intWidth:"1cm",intHeight:"0.8cm"}; 
-	//其他辅助检查
-	retprintcfg.data[i++] = {"strContent":data.visit.exam06,intTop:(starttop+row*rowheight)+"cm",intLeft:(startleft+7.9)+"cm",intWidth:"1cm",intHeight:"0.8cm"}; 
+	var pos = new Array();
+	pos[count++] =  new Array(""+starttop+"cm","1.53cm","1.03cm","0.9cm");
+	pos[count++] =  new Array(""+starttop+"cm","2.67cm","0.69cm","0.9cm");
+	pos[count++] =  new Array(""+starttop+"cm","3.31cm","0.79cm","0.9cm");
+	pos[count++] =  new Array(""+starttop+"cm","4.1cm","0.79cm","0.9cm");
+	pos[count++] =  new Array(""+starttop+"cm","5cm","0.79cm","0.9cm");
+	pos[count++] =  new Array(""+starttop+"cm","5.69cm","0.71cm","0.9cm");
+	pos[count++] =  new Array(""+starttop+"cm","6.51cm","0.79cm","0.9cm");
+	pos[count++] =  new Array(""+starttop+"cm","7.3cm","0.79cm","0.9cm");
+	pos[count++] =  new Array(""+starttop+"cm","7.99cm","0.71cm","0.9cm");
+	pos[count++] =  new Array(""+starttop+"cm","8.81cm","0.79cm","0.9cm");
+	pos[count++] =  new Array(""+starttop+"cm","9.55cm","0.79cm","0.9cm");
+	pos[count++] =  new Array(""+starttop+"cm","10.29cm","0.69cm","0.9cm");
+	pos[count++] =  new Array(""+starttop+"cm","11.11cm","0.79cm","0.9cm");
+	pos[count++] =  new Array(""+starttop+"cm","11.91cm","1.9cm","0.9cm");
+	pos[count++] =  new Array(""+starttop+"cm","13.81cm","1.53cm","0.9cm");
+	pos[count++] =  new Array(""+starttop+"cm","15.64cm","1.01cm","0.9cm");
+	pos[count++] =  new Array(""+starttop+"cm","16.8cm","1.4cm","0.9cm");
+	pos[count++] =  new Array(""+starttop+"cm","18.2cm","1.01cm","0.9cm");
+
+	
+	var value = new Array();
+	count = 0 ;
+	value[count++] = Ext.util.Format.date(data.visit.visitDate,"Y-m-d");//日期
+	value[count++] = data.visit.weeks;//孕周
+	value[count++] = data.visit.diastolicPressure+"/"+data.visit.systolicPressure;//血压
+	value[count++] = data.visit.cc;//主诉
+	value[count++] = data.visit.weight;//体重
+	value[count++] = data.visit.exam01;//宫高
+	value[count++] = data.visit.exam02;//腹围
+	value[count++] = data.visit.exam07;//胎位
+	value[count++] = data.visit.exam03;//胎心(次/分)
+	value[count++] = "";//浮肿
+	value[count++] = "";//血红蛋白
+	value[count++] = data.visit.exam05;//尿蛋白
+	value[count++] = data.visit.exam06;//其他辅助检查
 	//诊断
 	if(data.visit.result !=="异常"){
-		retprintcfg.data[i++] = {"strContent":data.visit.result,intTop:(starttop+row*rowheight)+"cm",intLeft:(startleft+8.7)+"cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = data.visit.result;
 	}else{
-		retprintcfg.data[i++] = {"strContent":data.visit.resultOther,intTop:(starttop+row*rowheight)+"cm",intLeft:(startleft+8.7)+"cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = data.visit.resultOther;
 	}
-	//指导 beforeBornDirect  beforeBornDirectOther
-	retprintcfg.data[i++] = {"strContent":data.beforeBornDirect+" "+data.visit.beforeBornDirectOther,intTop:(starttop+row*rowheight)+"cm",intLeft:(startleft+10.7)+"cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-	//预约产检日期
-	retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.visit.nextVisitDate,"Y-m-d"),intTop:(starttop+row*rowheight)+"cm",intLeft:(startleft+12.7)+"cm",intWidth:"1cm",intHeight:"0.8cm"}; 
-	//检查单位
-	retprintcfg.data[i++] = {"strContent":data.org.execOrgName,intTop:(starttop+row*rowheight)+"cm",intLeft:(startleft+13.7)+"cm",intWidth:"1.2cm",intHeight:"0.8cm"}; 
-	//检查医生
-	retprintcfg.data[i++] = {"strContent":data.visit.visitDoctor,intTop:(starttop+row*rowheight)+"cm",intLeft:(startleft+14.9)+"cm",intWidth:"1.2cm",intHeight:"0.8cm"}; 
+	value[count++] = data.beforeBornDirect+" "+data.visit.beforeBornDirectOther ;//指导	
+	value[count++] = Ext.util.Format.date(data.visit.nextVisitDate,"Y-m-d");//预约产检日期
+	value[count++] = data.org.execOrgName;//检查单位
+	value[count++] = data.visit.visitDoctor;//检查医生
+	
+	for(var i = 0 ; i < count ; i++){
+		retprintcfg.data[i] = new Array(pos[i][0],pos[i][1],pos[i][2],pos[i][3],value[i]);
+	}
+	return retprintcfg;
+}
+
+function getPrintCfg05(data,page,row){
+	//5.孕期特殊情况记录表的表格打印
+	var rowheight = 1.1;//行间隔高度
+	var starttop = 2+row*rowheight; 
+	var count = 0 ;
+	var retprintcfg = {
+		title:{intTop:title_initTop,intLeft:title_intLeft,intWidth:title_intWidth,intHeight:title_intHeight,strContent:"6、产前检查记录表"},
+		data:[	]
+	};
+	var pos = new Array();
+	pos[count++] =  new Array(""+starttop+"cm","1.7cm","1.5cm","1.1cm");
+	pos[count++] =  new Array(""+starttop+"cm","3.2cm","7.4cm","1.1cm");
+	pos[count++] =  new Array(""+starttop+"cm","10.6cm","6.9cm","1.1cm");
+	pos[count++] =  new Array(""+starttop+"cm","17.4cm","1.6cm","1.1cm");
+	var value = new Array();
+	count = 0 ;
+	value[count++] = "";//日期
+	value[count++] = "";//特殊情况记录
+	value[count++] = "";//处理意见
+	value[count++] = "";//医生签名
+	for(var i = 0 ; i < count ; i++){
+		retprintcfg.data[i] = new Array(pos[i][0],pos[i][1],pos[i][2],pos[i][3],value[i]);
+	}
 	return retprintcfg;
 }
 
@@ -729,41 +901,104 @@ function getPrintCfg07(data){
 		title:{intTop:title_initTop,intLeft:title_intLeft,intWidth:title_intWidth,intHeight:title_intHeight,strContent:"6、产前检查记录表-转诊信息"},
 		data:[	]
 	};
-	var i = 0 ;
+	var count =0;
+	var pos = new Array();
+	pos[count++] =  new Array("22.33cm","7.65cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("22.33cm","8.55cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("22.33cm","10.27cm","2.99cm","0.61cm");
+	pos[count++] =  new Array("22.33cm","15.45cm","2.01cm","0.61cm");
+	pos[count++] =  new Array("22.33cm","16.96cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("22.33cm","17.86cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("22.86cm","9.66cm","7.01cm","0.61cm");
+	pos[count++] =  new Array("23.44cm","8.26cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("23.44cm","10.05cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("23.44cm","11.14cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("23.44cm","12.46cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("23.44cm","13.76cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("23.44cm","15.56cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("23.44cm","17.46cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("24.05cm","6.64cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("24.55cm","8.94cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("24.55cm","11.06cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("24.55cm","14.05cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("24.55cm","16.14cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("25.06cm","11.46cm","2.01cm","0.61cm");
+	pos[count++] =  new Array("25.06cm","14.26cm","2.01cm","0.61cm");
+	pos[count++] =  new Array("25.06cm","17.14cm","2.01cm","0.61cm");
+	pos[count++] =  new Array("25.66cm","8.04cm","2.01cm","0.61cm");
+	count = 0 ;
+	var value=new Array();
 	//转诊
 	if(data.visit.transfer==="否" ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"12.6cm",intLeft:"7cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
 	}else{
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"12.6cm",intLeft:"8.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-		retprintcfg.data[i++] = {"strContent":data.visit.transReason,intTop:"12.6cm",intLeft:"9.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-		//建议转入机构及科室
-		retprintcfg.data[i++] = {"strContent":data.visit.transUnit,intTop:"13.4cm",intLeft:"9.5cm",intWidth:"5cm",intHeight:"0.8cm"}; 
+		value[count++] = "";
+		value[count++] = "√";
+		value[count++] = data.visit.transReason;//转诊原因
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = data.visit.transUnit;//建议转入机构及科室
 	}
 	//保健指导 
 	if(data.beforeBornDirect.indexOf("个人卫生")>=0 ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"14.2cm",intLeft:"7cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+	}else{
+		value[count++] = "";
 	}
 	if(data.beforeBornDirect.indexOf("膳食")>=0 ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"14.2cm",intLeft:"7.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+	}else{
+		value[count++] = "";
 	}
 	if(data.beforeBornDirect.indexOf("心理")>=0 ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"14.2cm",intLeft:"8cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+	}else{
+		value[count++] = "";
 	}
 	if(data.beforeBornDirect.indexOf("运动")>=0 ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"14.2cm",intLeft:"9.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+	}else{
+		value[count++] = "";
 	}
 	if(data.beforeBornDirect.indexOf("自我监护")>=0 ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"14.2cm",intLeft:"10.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√"; 
+	}else{
+		value[count++] = "";
 	}
 	if(data.beforeBornDirect.indexOf("分娩准备")>=0 ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"14.2cm",intLeft:"11.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+	}else{
+		value[count++] = "";
 	}
 	if(data.beforeBornDirect.indexOf("母乳喂养")>=0 ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"14.2cm",intLeft:"12.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+	}else{
+		value[count++] = "";
 	}
 	if(data.beforeBornDirect.indexOf("其他")>=0 ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"15cm",intLeft:"5.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-		//retprintcfg.data[i++] = {"strContent":data.visit.beforeBornDirectOther,intTop:"10.6cm",intLeft:"16.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+	}else{
+		value[count++] = "";
+	}
+	// 计划分娩地点 无此字段
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	//骨盆外测量(28周后) 无此字段
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	for(var i = 0 ; i < count ; i++){
+		retprintcfg.data[i] = new Array(pos[i][0],pos[i][1],pos[i][2],pos[i][3],value[i]);
 	}
 	return retprintcfg;
 }
@@ -774,222 +1009,641 @@ function getPrintCfg08(data){
 		title:{intTop:title_initTop,intLeft:title_intLeft,intWidth:title_intWidth,intHeight:title_intHeight,strContent:"7、分娩记录打印"},
 		data:[	]
 	};
-	var i = 0 ;
+	var count = 0 ;
+	var pos = new Array();
+	pos[count++] =  new Array("4cm","3cm","2cm","0.6cm");
+	pos[count++] =  new Array("4cm","4.3cm","1cm","0.6cm");
+	pos[count++] =  new Array("4cm","5.3cm","1cm","0.6cm");
+	pos[count++] =  new Array("4cm","6.3cm","1cm","0.6cm");
+	pos[count++] =  new Array("4cm","7.3cm","1cm","0.6cm");
+	pos[count++] =  new Array("4cm","10.2cm","1cm","0.6cm");
+	pos[count++] =  new Array("4.7cm","2.7cm","1cm","0.6cm");
+	pos[count++] =  new Array("4.7cm","6.5cm","1cm","0.6cm");
+	pos[count++] =  new Array("4.7cm","9.3cm","1cm","0.6cm");
+	pos[count++] =  new Array("4.7cm","10.8cm","1cm","0.6cm");
+	pos[count++] =  new Array("4.7cm","14.4cm","1cm","0.6cm");
+	pos[count++] =  new Array("5.6cm","3.2cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("5.6cm","5.7cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("5.6cm","8.9cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("5.6cm","10.1cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("5.6cm","11cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("5.6cm","11.9cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("5.6cm","14.4cm","1cm","0.6cm");
+	pos[count++] =  new Array("5.6cm","15.8cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("5.6cm","18cm","1cm","0.6cm");
+	pos[count++] =  new Array("6.4cm","3.6cm","1cm","0.6cm");
+	pos[count++] =  new Array("6.4cm","4.9cm","1cm","0.6cm");
+	pos[count++] =  new Array("6.4cm","5.9cm","1cm","0.6cm");
+	pos[count++] =  new Array("6.4cm","6.8cm","1cm","0.6cm");
+	pos[count++] =  new Array("6.4cm","7.8cm","1cm","0.6cm");
+	pos[count++] =  new Array("6.4cm","11cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("6.4cm","12.2cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("7.2cm","3.2cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("7.2cm","4.5cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("7.2cm","6.5cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("7.2cm","8cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("8cm","3.2cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("8cm","4.5cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("8cm","5.7cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("8cm","7.5cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("8cm","7.9cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("8cm","8.5cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("8cm","9.6cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("8cm","11.2cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("8cm","12.1cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("8cm","13.6cm","1cm","0.6cm");
+	pos[count++] =  new Array("8cm","15.6cm","1cm","0.6cm");
+	pos[count++] =  new Array("8.9cm","3.2cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("8.9cm","4.4cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("8.9cm","6.3cm","1cm","0.6cm");
+	pos[count++] =  new Array("8.9cm","7.9cm","1cm","0.6cm");
+	pos[count++] =  new Array("9.6cm","3.3cm","1cm","0.6cm");
+	pos[count++] =  new Array("9.6cm","7.9cm","1cm","0.6cm");
+	pos[count++] =  new Array("9.6cm","12.5cm","1cm","0.6cm");
+	pos[count++] =  new Array("10.4cm","4cm","1.5cm","0.6cm");
+	pos[count++] =  new Array("10.4cm","5.3cm","1cm","0.6cm");
+	pos[count++] =  new Array("11.2cm","4.2cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("11.2cm","5.4cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("11.2cm","8.3cm","5cm","0.6cm");
+	pos[count++] =  new Array("16.3cm","3.4cm","1cm","0.6cm");
+	pos[count++] =  new Array("16.3cm","5.8cm","1cm","0.6cm");
+	pos[count++] =  new Array("16.3cm","8.6cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("16.3cm","9.7cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("16.3cm","11cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("17cm","4.7cm","1cm","0.6cm");
+	pos[count++] =  new Array("17cm","6.7cm","1cm","0.6cm");
+	pos[count++] =  new Array("17.6cm","2.8cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("17.6cm","3.8cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("17.6cm","5.2cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("17.6cm","6cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("17.6cm","6.6cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("17.6cm","7.2cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("17.6cm","8cm","1cm","0.6cm");
+	pos[count++] =  new Array("17.6cm","10cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("17.6cm","11cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("17.6cm","13.6cm","5cm","0.6cm");
+	pos[count++] =  new Array("18.3cm","3.5cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("18.3cm","4.4cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("18.3cm","6.3cm","4cm","0.6cm");
+	pos[count++] =  new Array("19cm","7.6cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("19cm","10.5cm","1cm","0.6cm");
+	pos[count++] =  new Array("19cm","11.9cm","1cm","0.6cm");
+	pos[count++] =  new Array("19cm","12.9cm","1cm","0.6cm");
+	pos[count++] =  new Array("19cm","13.7cm","1cm","0.6cm");
+	pos[count++] =  new Array("19cm","14.8cm","1cm","0.6cm");
+	pos[count++] =  new Array("19.6cm","7.6cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("19.6cm","10cm","7cm","0.6cm");
+	pos[count++] =  new Array("20.2cm","6.1cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("20.2cm","9cm","1cm","0.6cm");
+	pos[count++] =  new Array("20.2cm","10.4cm","1cm","0.6cm");
+	pos[count++] =  new Array("20.2cm","11.3cm","1cm","0.6cm");
+	pos[count++] =  new Array("20.2cm","12.2cm","1cm","0.6cm");
+	pos[count++] =  new Array("20.2cm","13.2cm","1cm","0.6cm");
+	pos[count++] =  new Array("20.8cm","6.1cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("20.8cm","8.5cm","7cm","0.6cm");
+	pos[count++] =  new Array("21.4cm","4.5cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("21.4cm","8.6cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("21.4cm","10.9cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("21.4cm","12.9cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("21.4cm","14.3cm","2cm","0.6cm");
+	pos[count++] =  new Array("22.8cm","7.5cm","4cm","0.6cm");
+	pos[count++] =  new Array("22.8cm","13.9cm","4cm","0.6cm");
+	pos[count++] =  new Array("23.4cm","7.5cm","4cm","0.6cm");
+	pos[count++] =  new Array("23.4cm","13.9cm","4cm","0.6cm");
+	pos[count++] =  new Array("24.1cm","7.5cm","4cm","0.6cm");
+	pos[count++] =  new Array("24.1cm","13.9cm","4cm","0.6cm");
+	pos[count++] =  new Array("24.7cm","8.9cm","4cm","0.6cm");
+	pos[count++] =  new Array("24.7cm","14.3cm","4cm","0.6cm");
+	var value = new Array();
+	count = 0;
 	//分娩时间
-	retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.birthRecord.childbirthMonth,"Y"),intTop:"4cm",intLeft:"4cm",intWidth:"1cm",intHeight:"0.8cm"}; 
-	retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.birthRecord.childbirthMonth,"n"),intTop:"4cm",intLeft:"5cm",intWidth:"1cm",intHeight:"0.8cm"}; 
-	retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.birthRecord.childbirthMonth,"j"),intTop:"4cm",intLeft:"5.5cm",intWidth:"1cm",intHeight:"0.8cm"}; 
+	value[count++] = Ext.util.Format.date(data.birthRecord.childbirthMonth,"Y");
+	value[count++] = Ext.util.Format.date(data.birthRecord.childbirthMonth,"m");
+	value[count++] = Ext.util.Format.date(data.birthRecord.childbirthMonth,"d");
 	//小时和分钟未记录
-	//retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.birthRecord.childbirthMonth,"G"),intTop:"4cm",intLeft:"6cm",intWidth:"1cm",intHeight:"0.8cm"}; 
-	//retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.birthRecord.childbirthMonth,"i"),intTop:"4cm",intLeft:"6.5cm",intWidth:"1cm",intHeight:"0.8cm"}; 
-	//分娩孕周
-	retprintcfg.data[i++] = {"strContent":data.birthRecord.borthWeekly,intTop:"4cm",intLeft:"10cm",intWidth:"1cm",intHeight:"0.8cm"}; 
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = data.birthRecord.borthWeekly;//分娩孕周	
 	//总产程 无此字段
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
 	//分娩方式
 	if(data.birthRecord.childbirthWay == "顺产"){
 		//1.自然分娩
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"5.2cm",intLeft:"5cm",intWidth:"1cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
 	}else if(data.birthRecord.childbirthWay == "臀产" || data.birthRecord.childbirthWay == "胎吸" ||  data.birthRecord.childbirthWay == "产钳"){
 		//2.手术助产
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"5.2cm",intLeft:"7cm",intWidth:"1cm",intHeight:"0.8cm"}; 
+		value[count++] = "";
+		value[count++] = "√";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
 	}else if(data.birthRecord.childbirthWay == "剖宫产"){
 		//3.剖宫产
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"5.2cm",intLeft:"12cm",intWidth:"1cm",intHeight:"0.8cm"}; 
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "√";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
 	}else if(data.birthRecord.childbirthWay == "难产"){
 		//其他
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"5.2cm",intLeft:"16cm",intWidth:"1cm",intHeight:"0.8cm"}; 
-		retprintcfg.data[i++] = {"strContent":data.birthRecord.childbirthWay,intTop:"5.2cm",intLeft:"17cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "√";
+		value[count++] = data.birthRecord.childbirthWay;
 	}
 	//胎盘娩出时间 无此字段
-	
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
 	//是否完整 无此字段
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
 	//会阴情况 无此字段
 	if(data.birthRecord.lacerationOfPerineum =="无"){
 		//1.完整
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"8.8cm",intLeft:"4cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
 	}else if(data.birthRecord.lacerationOfPerineum =="Ⅰ" || data.birthRecord.lacerationOfPerineum =="Ⅱ" ||  data.birthRecord.lacerationOfPerineum =="Ⅲ"){
 		//3.撕裂伤
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"8.8cm",intLeft:"6cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "√";
+		if(data.birthRecord.lacerationOfPerineum =="Ⅰ" ){
+			value[count++] = "√";
+			value[count++] = "";
+			value[count++] = "";
+		}else if(data.birthRecord.lacerationOfPerineum =="Ⅱ"){
+			value[count++] = "";
+			value[count++] = "√";
+			value[count++] = "";
+		}else{
+			value[count++] = "";
+			value[count++] = "";
+			value[count++] = "√";
+		}
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
 	}else{
 		//4.切开
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"8.8cm",intLeft:"9cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "√";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "";
 	}
 	//宫颈裂伤 无此字段
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
 	//分娩出血量
 	retprintcfg.data[i++] = {"strContent":data.birthRecord.flooding,intTop:"11.2cm",intLeft:"5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
 	//产后2小时出血量 无此字段
+	value[count++] = "";
 	//产后24小时出血量 无此字段
+	value[count++] = "";
 	//产后2小时血压 无此字段
+	value[count++] = "";
+	value[count++] = "";
 	//产后并发症 无此字段
-
-	return retprintcfg;
-}
-function getPrintCfg09(data){
-	//9.分娩记录 第2页(13-14.jpg)
-	//alert(printdata(data));
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
 	
-	//alert("1,person   "+printdata(data.person));
-	//alert("2,birthRecord  "+printdata(data.birthRecord));
-	//alert("3,file   "+printdata(data.file));
-	//alert("4,samTaxempcode "+printdata(data.samTaxempcode));
-	//alert("5,org  "+printdata(data.org));
-	//alert("6,cert  "+printdata(data.cert));
-	var retprintcfg = {
-		title:{intTop:title_initTop,intLeft:title_intLeft,intWidth:title_intWidth,intHeight:title_intHeight,strContent:"7、分娩记录打印-新生儿情况"},
-		data:[	]
-	};
-	var i = 0 ;	
-	//新生儿-出生体重
-	retprintcfg.data[i++] = {"strContent":data.cert.weight,intTop:"4cm",intLeft:"4cm",intWidth:"1cm",intHeight:"0.8cm"}; 
-	//身长
-	retprintcfg.data[i++] = {"strContent":data.cert.height,intTop:"4cm",intLeft:"6cm",intWidth:"1cm",intHeight:"0.8cm"}; 
+	
+	value[count++] = data.cert.weight;//新生儿-出生体重
+	value[count++] = data.cert.height;//身长
 	//性别
 	if(data.cert.sex=="男"){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"4cm",intLeft:"9cm",intWidth:"1cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+		value[count++] = "";
+		value[count++] = "";
 	}else if(data.cert.sex=="女"){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"4cm",intLeft:"10cm",intWidth:"1cm",intHeight:"0.8cm"}; 
+		value[count++] = "";
+		value[count++] = "√";
+		value[count++] = "";
 	}else{
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"4cm",intLeft:"11cm",intWidth:"1cm",intHeight:"0.8cm"}; 
+		value[count++] = "";
+		value[count++] = "";
+		value[count++] = "√";
 	}
 	//apgar评分 无此字段
+	value[count++] = "";
+	value[count++] = "";
 	//窒息 无此字段
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
 	//产伤 无此字段
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
 	//出生缺陷 无此字段
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
 	//新生儿免疫接种 无此字段
+	value[count++] = "";//第1针乙肝疫苗
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";//卡介苗
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
 	//新生儿疾病筛查 无此字段
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
 	//产妇出院诊断 无此字段
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
 	//新生儿出院诊断 无此字段
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
 	//接产单位 
-	retprintcfg.data[i++] = {"strContent":data.cert.borthOrganization,intTop:"10cm",intLeft:"8cm",intWidth:"4cm",intHeight:"0.8cm"}; 
+	value[count++] = data.cert.borthOrganization;
 	//接生者
-	retprintcfg.data[i++] = {"strContent":data.cert.widwife,intTop:"10cm",intLeft:"15cm",intWidth:"4cm",intHeight:"0.8cm"}; 
-
+	value[count++] = data.cert.widwife;
+	
+	for(var i = 0 ; i < count ; i++){
+		retprintcfg.data[i] = new Array(pos[i][0],pos[i][1],pos[i][2],pos[i][3],value[i]);
+	}
 	return retprintcfg;
 }
 
 function getPrintCfg10(data,rownum){
 	//10.产后访视记录表(15-16.jpg)
-	var rowheight = 1.2;//行间隔高度
-	var starttop = 3; 
+	var rowheight = 1.7;//行间隔高度
+	var starttop = 3.1+rownum*rowheight; 
 	var startleft = 3;
-
-	/**/
 	var retprintcfg = {
 		title:{intTop:title_initTop,intLeft:title_intLeft,intWidth:title_intWidth,intHeight:title_intHeight,strContent:"6、产前检查记录表"},
 		data:[	]
 	};
-	var i = 0 ;
-	//访视日期
-	retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.visit.visitDate,"Y-m-d"),intTop:(starttop+rownum*rowheight)+"cm",intLeft:(startleft+0)+"cm",intWidth:"1cm",intHeight:"0.8cm"}; 
-	//产后天数
-	retprintcfg.data[i++] = {"strContent":data.visit.item,intTop:(starttop+rownum*rowheight)+"cm",intLeft:(startleft+1)+"cm",intWidth:"0.7cm",intHeight:"0.8cm"}; 
-	//体温
-	retprintcfg.data[i++] = {"strContent":data.visit.bodyHeat,intTop:(starttop+rownum*rowheight)+"cm",intLeft:(startleft+1.7)+"cm",intWidth:"0.7cm",intHeight:"0.8cm"}; 
-	//脉搏次/分 无此字段
-	//血压
-	retprintcfg.data[i++] = {"strContent":data.visit.diastolicPressure+"/"+data.visit.systolicPressure,intTop:(starttop+rownum*rowheight)+"cm",intLeft:(startleft+2.4)+"cm",intWidth:"0.7cm",intHeight:"0.8cm"}; 
-	//乳汁多  无此字段
-	//乳汁少  无此字段
-	//红肿有  无此字段
-	//红肿无  无此字段
-	//乳头皲裂有  无此字段
-	//乳头皲裂无  无此字段
-	//宫底高度  无此字段
-	//伤口愈合好  无此字段
-	//伤口愈合差  无此字段
-	//恶露-色,量  无此字段
-	//恶露-异味-有  无此字段
-	//恶露-异味-无  无此字段
-	//健康情况
-	retprintcfg.data[i++] = {"strContent":data.visit.health,intTop:(starttop+rownum*rowheight)+"cm",intLeft:(startleft+6)+"cm",intWidth:"1cm",intHeight:"0.8cm"}; 
-	//心理状况
-	retprintcfg.data[i++] = {"strContent":data.visit.mind,intTop:(starttop+rownum*rowheight)+"cm",intLeft:(startleft+7)+"cm",intWidth:"1cm",intHeight:"0.8cm"}; 
-	//其他
-	retprintcfg.data[i++] = {"strContent":data.visit.other,intTop:(starttop+rownum*rowheight)+"cm",intLeft:(startleft+8)+"cm",intWidth:"1cm",intHeight:"0.8cm"}; 
-	//指导 afterBornDirect,afterBornDirectOther
-	retprintcfg.data[i++] = {"strContent":data.afterBornDirect+" "+data.visit.afterBornDirectOther,intTop:(starttop+rownum*rowheight)+"cm",intLeft:(startleft+9)+"cm",intWidth:"1cm",intHeight:"0.8cm"}; 
-	//预约时间
-	retprintcfg.data[i++] = {"strContent":data.visit.nextVisitDate,intTop:(starttop+rownum*rowheight)+"cm",intLeft:(startleft+10)+"cm",intWidth:"1cm",intHeight:"0.8cm"}; 
-	//检查者
-	retprintcfg.data[i++] = {"strContent":data.visit.visitDoctor,intTop:(starttop+rownum*rowheight)+"cm",intLeft:(startleft+11)+"cm",intWidth:"1cm",intHeight:"0.8cm"}; 
+	var count = 0 ;
+	var pos = new Array();
+	pos[count++] =  new Array(""+starttop+"cm","1.4cm","1.19cm","1.69cm");
+	pos[count++] =  new Array(""+starttop+"cm","2.59cm","0.61cm","1.69cm");
+	pos[count++] =  new Array(""+starttop+"cm","3.31cm","0.61cm","1.69cm");
+	pos[count++] =  new Array(""+starttop+"cm","3.94cm","0.5cm","1.69cm");
+	pos[count++] =  new Array(""+starttop+"cm","4.34cm","0.82cm","1.69cm");
+	pos[count++] =  new Array(""+starttop+"cm","5.11cm","0.5cm","1.69cm");
+	pos[count++] =  new Array(""+starttop+"cm","5.58cm","0.5cm","1.69cm");
+	pos[count++] =  new Array(""+starttop+"cm","6.09cm","0.5cm","1.69cm");
+	pos[count++] =  new Array(""+starttop+"cm","6.69cm","0.5cm","1.69cm");
+	pos[count++] =  new Array(""+starttop+"cm","7.2cm","0.5cm","1.69cm");
+	pos[count++] =  new Array(""+starttop+"cm","7.7cm","0.61cm","1.69cm");
+	pos[count++] =  new Array(""+starttop+"cm","8.2cm","0.69cm","1.69cm");
+	pos[count++] =  new Array(""+starttop+"cm","9cm","0.5cm","1.69cm");
+	pos[count++] =  new Array(""+starttop+"cm","9.5cm","0.5cm","1.69cm");
+	pos[count++] =  new Array(""+starttop+"cm","10cm","0.69cm","1.69cm");
+	pos[count++] =  new Array(""+starttop+"cm","10.8cm","0.5cm","1.69cm");
+	pos[count++] =  new Array(""+starttop+"cm","11.3cm","0.5cm","1.69cm");
+	pos[count++] =  new Array(""+starttop+"cm","11.8cm","1.11cm","1.69cm");
+	pos[count++] =  new Array(""+starttop+"cm","12.89cm","1.01cm","1.69cm");
+	pos[count++] =  new Array(""+starttop+"cm","13.89cm","1.4cm","1.69cm");
+	pos[count++] =  new Array(""+starttop+"cm","15.4cm","1.4cm","1.69cm");
+	pos[count++] =  new Array(""+starttop+"cm","16.8cm","1.01cm","1.69cm");
+	pos[count++] =  new Array(""+starttop+"cm","17.89cm","1.11cm","1.69cm");
+
+
+
+	var value = new Array();
+	count = 0;
+	value[count++] = Ext.util.Format.date(data.visit.visitDate,"Y-m-d");//访视日期
+	value[count++] = data.visit.item;//产后天数
+	value[count++] = data.visit.bodyHeat;//体温
+	value[count++] = "";//脉搏次/分 无此字段
+	value[count++] = data.visit.diastolicPressure+"/"+data.visit.systolicPressure;//血压
+	value[count++] = "";	//乳汁多  无此字段
+	value[count++] = "";	//乳汁少  无此字段
+	value[count++] = "";	//红肿有  无此字段
+	value[count++] = "";	//红肿无  无此字段
+	value[count++] = "";	//乳头皲裂有  无此字段
+	value[count++] = "";	//乳头皲裂无  无此字段
+	value[count++] = "";	//宫底高度  无此字段
+	value[count++] = "";	//伤口愈合好  无此字段
+	value[count++] = "";	//伤口愈合差  无此字段
+	value[count++] = "";	//恶露-色,量  无此字段
+	value[count++] = "";	//恶露-异味-有  无此字段
+	value[count++] = "";	//恶露-异味-无  无此字段
+	value[count++] = data.visit.health; //健康情况
+	value[count++] = data.visit.mind;//心理状况
+	value[count++] = data.visit.other;//其他
+	value[count++] = data.afterBornDirect+" "+data.visit.afterBornDirectOther;//指导 afterBornDirect,afterBornDirectOther
+	value[count++] = data.visit.nextVisitDate;//预约时间
+	value[count++] = data.visit.visitDoctor;//检查医生
+	for(var i = 0 ; i < count ; i++){
+		retprintcfg.data[i] = new Array(pos[i][0],pos[i][1],pos[i][2],pos[i][3],value[i]);
+	}
+	return retprintcfg;
+}
+
+function getPrintCfg09(data){
+	//10.产后访视记录表-指导和转诊内容(15-16.jpg)
+	var retprintcfg = {
+		title:{intTop:title_initTop,intLeft:title_intLeft,intWidth:title_intWidth,intHeight:title_intHeight,strContent:"6、产前检查记录表"},
+		data:[	]
+	};
+	var count = 0 ;
+	var pos = new Array();
+	pos[count++] =  new Array("10cm","4.5cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("10cm","6.1cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("10cm","7.3cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("10cm","8.5cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("10cm","10.4cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("10cm","13.5cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("10cm","14.7cm","3cm","0.6cm");
+	pos[count++] =  new Array("10.6cm","3.8cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("10.6cm","4.7cm","0.5cm","0.6cm");
+	pos[count++] =  new Array("10.6cm","6.6cm","6cm","0.6cm");
+	pos[count++] =  new Array("10.6cm","14.3cm","1cm","0.6cm");
+	pos[count++] =  new Array("10.6cm","16cm","1cm","0.6cm");
+	pos[count++] =  new Array("10.6cm","17.1cm","1cm","0.6cm");
+	pos[count++] =  new Array("11.1cm","7cm","4cm","0.6cm");
+	var value = new Array();
+	count = 0;
+	//指导内容
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	//转诊
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
+	for(var i = 0 ; i < count ; i++){
+		retprintcfg.data[i] = new Array(pos[i][0],pos[i][1],pos[i][2],pos[i][3],value[i]);
+	}
 	return retprintcfg;
 }
 
 function getPrintCfg11(data){
-	//11.产后42天检查记录表(15-16.jpg)
-	var rowheight = 1.2;//行间隔高度
-	var starttop = 3; 
-	var startleft = 3;
-
-	/**/
+	//11.8、产后42天检查记录表(15-16.jpg)
 	var retprintcfg = {
-		title:{intTop:title_initTop,intLeft:title_intLeft,intWidth:title_intWidth,intHeight:title_intHeight,strContent:"6、产前检查记录表"},
+		title:{intTop:title_initTop,intLeft:title_intLeft,intWidth:title_intWidth,intHeight:title_intHeight,strContent:"8、产后42天检查记录表"},
 		data:[	]
 	};
-	var i = 0 ;
+	var count = 0 ;
+	var pos = new Array();
+	pos[count++] =  new Array("17.09cm","2.99cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("17.09cm","4.42cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("17.09cm","5.27cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("17.09cm","7.73cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("17.09cm","10.21cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("17.09cm","12.78cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("17.09cm","13.68cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("17.78cm","3.81cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("17.78cm","5.03cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("17.78cm","6.32cm","10cm","0.61cm");
+	pos[count++] =  new Array("18.47cm","3.81cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("18.47cm","5.03cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("18.47cm","6.32cm","10cm","0.61cm");
+	pos[count++] =  new Array("19.18cm","2.33cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("19.18cm","4.23cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("19.18cm","5.61cm","4cm","0.61cm");
+	pos[count++] =  new Array("19.18cm","10.48cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("19.18cm","12.36cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("19.18cm","13.92cm","4cm","0.61cm");
+	pos[count++] =  new Array("19.79cm","2.33cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("19.79cm","4.23cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("19.79cm","5.61cm","4cm","0.61cm");
+	pos[count++] =  new Array("19.79cm","10.48cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("19.79cm","12.36cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("19.79cm","13.92cm","4cm","0.61cm");
+	pos[count++] =  new Array("20.48cm","2.33cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("20.48cm","4.23cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("20.48cm","5.61cm","4cm","0.61cm");
+	pos[count++] =  new Array("20.48cm","10.48cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("20.48cm","12.36cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("20.48cm","13.92cm","4cm","0.61cm");
+	pos[count++] =  new Array("21.17cm","3.33cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("21.17cm","5.21cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("21.17cm","6.51cm","2.99cm","0.61cm");
+	pos[count++] =  new Array("21.17cm","10.61cm","7.99cm","0.61cm");
+	pos[count++] =  new Array("21.88cm","2.35cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("21.88cm","3.86cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("21.88cm","5.72cm","7.99cm","0.61cm");
+	pos[count++] =  new Array("22.57cm","2.96cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("22.57cm","4.5cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("22.57cm","5.79cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("22.57cm","8.6cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("22.57cm","10.13cm","5cm","0.61cm");
+	pos[count++] =  new Array("23.28cm","2.35cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("23.28cm","3.57cm","0.5cm","0.61cm");
+	pos[count++] =  new Array("23.28cm","5.93cm","4cm","0.61cm");
+	pos[count++] =  new Array("23.28cm","11.51cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("23.28cm","12.91cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("23.28cm","13.92cm","1.01cm","0.61cm");
+	pos[count++] =  new Array("23.89cm","4.63cm","7.01cm","0.61cm");
+	pos[count++] =  new Array("24.58cm","3.12cm","6.01cm","0.61cm");
+	pos[count++] =  new Array("24.58cm","10.32cm","2.01cm","0.61cm");
+
+
+	var value = new Array();
+	count = 0;
 	//访视日期
-	retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.visit.visitDate,"Y"),intTop:"3cm",intLeft:"3.2cm",intWidth:"6cm",intHeight:"0.8cm"}; 
-	retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.visit.visitDate,"m"),intTop:"3cm",intLeft:"4.2cm",intWidth:"6cm",intHeight:"0.8cm"}; 
-	retprintcfg.data[i++] = {"strContent":Ext.util.Format.date(data.visit.visitDate,"d"),intTop:"3cm",intLeft:"4.8cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	value[count++] = Ext.util.Format.date(data.visit.visitDate,"Y");
+	value[count++] = Ext.util.Format.date(data.visit.visitDate,"m");
+	value[count++] = Ext.util.Format.date(data.visit.visitDate,"d");
 	//产后天数 无此字段
+	value[count++] = "";
 	//体重 无此字段
+	value[count++] = "";
 	//血压
-	retprintcfg.data[i++] = {"strContent":data.visit.diastolicPressure,intTop:"3cm",intLeft:"10cm",intWidth:"6cm",intHeight:"0.8cm"}; 
-	retprintcfg.data[i++] = {"strContent":data.visit.systolicPressure,intTop:"3cm",intLeft:"11cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	value[count++] = data.visit.diastolicPressure;
+	value[count++] = data.visit.systolicPressure;
 	//一般健康情况 
-	retprintcfg.data[i++] = {"strContent":data.visit.health,intTop:"4cm",intLeft:"5cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = data.visit.health;
 	//一般心理状况
-	retprintcfg.data[i++] = {"strContent":data.visit.mind,intTop:"4.8cm",intLeft:"5cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = data.visit.mind;
 	//乳房
-	retprintcfg.data[i++] = {"strContent":data.visit.breast,intTop:"5.6cm",intLeft:"5cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	if(data.visit.breast==="未见异常" ){
+		value[count++] = "√";
+		value[count++] = "";
+		value[count++] = "";
+	}else{
+		value[count++] = "";
+		value[count++] = "√";
+		value[count++] = data.visit.breastOther;
+	}
 	//恶露
-	retprintcfg.data[i++] = {"strContent":data.visit.lochia,intTop:"5.6cm",intLeft:"15cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	if(data.visit.lochia==="未见异常" ){
+		value[count++] = "√";
+		value[count++] = "";
+		value[count++] = "";
+	}else{
+		value[count++] = "";
+		value[count++] = "√";
+		value[count++] = data.visit.lochiaOther;
+	}
 	//子宫
-	retprintcfg.data[i++] = {"strContent":data.visit.metra,intTop:"6.4cm",intLeft:"5cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	if(data.visit.metra==="未见异常" ){
+		value[count++] = "√";
+		value[count++] = "";
+		value[count++] = "";
+	}else{
+		value[count++] = "";
+		value[count++] = "√";
+		value[count++] = data.visit.metraOther;
+	}
 	//宫颈   无此字段
-	//retprintcfg.data[i++] = {"strContent":data.visit.metra,intTop:"6.4cm",intLeft:"15cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
 	//附件 无此字段
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
 	//伤口 
-	retprintcfg.data[i++] = {"strContent":data.visit.wound,intTop:"7.2cm",intLeft:"15cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	if(data.visit.wound==="未见异常" ){
+		value[count++] = "√";
+		value[count++] = "";
+		value[count++] = "";
+	}else{
+		value[count++] = "";
+		value[count++] = "√";
+		value[count++] = data.visit.woundOther;
+	}
 	//外阴 无此字段
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
 	//其他
-	retprintcfg.data[i++] = {"strContent":data.visit.other,intTop:"8cm",intLeft:"15cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+	value[count++] = data.visit.other;
 	//分类
 	if(data.visit.result ==="已恢复"){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"8.8cm",intLeft:"4cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+		value[count++] = "";
+		value[count++] = "";
 	}else{
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"8.8cm",intLeft:"5cm",intWidth:"6cm",intHeight:"0.8cm"}; 
-		retprintcfg.data[i++] = {"strContent":data.visit.resultOther,intTop:"8.8cm",intLeft:"6cm",intWidth:"6cm",intHeight:"0.8cm"}; 
+		value[count++] = "";
+		value[count++] = "√";
+		value[count++] = data.visit.resultOther;
 	}
 	//指导内容
 	if(data.afterBornDirect.indexOf("性保健")>=0 ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"9.6cm",intLeft:"4cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+	}else{
+		value[count++] = "";
 	}
 	if(data.afterBornDirect.indexOf("避孕")>=0 ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"9.6cm",intLeft:"5.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+	}else{
+		value[count++] = "";
 	}
 	if(data.afterBornDirect.indexOf("婴儿喂养及营养")>=0 ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"9.6cm",intLeft:"6.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+	}else{
+		value[count++] = "";
 	}
 	if(data.afterBornDirect.indexOf("其他")>=0 ){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"9.6cm",intLeft:"8.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-		retprintcfg.data[i++] = {"strContent":data.visit.afterBornDirectOther,intTop:"9.6cm",intLeft:"9.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+		value[count++] = data.visit.afterBornDirectOther;
+	}else{
+		value[count++] = "";
+		value[count++] = "";
 	}
 	//处理
 	if(data.visit.transfer==="结案"){
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"10.4cm",intLeft:"4cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+		value[count++] = "√";
+		value[count++] = "";
+		value[count++] = "";
 	}else{
-		retprintcfg.data[i++] = {"strContent":"√",intTop:"10.4cm",intLeft:"5.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-		retprintcfg.data[i++] = {"strContent":data.visit.transReason,intTop:"10.4cm",intLeft:"6.5cm",intWidth:"4cm",intHeight:"0.8cm"}; 
+		value[count++] = "";
+		value[count++] = "√";
+		value[count++] = data.visit.transReason;
 	}
 	//转诊日期 无此字段
+	value[count++] = "";
+	value[count++] = "";
+	value[count++] = "";
 	//建议转入机构及科室
-	retprintcfg.data[i++] = {"strContent":data.visit.transUnit,intTop:"11.2cm",intLeft:"9.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	value[count++] = data.visit.transUnit;
 	//检查单位
-	retprintcfg.data[i++] = {"strContent":data.org.execOrgName,intTop:"12cm",intLeft:"9.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
+	value[count++] = data.org.execOrgName;
 	//检查医生
-	retprintcfg.data[i++] = {"strContent":data.visit.visitDoctor,intTop:"12.8cm",intLeft:"9.5cm",intWidth:"2cm",intHeight:"0.8cm"}; 
-
+	value[count++] = data.visit.visitDoctor;
+	for(var i = 0 ; i < count ; i++){
+		retprintcfg.data[i] = new Array(pos[i][0],pos[i][1],pos[i][2],pos[i][3],value[i]);
+	}
 	return retprintcfg;
 }
 
@@ -1406,8 +2060,7 @@ Ext.tf.HealthPrintPanel = Ext.extend(Ext.Panel, {
 												/*页选择*/
 												var pagedata = [ 
 													[1,"第一页"], 
-													[2,"第二页"], 
-													[3,"第三页"]
+													[2,"第二页"]
 													];
 												var pagestore = new Ext.data.SimpleStore({ 
 													fields:[ 
@@ -1845,13 +2498,9 @@ Ext.tf.HealthPrintPanel = Ext.extend(Ext.Panel, {
 																			Ext.Msg.alert("提示","请选择行数!");
 																			return;
 																		}
-																		//alert("11111111111111"+this.grid.getSelectionModel().getSelected());
-																		//alert("11111111111111"+printdata(this.grid.getSelectionModel().getSelected()));
 																		var pagenum = this.pagegrid.getSelectionModel().getSelected().json[0];
-																		
-																		var rownum = this.rowgrid.getSelectionModel().getSelected().json[0];
-																		//alert("页数=="+pagenum+"行数=="+rownum);
-																		printObj.printPreview(getPrintCfg06(this.grid.getSelectionModel().getSelected().json,pagenum,rownum),-1);
+																		var rownum = parseInt(this.rowgrid.getSelectionModel().getSelected().json[0]);
+																		printObj.printPreview(getPrintCfg06(this.grid.getSelectionModel().getSelected().json,pagenum,rownum),-2);
 																	}.createDelegate(this)
 																},{xtype:'button',
 																	iconCls: 'c_print',
@@ -1861,7 +2510,7 @@ Ext.tf.HealthPrintPanel = Ext.extend(Ext.Panel, {
 																			Ext.Msg.alert('提示', '请选择要打印的记录!');
 																			return;
 																		}
-																		printObj.printPreview(getPrintCfg07(this.grid.getSelectionModel().getSelected().json),-1);
+																		printObj.printPreview(getPrintCfg07(this.grid.getSelectionModel().getSelected().json),-2);
 																	}.createDelegate(this)
 																},
 																{	border:false,width:20},
@@ -1896,8 +2545,9 @@ Ext.tf.HealthPrintPanel = Ext.extend(Ext.Panel, {
 									}
 								}
 							}.createDelegate(this)
-						},{
-							text : '5、分娩记录打印',
+						},
+						{
+							text : '5、孕期特殊情况记录表打印',
 							iconCls: 'c_print',
 							handler : function(){
 								var selections = this.grid.getSelections();
@@ -2024,8 +2674,257 @@ Ext.tf.HealthPrintPanel = Ext.extend(Ext.Panel, {
 												}.createDelegate(this));
 												/*页选择*/
 												var pagedata = [ 
-													[1,"第一页"], 
-													[2,"第二页"]
+													[1,"第一行"], 
+													[2,"第二行"],
+													[3,"第三行"], 
+													[4,"第四行"],
+													[5,"第五行"], 
+													[6,"第六行"],
+													[7,"第七行"], 
+													[8,"第八行"]
+													];
+												var pagestore = new Ext.data.SimpleStore({ 
+													fields:[ 
+													{name:"id"}, 
+													{name:"name"}
+													] 
+												}); 
+												var pagesm = new Ext.grid.CheckboxSelectionModel({
+														singleSelect:true});
+												var pagecm = new Ext.grid.ColumnModel([ 
+														pagesm, 
+														{header:"行数",dataIndex:"name"}, 
+														]); 
+												pagestore.loadData(pagedata);
+												this.pagegrid = new Ext.grid.GridPanel({ 
+													cm:pagecm, 
+													height:430,
+													width:80,
+													sm:pagesm, 
+													store:pagestore, 
+													loadMask:true
+													});
+												var panel = new Ext.Panel({
+													layout : 'table',
+													autoScroll : false,
+													layoutConfig: {
+														columns: 3
+													},
+													border:false,
+													items : [  
+													{
+														title : '第一步：选择要打印的记录',
+														region : 'east',
+														colspan: 2,
+														width : 626,
+														height: 430,
+														frame : false,
+														border : true,
+														items : [ this.grid ]
+													},
+													{
+														region : 'center',
+														frame : false,
+														title : '第二步：<br>选择行数',
+														split : false,
+														collapsible : false,
+													   
+														width : 80,
+														height:430,
+														border : true,
+														items : [ this.pagegrid ]
+													},
+													{
+														region : 'south',
+														colspan: 3,
+														layout : 'table',
+														frame : false,
+														split : false,
+														border : false,
+														collapsible : false,
+														height:8,
+														border : false
+													},
+													{
+														region : 'south',
+														colspan: 3,
+														layout : 'table',
+														frame : false,
+														split : false,
+														border : false,
+														collapsible : false,
+														layoutConfig: {
+															columns: 4
+														},
+														height:32,
+														baseCls:"margin-top:10px",
+														border : false,
+														buttonAlign : "center", 
+														items : [ 
+														{
+															border:false,
+															width:300
+														},
+														{xtype:'button',
+															iconCls: 'c_print',
+															text:"打印",
+															handler : function (){
+																if(!this.grid.getSelectionModel().hasSelection()){
+																	Ext.Msg.alert('提示', '请选择要打印的记录!');
+																	return;
+																}
+																if(!this.pagegrid.getSelectionModel().hasSelection()){
+																	Ext.Msg.alert('提示', '请选择行数!');
+																	return;
+																}
+																var pagenum = this.pagegrid.getSelectionModel().getSelected().json[0];
+																printObj.printPreview(getPrintCfg05(this.grid.getSelectionModel().getSelected().json),-2);
+																
+															}.createDelegate(this)
+														},
+														{	border:false,width:20},
+														{	xtype:'button',
+															cls:"x-btn-text-icon",
+															icon:"/resources/images/black/qtip/close.gif",
+															text:"退出",
+															scope :win,
+															handler : function (){
+																	win.close();
+																}
+														}
+														]
+													} ]
+												});
+												
+												return panel;
+											}
+										});
+										var ppanel = new printpanel();
+										var win = new Ext.Window(
+											{width:720,height:500,title:"5、孕期特殊情况记录表打印",layout : 'fit',items:[ppanel]}
+										);
+										win.show();
+										win.doLayout(true);
+										ppanel.grid.doLayout(true);
+									}
+								}
+							}.createDelegate(this)
+						},{
+							text : '6、分娩记录打印',
+							iconCls: 'c_print',
+							handler : function(){
+								var selections = this.grid.getSelections();
+								if(selections.length > 0){
+									var records = selections[0];
+									var fileNo = records.get(this.recordPk);
+									var param = '?' + this.recordPk + '=' + fileNo;
+									var filterKey = "a."+this.recordPk;
+									var filterValue = fileNo;
+									var selNode = this.getTreeSelNode();
+									if (selNode) {
+										var cond = {
+											district : selNode.id,
+											filterKey : filterKey,
+											filterValue : filterValue,
+											isFirst : 1
+										};
+										console.log(cond);
+										//查询
+										var printpanel = Ext.extend(Ext.Panel, {
+											closable : true,
+											currentNode : null, // 当前选择的树节点
+											layout : 'fit',
+											border: false,
+											pageSize : 20,
+											recordId : 'birthRecord.id',
+											recordPk : 'id',
+											checkLastLevel : true,
+											queryUrl : UserMenuTreeService.findBirthChildRecords,
+											queryType : 'demo',
+											readerConfig : [
+															{name:'execOrgName', mapping: 'org.name'},
+															{name:'id', mapping: 'birthRecord.id'},
+															{name:'fileNo', mapping: 'file.fileNo'},
+															{name:'name', mapping: 'file.name'},
+															{name:'sex', mapping: 'person.sex'},
+															{name:'birthday', mapping: 'person.birthday'},
+															{name:'highRisk', mapping: 'birthRecord.criticalWoman'},
+															{name:'birthRecordDate', mapping: 'birthRecord.birthRecordDate'},
+															{name:'username', mapping: 'samTaxempcode.username'}
+														   ],
+											gridCmConfig :
+														   [
+															{ "header" : "执行机构", "dataIndex" : "execOrgName"}, 
+															{ "header" : "编号", "dataIndex" : "fileNo", "width":130 }, 
+															{ "header" : "姓名", "dataIndex" : "name" }, 
+															{ "header" : "性别", "dataIndex" : "sex" }, 
+															{ "header" : "分娩日期", "dataIndex" : "birthRecordDate" },
+															{ "header" : "高危", "dataIndex" : "highRisk" }, 
+															{ "header" : "出生日期", "dataIndex" : "birthday", 
+																	 "renderer": Ext.util.Format.dateRenderer('Y-m-d') }, 
+															{ "header" : "录入人", "dataIndex" : "username" }
+														   ],
+											gridViewConfig : {},
+											initComponent : function() {
+												this.build();
+												Ext.tf.HealthPanel.superclass.initComponent.call(this);
+											},
+											build : function() {
+												this.items = [ this.createPanel() ];
+											},
+											load : function(isReset) {
+												this.grid.getStore().reload();
+												this.doLayout(true);
+											},
+
+											createPanel : function() {
+												var reader = new Ext.data.JsonReader({
+													totalProperty : "totalSize",
+													root : "data",
+													id : this.recordId
+												}, Ext.data.Record.create(this.readerConfig));
+
+												var store = new Ext.data.Store({
+													autoLoad: true,
+													proxy : new Ext.ux.data.DWRProxy({
+														dwrFunction : this.queryUrl,
+														listeners : {
+															'beforeload' : function(dataProxy, params) {
+																params[dataProxy.loadArgsKey] = [ cond, params ];
+															}
+														}
+													}),
+													reader : reader
+												});
+
+												this.pagingBar = new App.PagingToolbar({
+													pageSize : this.pageSize,
+													store : store,
+													displayInfo : true,
+													displayMsg : '{0} - {1} of {2}',
+													emptyMsg : "没有记录"
+												});
+												var sm = new Ext.grid.CheckboxSelectionModel({singleSelect:true});
+												this.gridCmConfig.unshift(sm);
+												this.grid = new Ext.grid.GridPanel({
+													bbar : this.pagingBar,
+													layout : 'fit',
+													border : false,
+													height:403,
+													store : store,
+													cm : new Ext.grid.ColumnModel(this.gridCmConfig),
+													viewConfig : this.gridViewConfig,
+													sm : sm
+												});
+												this.grid.getView().on('refresh', function() {
+													var model = this.grid.getSelectionModel();
+													if (model.getCount() == 0) {
+														model.selectFirstRow();
+													}
+												}.createDelegate(this));
+												/*页选择*/
+												var pagedata = [ 
+													[1,"第一页"]
 													];
 												var pagestore = new Ext.data.SimpleStore({ 
 													fields:[ 
@@ -2122,11 +3021,7 @@ Ext.tf.HealthPrintPanel = Ext.extend(Ext.Panel, {
 																	return;
 																}
 																var pagenum = this.pagegrid.getSelectionModel().getSelected().json[0];
-																if(pagenum =="1"){
-																	printObj.printPreview(getPrintCfg08(this.grid.getSelectionModel().getSelected().json),-1);
-																}else{
-																	printObj.printPreview(getPrintCfg09(this.grid.getSelectionModel().getSelected().json),-1);
-																}
+																printObj.printPreview(getPrintCfg08(this.grid.getSelectionModel().getSelected().json),-2);
 															}.createDelegate(this)
 														},
 														{	border:false,width:20},
@@ -2149,7 +3044,7 @@ Ext.tf.HealthPrintPanel = Ext.extend(Ext.Panel, {
 										});
 										var ppanel = new printpanel();
 										var win = new Ext.Window(
-											{width:720,height:500,title:"5、分娩记录打印",layout : 'fit',items:[ppanel]}
+											{width:720,height:500,title:"6、分娩记录打印",layout : 'fit',items:[ppanel]}
 										);
 										win.show();
 										win.doLayout(true);
@@ -2158,7 +3053,7 @@ Ext.tf.HealthPrintPanel = Ext.extend(Ext.Panel, {
 								}
 							}.createDelegate(this)
 						},{
-							text : '6、产后访视记录表打印',
+							text : '7、产后访视记录表打印',
 							iconCls: 'c_print',
 							handler : function(){
 								var selections = this.grid.getSelections();
@@ -2299,7 +3194,7 @@ Ext.tf.HealthPrintPanel = Ext.extend(Ext.Panel, {
 														singleSelect:true});
 												var pagecm = new Ext.grid.ColumnModel([ 
 														pagesm, 
-														{header:"页数",dataIndex:"name"}, 
+														{header:"行数",dataIndex:"name"}, 
 														]); 
 												pagestore.loadData(pagedata);
 												this.pagegrid = new Ext.grid.GridPanel({ 
@@ -2314,14 +3209,14 @@ Ext.tf.HealthPrintPanel = Ext.extend(Ext.Panel, {
 													layout : 'table',
 													autoScroll : false,
 													layoutConfig: {
-														columns: 3
+														columns: 5
 													},
 													border:false,
 													items : [  
 													{
 														title : '选择要打印的记录',
 														region : 'east',
-														colspan: 2,
+														colspan: 4,
 														width : 626,
 														height: 430,
 														frame : false,
@@ -2342,7 +3237,7 @@ Ext.tf.HealthPrintPanel = Ext.extend(Ext.Panel, {
 													},
 													{
 														region : 'south',
-														colspan: 3,
+														colspan: 5,
 														layout : 'table',
 														frame : false,
 														split : false,
@@ -2353,14 +3248,14 @@ Ext.tf.HealthPrintPanel = Ext.extend(Ext.Panel, {
 													},
 													{
 														region : 'south',
-														colspan: 3,
+														colspan: 5,
 														layout : 'table',
 														frame : false,
 														split : false,
 														border : false,
 														collapsible : false,
 														layoutConfig: {
-															columns: 4
+															columns: 6
 														},
 														height:32,
 														baseCls:"margin-top:10px",
@@ -2384,7 +3279,19 @@ Ext.tf.HealthPrintPanel = Ext.extend(Ext.Panel, {
 																	return;
 																}
 																var rownum = this.pagegrid.getSelectionModel().getSelected().json[0];
-																printObj.printPreview(getPrintCfg10(this.grid.getSelectionModel().getSelected().json,rownum),-1);
+																printObj.printPreview(getPrintCfg10(this.grid.getSelectionModel().getSelected().json,rownum),-2);
+															}.createDelegate(this)
+														},
+														{	border:false,width:20},
+														{xtype:'button',
+															iconCls: 'c_print',
+															text:"打印其他内容",
+															handler : function (){
+																if(!this.grid.getSelectionModel().hasSelection()){
+																	Ext.Msg.alert('提示', '请选择要打印的记录!');
+																	return;
+																}
+																printObj.printPreview(getPrintCfg09(this.grid.getSelectionModel().getSelected().json),-2);
 															}.createDelegate(this)
 														},
 														{	border:false,width:20},
@@ -2407,7 +3314,7 @@ Ext.tf.HealthPrintPanel = Ext.extend(Ext.Panel, {
 										});
 										var ppanel = new printpanel();
 										var win = new Ext.Window(
-											{width:720,height:500,title:"6、产后访视记录表",layout : 'fit',items:[ppanel]}
+											{width:720,height:500,title:"7、产后访视记录表",layout : 'fit',items:[ppanel]}
 										);
 										win.show();
 										win.doLayout(true);
@@ -2416,7 +3323,7 @@ Ext.tf.HealthPrintPanel = Ext.extend(Ext.Panel, {
 								}
 							}.createDelegate(this)
 						},{
-							text : '7、产后42天检查记录表打印',
+							text : '8、产后42天检查记录表打印',
 							iconCls: 'c_print',
 							handler : function(){
 								var selections = this.grid.getSelections();
@@ -2595,7 +3502,7 @@ Ext.tf.HealthPrintPanel = Ext.extend(Ext.Panel, {
 																	Ext.Msg.alert('提示', '请选择要打印的记录!');
 																	return;
 																}
-																printObj.printPreview(getPrintCfg11(this.grid.getSelectionModel().getSelected().json),-1);
+																printObj.printPreview(getPrintCfg11(this.grid.getSelectionModel().getSelected().json),-2);
 															}.createDelegate(this)
 														},
 														{	border:false,width:20},
@@ -2618,7 +3525,7 @@ Ext.tf.HealthPrintPanel = Ext.extend(Ext.Panel, {
 										});
 										var ppanel = new printpanel();
 										var win = new Ext.Window(
-											{width:720,height:500,title:"7、产后42天检查记录表",layout : 'fit',items:[ppanel]}
+											{width:720,height:500,title:"8、产后42天检查记录表",layout : 'fit',items:[ppanel]}
 										);
 										win.show();
 										win.doLayout(true);

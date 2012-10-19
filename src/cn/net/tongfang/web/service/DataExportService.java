@@ -741,7 +741,7 @@ public class DataExportService extends HibernateDaoSupport{
 			}else{
 				if (StringUtils.hasText(filterVal)) {
 					params.add('%' + filterVal + '%');
-					where.append(" and " + filterVal + " like ?");
+					where.append(" and " + filterKey + " like ?");
 				}
 			}
 		}
